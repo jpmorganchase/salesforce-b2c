@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<form xmlns="http://www.demandware.com/xml/form/2008-04-19">
+    <field formid="username" label="forms.config.username.label" description="forms.config.username.description" type="string" mandatory="true"  />
+    <field formid="password" label="forms.config.password.label" description="forms.config.password.description" type="string" mandatory="true"  />
+    <action formid="save" label="forms.config.save.label" valid-form="true"/>
+    <field formid="enabled" label="forms.config.enabled.label" description="forms.config.enabled.description" type="boolean" mandatory="true">
+        <options>
+            <option optionid="true" label="forms.config.enabled.true" value="true"/>
+            <option optionid="false" label="forms.config.enabled.false" value="false"/>
+        </options>
+    </field>
+    <field formid="avsEnabled" label="forms.config.avsEnabled.label" description="forms.config.avsEnabled.description" type="boolean" mandatory="true">
+        <options>
+            <option optionid="true" label="forms.config.avsEnabled.true" value="true"/>
+            <option optionid="false" label="forms.config.avsEnabled.false" value="false"/>
+        </options>
+    </field>
+    <field formid="pageEncryptionEnabled" label="forms.config.pageEncryptionEnabled.label" description="forms.config.pageEncryptionEnabled.description" type="boolean" mandatory="true">
+        <options>
+            <option optionid="true" label="forms.config.pageEncryptionEnabled.true" value="true"/>
+            <option optionid="false" label="forms.config.pageEncryptionEnabled.false" value="false"/>
+        </options>
+    </field>
+    <field formid="incrementalAuthorizationEnabled" label="forms.config.incrementalAuthorizationEnabled.label" description="forms.config.incrementalAuthorizationEnabled.description" type="boolean" mandatory="true">
+        <options>
+            <option optionid="true" label="forms.config.incrementalAuthorizationEnabled.true" value="true"/>
+            <option optionid="false" label="forms.config.incrementalAuthorizationEnabled.false" value="false"/>
+        </options>
+    </field>
+    <field formid="updateProfileEnabled" label="forms.config.updateProfileEnabled.label" description="forms.config.updateProfileEnabled.description" type="boolean" mandatory="true">
+        <options>
+            <option optionid="true" label="forms.config.updateProfileEnabled.true" value="true"/>
+            <option optionid="false" label="forms.config.updateProfileEnabled.false" value="false"/>
+        </options>
+    </field>
+    <field formid="platformMode" label="forms.config.platformMode.label" description="forms.config.platformMode.description" type="string" mandatory="true">
+        <options>
+            <option optionid="000001" label="forms.config.platformMode.stratus" value="000001"/>
+            <option optionid="000002" label="forms.config.platformMode.tandem" value="000002"/>
+        </options>
+    </field>
+    <field formid="paymentModeCard" label="forms.config.paymentModeCard.label" description="forms.config.paymentModeCard.description" type="string" mandatory="true">
+        <options>
+            <option optionid="A" label="forms.config.paymentModeCard.authorizationOnly" value="A"/>
+            <option optionid="AC" label="forms.config.paymentModeCard.authorizationAndCapture" value="AC"/>
+        </options>
+    </field>
+    <field formid="paymentModeProfile" label="forms.config.paymentModeProfile.label" description="forms.config.paymentModeProfile.description" type="string" mandatory="true">
+        <options>
+            <option optionid="A" label="forms.config.paymentModeProfile.authorizationOnly" value="A"/>
+            <option optionid="AC" label="forms.config.paymentModeProfile.authorizationAndCapture" value="AC"/>
+        </options>
+    </field>
+    <field formid="paymentModeElectronicCheck" label="forms.config.paymentModeElectronicCheck.label" description="forms.config.paymentModeElectronicCheck.description" type="string" mandatory="true">
+        <options>
+            <option optionid="A" label="forms.config.paymentModeElectronicCheck.authorizationOnly" value="A"/>
+            <option optionid="AC" label="forms.config.paymentModeElectronicCheck.authorizationAndCapture" value="AC"/>
+        </options>
+    </field>
+    <field formid="paymentModeGooglePay" label="forms.config.paymentModeGooglePay.label" description="forms.config.paymentModeGooglePay.description" type="string" mandatory="true">
+        <options>
+            <option optionid="A" label="forms.config.paymentModeGooglePay.authorizationOnly" value="A"/>
+            <option optionid="AC" label="forms.config.paymentModeGooglePay.authorizationAndCapture" value="AC"/>
+        </options>
+    </field>
+    <field formid="customerSavedPaymentType" label="forms.config.customerSavedPaymentType.label" description="forms.config.customerSavedPaymentType.description" type="string" mandatory="true">
+        <options>
+            <option optionid="orbitalProfile" label="forms.config.customerSavedPaymentType.orbitalProfile" value="orbitalProfile"/>
+            <option optionid="safetechToken" label="forms.config.customerSavedPaymentType.safetechToken" value="safetechToken"/>
+        </options>
+    </field>
+    <field formid="pageEncryptionConfiguration" label="forms.config.pageEncryptionConfiguration.label" description="forms.config.pageEncryptionConfiguration.description" type="string" mandatory="true">
+        <options>
+            <option optionid="live" label="forms.config.pageEncryptionConfiguration.live" value="live"/>
+            <option optionid="testing" label="forms.config.pageEncryptionConfiguration.testing" value="testing"/>
+        </options>
+    </field>
+    <field formid="pageEncryptionConfigurationSubID" label="forms.config.pageEncryptionConfigurationSubID.label" description="forms.config.pageEncryptionConfigurationSubID.description" type="string" mandatory="false"/>
+    <field formid="googlePayEnabled" label="forms.config.googlePayEnabled.label" description="forms.config.googlePaynEnabled.description" type="boolean" mandatory="true">
+        <options>
+            <option optionid="true" label="forms.config.googlePayEnabled.true" value="true"/>
+            <option optionid="false" label="forms.config.googlePayEnabled.false" value="false"/>
+        </options>
+    </field>
+    <field formid="googlePayConfMerchantId" label="forms.config.googlePayConfMerchantId.label" description="forms.config.googlePayConfMerchantId.description" type="string" mandatory="true"  />
+    <field formid="googlePayConfMerchantName" label="forms.config.googlePayConfMerchantName.label" description="forms.config.googlePayConfMerchantName.description" type="string" mandatory="true"  />
+    <field formid="googlePayConfMerchantEnvironment" label="forms.config.googlePayConfMerchantEnvironment.label" description="forms.config.googlePayConfMerchantEnvironment.description" type="string" mandatory="true">
+        <options>
+            <option optionid="testing" label="forms.config.googlePayConfMerchantEnvironment.testing" value="TEST"/>
+            <option optionid="live" label="forms.config.googlePayConfMerchantEnvironment.live" value="PRODUCTION"/>
+        </options>
+    </field>
+    <field formid="visaPayApiKey" label="forms.config.visaPayApiKey.label" description="forms.config.visaPayApiKey.description" type="string" mandatory="true"  />
+    <field formid="visaPayEnabled" label="forms.config.visaPayEnabled.label" description="forms.config.visaPayEnabled.description" type="boolean" mandatory="true">
+        <options>
+            <option optionid="true" label="forms.config.visaPayEnabled.true" value="true"/>
+            <option optionid="false" label="forms.config.visaPayEnabled.false" value="false"/>
+        </options>
+    </field>
+    <field formid="paymentModeVisaPay" label="forms.config.paymentModeVisaPay.label" description="forms.config.paymentModeVisaPay.description" type="string" mandatory="true">
+        <options>
+            <option optionid="A" label="forms.config.paymentModeVisaPay.authorizationOnly" value="A"/>
+            <option optionid="AC" label="forms.config.paymentModeVisaPay.authorizationAndCapture" value="AC"/>
+        </options>
+    </field>
+    <field formid="applePayEnabled" label="forms.config.applePayEnabled.label" description="forms.config.applePayEnabled.description" type="boolean" mandatory="true">
+        <options>
+            <option optionid="true" label="forms.config.applePayEnabled.true" value="true"/>
+            <option optionid="false" label="forms.config.applePayEnabled.false" value="false"/>
+        </options>
+    </field>
+    <field formid="paymentModeApplePay" label="forms.config.paymentModeApplePay.label" description="forms.config.paymentModeApplePay.description" type="string" mandatory="true">
+        <options>
+            <option optionid="A" label="forms.config.paymentModeApplePay.authorizationOnly" value="A"/>
+            <option optionid="AC" label="forms.config.paymentModeApplePay.authorizationAndCapture" value="AC"/>
+        </options>
+    </field>
+</form>

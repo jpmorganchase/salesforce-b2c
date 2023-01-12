@@ -1,0 +1,44 @@
+<!--- applicable credit cards--->
+<div class="tab-pane credit-card-content" id="credit-card-content" role="tabpanel">
+    <fieldset class="payment-form-fields">
+        <isif condition="${!pdict.hideSecurityCodeApple}">
+            <div class="form-group security-code-input required">
+                <label class="form-control-label" for="securityCodeApple">${Resource.msg('label.credit.card-security.code', 'checkout', null)}</label>
+                <button type="button" class="info-icon">
+                    <span class="icon" aria-hidden="true">i</span>
+                    <span class="sr-only">${Resource.msg('button.help.assistive.text', 'common', null)}</span>
+                    <span class="tooltip d-none">
+                        ${Resource.msg('tooltip.security.code', 'creditCard', null)}
+                    </span>
+                </button>
+
+                <input type="text" class="form-control securityCode" id="securityCodeApple" maxlength="4" name="${pdict.jpmcOApplePayForm.securityCodeApple.htmlName}"
+                    aria-describedby="savedPaymentSecurityCodeInvalidMessage">
+                <div class="invalid-feedback" id="savedPaymentSecurityCodeInvalidMessage">
+                    ${Resource.msg('error.message.security.code.required', 'checkout', null)}</div>
+            </div>
+        </isif>
+
+        <!--- payment method is apple pay --->
+        <isset name="JPMCOrbitalConstants" value="${require('*/cartridge/scripts/helpers/jpmcOConstantsHelper')}" scope="page" />
+        <isif condition="${pdict.forms}">
+            <input type="hidden" class="form-control js-method-id-input" name="${pdict.forms.billingForm.paymentMethod.htmlName}"
+            value="${JPMCOrbitalConstants.JPMC_ORBITAL_APPLEPAY_METHOD}">
+        </isif>
+        <!--- Hidden input for apple pay --->
+        <input type="hidden" class="form-control" id="applePayToken" name="${pdict.jpmcOApplePayForm.applepay.htmlName}" value="">
+        <isif condition="${pdict.customer}">
+            <isif condition="${pdict.customer.registeredUser}">
+                <input type="hidden" class="form-control" id="saveCustomerPaymentCheckboxAP" name="${pdict.jpmcOApplePayForm.saveCustomerPaymentCheckboxAP.htmlName}">
+                <div class="form-group custom-checkbox">
+                    <input type="checkbox" class="control-input" id="customerPaymentCheckboxAP">
+                    <label class="control-label" for="customerPaymentCheckboxAP">
+                        ${Resource.msg('label.save.customer.payment.checkbox', 'jpmcO', null)}
+                    </label>
+                </div>
+            </isif>
+        </isif>
+
+    </fieldset>
+</div>
+

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<form xmlns="http://www.demandware.com/xml/form/2008-04-19">
+
+    <field formid="ecpCheckRT" label="label.input.electroniccheck.ecpCheckRT" type="string" mandatory="true" binding="ecpCheckRT" regexp="^\d{8,9}$"
+       max-length="9" missing-error="error.message.required.ec" parse-error="erroe.message.checkrrt.ec" />
+
+    <field formid="ecpCheckDDA" label="label.input.electroniccheck.ecpCheckDDA" type="string" mandatory="true" binding="ecpCheckDDA" regexp="^\w{1,17}$"
+       max-length="17" missing-error="error.message.required.ec" parse-error="erroe.message.checkdda.ec"   />
+
+    <field formid="ecpBankAcctType" label="select.electroniccheck.ecpBankAcctType" type="string" mandatory="true" binding="ecpBankAcctType"
+        missing-error="error.message.item.required.ec" parse-error="error.message.item.required.ec" >
+        <options>
+            <option optionid="" label="" value=""/>
+            <option optionid="C" label="select.option.electroniccheck.ecpBankAcctType.C" value="C"/>
+            <option optionid="S" label="select.option.electroniccheck.ecpBankAcctType.S" value="S"/>
+            <option optionid="X" label="select.option.electroniccheck.ecpBankAcctType.X" value="X"/>
+        </options>
+    </field>
+
+    <field formid="saveCustomerPaymentCheckboxEC" type="boolean" mandatory="false" />
+</form>

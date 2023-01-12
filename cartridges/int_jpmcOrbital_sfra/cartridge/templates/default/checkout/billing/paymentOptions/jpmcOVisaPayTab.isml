@@ -1,0 +1,12 @@
+<li class="nav-item js-method-id w-100 hidden-xl-down flex-order-3" data-method-id="${paymentOption.ID}">
+    <a
+        class="nav-link js-payment-option-tab visa-pay-tab"
+        data-toggle="tab"
+        href="#jpmco-visa-pay-content"
+        role="tab"
+        data-payment-option-tab
+    >
+    <img alt="Visa Checkout" class="v-button" role="button" src="https://sandbox.secure.checkout.visa.com/wallet-services-web/xo/button.png"/>
+    </a>
+</li>
+<iscomment> Its called for tab contents id </iscomment>

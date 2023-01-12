@@ -1,0 +1,20 @@
+/* stylelint-disable selector-type-no-unknown, declaration-empty-line-before */
+apple-pay-button {
+    --apple-pay-button-width: 10.625rem;
+    --apple-pay-button-height: 2.5rem;
+    --apple-pay-button-border-radius: 0.375rem;
+    --apple-pay-button-padding: 0 0;
+    --apple-pay-button-box-sizing: border-box;
+    display: block;
+    margin: auto;
+}
+/* stylelint-enable selector-type-no-unknown, declaration-empty-line-before */
+@for $i from 0 through 5 {
+    li.flex-order-#{$i} {
+        order: #{$i};
+    }
+}
+
+.js-applepay-payment-row {
+    display: none;
+}

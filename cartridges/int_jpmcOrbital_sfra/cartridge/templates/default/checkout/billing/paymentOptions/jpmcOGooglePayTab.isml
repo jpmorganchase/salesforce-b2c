@@ -1,0 +1,12 @@
+<li class="nav-item js-method-id w-100 hidden-xl-down flex-order-2" data-method-id="${paymentOption.ID}">
+    <a
+        class="nav-link js-payment-option-tab google-pay-tab"
+        data-toggle="tab"
+        href="#jpmco-google-pay-content"
+        role="tab"
+        data-payment-option-tab
+    >
+    </a>
+</li>
+
+<iscomment> Its called for tab contents id </iscomment>

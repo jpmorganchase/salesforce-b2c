@@ -1,0 +1,13 @@
+
+<isset name="jpmcOCreditFields" value="${pdict.jpmcOCreditForm}" scope="page"/>
+<div
+    class="tab-pane jpmco-credit-content js-jpmco-credit-content"
+    id="jpmco-credit-content"
+    role="tabpanel"
+>
+    <fieldset class="payment-form-fields">
+        <!--- form --->
+        <isinclude template="checkout/billing/jpmcOCreditForm" />
+
+    </fieldset>
+</div>

@@ -1,0 +1,11 @@
+<isset name="jpmcOrbitalPageEncryption" value="${require('*/cartridge/scripts/helpers/preferenceHelper').isPageEncryptionEnabled()}" scope="page" />
+<isloop items="${pdict.order.billing.payment.applicablePaymentMethods}" var="paymentOption">
+    <isif condition="${paymentOption.displayDigitalWallet}">
+        <li class="nav-item w-100 js-method-id ${paymentOption.hideDisplayDigitalWallet} flex-order-1">
+            <a href="#" class="nav-link digital-wallets">${Resource.msg('label.payment.jpmcodigitalwallets', 'payment', null)}</a>
+        </li>
+    </isif>
+    <isif condition="${paymentOption.templateTab}">
+        <isinclude template="${paymentOption.templateTab}" />
+    </isif>
+</isloop>

@@ -1,0 +1,9 @@
+<iscomment> <input type="hidden" class="cardNumber"> </iscomment>
+<isloop items="${pdict.order.billing.payment.applicablePaymentMethods}" var="paymentOption">
+    <isif condition="${paymentOption.templateContent}">
+        <isinclude template="${paymentOption.templateContent}" />
+    </isif>
+</isloop>
+<isif condition="${customer.isAuthenticated() && pdict.isOrbitalAPIEnabled}">
+    <button class="btn btn-block cancel-new-payment btn-outline-primary hidden-xl-down" type="button">${Resource.msg('button.back.to.stored.payments', 'checkout', null)}</button>
+</isif>

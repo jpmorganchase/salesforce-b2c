@@ -1,0 +1,8 @@
+<isset name="JPMCOrbitalConstants" value="${require('*/cartridge/scripts/helpers/jpmcOConstantsHelper')}" scope="page" />
+<p class="creditCardType" data-jpmc-o-constants-helper="${JSON.stringify(JPMCOrbitalConstants)}">${Resource.msg('label.payment.credit','account',null)} ${payment.creditCardType}</p>
+<isif condition="${payment.creditCardType !== JPMCOrbitalConstants.EC}">
+    <p>${payment.maskedCreditCardNumber}</p>
+    <p>${Resource.msg('label.payment.ending','account',null)} ${payment.creditCardExpirationMonth}/${payment.creditCardExpirationYear}</p>
+<iselse/>
+    <p>${payment.maskedBankAccountNumber}</p>
+</isif>

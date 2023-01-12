@@ -1,0 +1,13 @@
+
+<isset name="jpmcOVisaPayFields" value="${pdict.jpmcOVisaPayForm}" scope="page"/>
+<div
+    class="tab-pane jpmco-visa-pay-content js-jpmco-visa-pay-content"
+    id="jpmco-visa-pay-content"
+    role="tabpanel"
+>
+    <fieldset class="payment-form-fields">
+        <!--- form --->
+        <isinclude template="checkout/billing/jpmcOVisaPayForm" />
+
+    </fieldset>
+</div>

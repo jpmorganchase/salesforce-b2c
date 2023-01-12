@@ -1,0 +1,11 @@
+<div
+    id="jpmco-google-pay-content"
+    class="tab-pane jpmco-google-pay-content"
+    role="tabpanel"
+>
+    <fieldset class="payment-form-fields">
+        <!--- form --->
+        <isinclude template="checkout/billing/jpmcOGooglePayForm" />
+
+    </fieldset>
+</div>

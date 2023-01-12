@@ -1,0 +1,47 @@
+<isscript>
+    var assets = require('*/cartridge/scripts/assets.js');
+    assets.addCss('css/myAccount.css');
+</isscript>
+<div class="paymentInstruments">
+	<!-- Rows for Credit Cards -->
+	<isloop items="${pdict.paymentInstruments}" var="paymentInstrument">
+	    <div class="row justify-content-center" id="uuid-${paymentInstrument.UUID}">
+	        <div class="col-sm-8 col-md-6">
+	            <div class="card">
+	                <div class="card-header">
+	                    <h2 class="pull-left">${paymentInstrument.creditCardHolder}</h2>
+						<isset name="JPMCOrbitalConstants" value="${require('*/cartridge/scripts/helpers/jpmcOConstantsHelper')}" scope="page" />
+						<isif condition="${paymentInstrument.creditCardToken !== JPMCOrbitalConstants.undefined && !paymentInstrument.custom.jpmcOIsSafetech && pdict.isOrbitalAPIEnabled === true}">
+							<a href="${URLUtils.url('JPMCOrbitalController-HandleProfileUpdateModal', 'paymentMethodID', paymentInstrument.paymentMethod,'customerNo', pdict.customerNo, 'customerToken', paymentInstrument.creditCardToken, 'UUID', paymentInstrument.UUID)}" class="btn updateprofile ${paymentInstrument.paymentMethod === JPMCOrbitalConstants.JPMC_ORBITAL_APPLEPAY_METHOD ? 'js-applepay-payment-row' : ''}" role="button" aria-pressed="true">${Resource.msg('label.payment.updateprofile','payment',null)}</a>
+						</isif>
+	                </div>
+	                <div class="card-body card-body-positioning">
+	                    <div class="card-info-group">
+	                        <isset name="payment" value="${paymentInstrument}" scope="page">
+							<isset name="JPMCOrbitalConstants" value="${require('*/cartridge/scripts/helpers/jpmcOConstantsHelper')}" scope="page" />
+							<isif condition="${paymentInstrument.paymentMethod === JPMCOrbitalConstants.JPMC_ORBITAL_ELECTRONIC_CHECK_METHOD}">
+								${Resource.msg('ecp.payment','payment',null)}<br>
+								<p>${payment.maskedBankAccountNumber}</p>
+							<iselse>
+	                        	<isinclude template="account/payment/savedPayment"/>
+							</isif>
+	                    </div>
+	                    <button
+	                        type="button"
+	                        class="remove-btn remove-payment btn-light"
+	                        data-toggle="modal"
+	                        data-target="#deletePaymentModal"
+	                        data-id="${paymentInstrument.UUID}"
+	                        data-card="${paymentInstrument.maskedCreditCardNumber}"
+	                        data-url="${pdict.actionUrl}"
+	                        aria-label="${Resource.msg('label.payment.deletepayment','payment',null)}">
+	                        &times;
+	                    </button>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</isloop>
+</div>
+<script src="https://pay.google.com/gp/p/js/pay.js"></script>
+<script src="https://sandbox-assets.secure.checkout.visa.com/checkout-widget/resources/js/integration/v1/sdk.js"></script>

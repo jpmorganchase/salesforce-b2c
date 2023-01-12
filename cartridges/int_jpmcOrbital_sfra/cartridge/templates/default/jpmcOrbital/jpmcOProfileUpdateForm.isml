@@ -1,0 +1,108 @@
+<iscontent type="text/html" charset="UTF-8" compact="true" />
+<script defer src="${URLUtils.staticURL('/js/jpmcOGooglePayCommon.js')}"></script>
+<script defer src="${URLUtils.staticURL('/js/jpmcOVisaPay.js')}"></script>
+<script defer src="${URLUtils.staticURL('/js/thirdParty/jpmcApplePay.js')}"></script>
+<div class="modal-dialog quick-view-dialog row">
+    <div class="modal-content">
+        <div class="title-message modal-header">
+            <span>${Resource.msg('label.payment.updateprofile', 'payment', null)}</span>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                    aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-update-error-message container" id="error-message-update-form" hidden>${Resource.msg('update.profile.form.error.message', 'payment', null)}</div>
+        <div class="small-12 columns modal-body">
+        <isif condition="${pdict.paymentMethodID === pdict.JPMC_ORBITAL_CC_METHOD}">
+            <form action="${URLUtils.url('JPMCOrbitalController-UpdateProfile','customerNo', pdict.customerNo, 'customerToken', pdict.customerToken, 'UUID', pdict.UUID, 'paymentMethodID', pdict.paymentMethodID)}" id="updateprofileform">
+
+                    <isinclude template="checkout/billing/paymentOptions/jpmcOCreditContent" />
+                    <input type="hidden" id="csrfToken" name="${pdict.csrf.tokenName}" value="${pdict.csrf.token}"/>
+                    <div class="text-left">
+                        <button id="updateprofilebutton" class="submit-button btn btn-primary"
+                            type="submit">${Resource.msg('update.profile.form.submit', 'payment', null)}</button>
+
+                        <button type="button" class="close-button btn-outline-danger btn close-modal" data-dismiss="modal" data-close
+                            aria-label="Close modal">
+                            <span aria-hidden="true">${Resource.msg('update.profile.form.cancel', 'payment', null)}</span>
+                        </button>
+                    </div>
+                </form>
+        <iselseif condition = "${pdict.paymentMethodID === pdict.JPMC_ORBITAL_ELECTRONIC_CHECK_METHOD}">
+                <form action="${URLUtils.url('JPMCOrbitalController-UpdateProfile','customerNo', pdict.customerNo, 'customerToken', pdict.customerToken, 'UUID', pdict.UUID, 'paymentMethodID', pdict.paymentMethodID)}" id="updateprofileform">
+
+                    <isinclude template="checkout/billing/paymentOptions/jpmcOElectronicCheckContent" />
+                    <input type="hidden" id="csrfToken" name="${pdict.csrf.tokenName}" value="${pdict.csrf.token}"/>
+                    <div class="text-left">
+                        <button id="updateprofilebutton" class="submit-button btn btn-primary"
+                            type="submit">${Resource.msg('update.profile.form.submit', 'payment', null)}</button>
+
+                        <button type="button" class="close-button btn-outline-danger btn close-modal" data-dismiss="modal" data-close
+                            aria-label="Close modal">
+                            <span aria-hidden="true">${Resource.msg('update.profile.form.cancel', 'payment', null)}</span>
+                        </button>
+                    </div>
+                </form>
+            <iselseif condition = "${pdict.paymentMethodID === pdict.JPMC_ORBITAL_GOOGLEPAY_METHOD && pdict.showGooglePayForm}">
+                <form action="${URLUtils.url('JPMCOrbitalController-UpdateProfile','customerNo', pdict.customerNo, 'customerToken', pdict.customerToken, 'UUID', pdict.UUID, 'paymentMethodID', pdict.paymentMethodID)}" id="updateprofileform">
+                    <label class="jpmcO-google-pay" data-toggle="tab" role="tab" id="google-pay-my-account"
+                        data-payment-option-tab data-google-pay-configurations="${pdict.googlePayConfigurations}">
+                    </label>
+                    <div class="jpmc-google-pay-content">
+                        <isinclude template="checkout/billing/paymentOptions/jpmcOGooglePayContent" />
+                    </div>
+                    <input type="hidden" id="csrfToken" name="${pdict.csrf.tokenName}" value="${pdict.csrf.token}"/>
+                    <div class="text-left">
+                        <button id="updateprofilebutton" class="submit-button btn btn-primary"
+                            type="submit">${Resource.msg('update.profile.form.submit', 'payment', null)}</button>
+
+                        <button type="button" class="close-button btn-outline-danger btn close-modal" data-dismiss="modal" data-close
+                            aria-label="Close modal">
+                            <span aria-hidden="true">${Resource.msg('update.profile.form.cancel', 'payment', null)}</span>
+                        </button>
+                    </div>
+                </form>
+            <iselseif condition = "${pdict.paymentMethodID === pdict.JPMC_ORBITAL_VISA_CHECKOUT_METHOD && pdict.showVisaPayForm}">
+                <form action="${URLUtils.url('JPMCOrbitalController-UpdateProfile','customerNo', pdict.customerNo, 'customerToken', pdict.customerToken, 'UUID', pdict.UUID, 'paymentMethodID', pdict.paymentMethodID)}" id="updateprofileform">
+                    <label class="jpmcO-visa-pay " data-toggle="tab" role="tab"
+                        data-payment-option-tab data-visa-pay-configurations="${JSON.stringify(pdict.visaPayConfigurations)}">
+                        <img alt="Visa Checkout" class="v-button" role="button" src="https://sandbox.secure.checkout.visa.com/wallet-services-web/xo/button.png"/>
+                    </label>
+                    <isinclude template="checkout/billing/paymentOptions/jpmcOVisaPayContent" />
+                    <input type="hidden" id="csrfToken" name="${pdict.csrf.tokenName}" value="${pdict.csrf.token}"/>
+                    <div class="text-left">
+                        <button id="updateprofilebutton" class="submit-button btn btn-primary"
+                            type="submit">${Resource.msg('update.profile.form.submit', 'payment', null)}</button>
+
+                        <button type="button" class="close-button btn-outline-danger btn close-modal" data-dismiss="modal" data-close
+                            aria-label="Close modal">
+                            <span aria-hidden="true">${Resource.msg('update.profile.form.cancel', 'payment', null)}</span>
+                        </button>
+                    </div>
+                </form>
+            <iselseif condition = "${pdict.paymentMethodID === pdict.JPMC_ORBITAL_APPLEPAY_METHOD && pdict.showApplePayForm}">
+                <form action="${URLUtils.url('JPMCOrbitalController-UpdateProfile','customerNo', pdict.customerNo, 'customerToken', pdict.customerToken, 'UUID', pdict.UUID, 'paymentMethodID', pdict.paymentMethodID)}" id="updateprofileform">
+                    <iscomment> <label class="jpmcO-apple-pay" data-toggle="tab" role="tab" id="apple-pay-my-account"
+                        data-payment-option-tab data-apple-pay-configurations="${pdict.applePayConfigurations}">
+                    </label> </iscomment>
+                    <apple-pay-button id="applePayButton" buttonstyle="black" type="plain" locale="en"></apple-pay-button>
+                    <div class="jpmc-apple-pay-content">
+                        <isinclude template="checkout/billing/paymentOptions/jpmcOApplePayContent" />
+                    </div>
+                    <input type="hidden" id="csrfToken" name="${pdict.csrf.tokenName}" value="${pdict.csrf.token}"/>
+                    <div class="text-left">
+                        <button id="updateprofilebutton" class="submit-button btn btn-primary"
+                            type="submit">${Resource.msg('update.profile.form.submit', 'payment', null)}</button>
+
+                        <button type="button" class="close-button btn-outline-danger btn close-modal" data-dismiss="modal" data-close
+                            aria-label="Close modal">
+                            <span aria-hidden="true">${Resource.msg('update.profile.form.cancel', 'payment', null)}</span>
+                        </button>
+                    </div>
+                </form>
+        </isif>
+        </div>
+    </div>
+    <div class="loading"></div>
+    <img src="${URLUtils.staticURL('/images/load.gif')}" class="loading-gif" alt="">
+</div>
+<script src="https://sandbox-assets.secure.checkout.visa.com/checkout-widget/resources/js/integration/v1/sdk.js"></script>
+<script defer src="https://applepay.cdn-apple.com/jsapi/v1/apple-pay-sdk.js"></script>

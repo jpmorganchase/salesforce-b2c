@@ -1,0 +1,8 @@
+<isset name="JPMCOrbitalConstants" value="${require('*/cartridge/scripts/helpers/jpmcOConstantsHelper')}" scope="page" />
+<div class="payment-details" data-jpmc-o-constants-helper="${JSON.stringify(JPMCOrbitalConstants)}">
+    <isloop items="${pdict.order.billing.payment.selectedPaymentInstruments}" var="payment">
+        <isif condition="${payment.template}">
+            <isinclude template="${payment.template}" />
+        </isif>
+    </isloop>
+</div>

@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<form xmlns="http://www.demandware.com/xml/form/2008-04-19">
+
+    <field formid="customerRefNum" label="profile.customerRefNum" type="string" mandatory="false" binding="customerRefNum" />
+    <field formid="securityCode" label="profile.securityCode" type="string" mandatory="false" binding="securityCode" />
+</form>

@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<form xmlns="http://www.demandware.com/xml/form/2008-04-19">
+    <field formid="visaPay" type="string" mandatory="true"/>
+    <field formid="saveCustomerPaymentCheckboxVP" type="boolean" mandatory="false" />
+    <field formid="securityCodeVisa" type="string" mandatory="false" binding="securityCodeVisa" />
+</form>

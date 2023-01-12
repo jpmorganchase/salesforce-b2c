@@ -1,0 +1,8 @@
+<iscontent compact="true"/>
+<script defer src="${URLUtils.staticURL('/js/jpmcOrbital.js')}"></script>
+<isset name="jpmcOrbitalPageEncryption" value="${require('*/cartridge/scripts/helpers/preferenceHelper').isPageEncryptionEnabled()}" scope="page" />
+<isif condition="${jpmcOrbitalPageEncryption}">
+    <isset name="jpmcOrbitalPageEncryptionConfigurations" value="${require('*/cartridge/scripts/helpers/preferenceHelper').getPageEncryptionConfigurations()}" scope="page" />
+    <script async src="${jpmcOrbitalPageEncryptionConfigurations.urls.getKey}"></script>
+    <script async src="${jpmcOrbitalPageEncryptionConfigurations.urls.encryption}"></script>
+</isif>

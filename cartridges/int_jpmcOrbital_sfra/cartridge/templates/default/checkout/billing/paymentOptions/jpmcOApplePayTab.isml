@@ -1,0 +1,17 @@
+<li class="nav-item js-method-id w-100 hidden-xl-down flex-order-4" data-method-id="${paymentOption.ID}">
+    <a
+        class="nav-link js-payment-option-tab apple-pay-tab js-applepay-payment-row"
+        data-toggle="tab"
+        href="#jpmco-apple-pay-content"
+        role="tab"
+        data-payment-option-tab
+    >
+        <div class="row">
+            <div class="col">
+                <apple-pay-button id="applePayButton" buttonstyle="black" type="plain" locale="en"></apple-pay-button>
+            </div>
+        </div>
+    </a>
+</li>
+
+<iscomment> Its called for tab contents id </iscomment>

@@ -1,0 +1,60 @@
+{
+    "hooks": [
+        {
+            "name": "app.template.htmlHead",
+            "script": "./cartridge/scripts/hooks/templateHooks"
+        },
+        {
+            "name": "app.payment.processor.jpmc_orbital_card",
+            "script": "./cartridge/scripts/hooks/payment/processor/jpmcOrbitalCard"
+        },
+        {
+            "name": "app.payment.processor.jpmc_orbital_profile",
+            "script": "./cartridge/scripts/hooks/payment/processor/jpmcOrbitalProfile"
+        },
+        {
+            "name": "app.payment.processor.jpmc_orbital_visa_checkout",
+            "script": "./cartridge/scripts/hooks/payment/processor/jpmcOrbitalVisaPay"
+        },
+        {
+            "name": "app.payment.processor.jpmc_orbital_electronic_check",
+            "script": "./cartridge/scripts/hooks/payment/processor/jpmcOrbitalElectronicCheck"
+        },
+        {
+            "name": "app.payment.form.processor.jpmc_orbital_card",
+            "script": "./cartridge/scripts/hooks/payment/processor/jpmcOrbitalCardFormProcessor"
+        },
+        {
+            "name": "app.payment.form.processor.jpmc_orbital_profile",
+            "script": "./cartridge/scripts/hooks/payment/processor/jpmcOrbitalCardFormProcessor"
+        },
+        {
+            "name": "app.payment.form.processor.jpmc_orbital_visa_checkout",
+            "script": "./cartridge/scripts/hooks/payment/processor/jpmcOrbitalVisaPayFormProcessor"
+        },
+        {
+            "name": "app.payment.form.processor.jpmc_orbital_google_pay",
+            "script": "./cartridge/scripts/hooks/payment/processor/jpmcGooglePayFormProcessor"
+        },
+        {
+            "name": "app.payment.processor.jpmc_orbital_google_pay",
+            "script": "./cartridge/scripts/hooks/payment/processor/jpmcGooglePay"
+        },
+        {
+            "name": "app.payment.form.processor.jpmc_orbital_apple_pay",
+            "script": "./cartridge/scripts/hooks/payment/processor/jpmcApplePayFormProcessor"
+        },
+        {
+            "name": "app.payment.processor.jpmc_orbital_apple_pay",
+            "script": "./cartridge/scripts/hooks/payment/processor/jpmcApplePay"
+        },
+        {
+            "name": "app.payment.form.processor.jpmc_orbital_electronic_check",
+            "script": "./cartridge/scripts/hooks/payment/processor/jpmcOrbitalElectronicCheckProcessor"
+        },
+        {
+            "name": "app.orbital.avs",
+            "script": "./cartridge/scripts/hooks/payment/jpmcOrbitalAVS"
+        }
+    ]
+}

@@ -1,0 +1,352 @@
+<div class="csc-order">
+    <link rel="stylesheet" href="${URLUtils.staticURL('/css/cscOrder.css')}" />
+    <isset name="JPMCOrbitalConstants" value="${require('*/cartridge/scripts/helpers/jpmcOConstantsHelper')}" scope="page" />
+    <isif condition="${pdict.error.isError}">
+        <div class="error service-error">
+            <h3>${Resource.msg('csc.error.message', 'jpmcorbitalbm', null)}</h3>
+        </div>
+    </isif>
+        <isset name="transactionDetails" value="${pdict.transactionDetails}" scope="page" />
+
+        <div class = "jpmc-table">
+            <isif condition="${!empty(transactionDetails.version)}">
+                <div class="jpmc-title">
+                    ${Resource.msg('csc.transaction.version', 'jpmcorbitalbm', null)}
+                </div>
+                <div class="jpmc-response">
+                    ${transactionDetails.version}
+                </div>
+            </isif>
+
+            <isif condition="${transactionDetails.merchant}">
+                    <div class="jpmc-title">
+                        ${Resource.msg('csc.transaction.merchant', 'jpmcorbitalbm', null)}
+                    </div>
+                    <table>
+                        <tr>
+                            <div class= "jpmc-group">
+                                <td>
+                                    ${Resource.msg('csc.transaction.bin', 'jpmcorbitalbm', null)}
+                                </td>
+                                <td>
+                                    ${transactionDetails.merchant.bin}
+                                </td>
+                            </div>
+                        </tr>
+                        <tr>
+                            <div class= "jpmc-group">
+                                <td>
+                                    ${Resource.msg('csc.transaction.merchantID', 'jpmcorbitalbm', null)}
+                                </td>
+                                <td>
+                                    ${transactionDetails.merchant.merchantID}
+                                </td>
+                            </div>
+                        </tr>
+                        <tr>
+                            <div class= "jpmc-group">
+                                <td>
+                                    ${Resource.msg('csc.transaction.terminalID', 'jpmcorbitalbm', null)}
+                                </td>
+                                <td>
+                                    ${transactionDetails.merchant.terminalID}
+                                </td>
+                            </div>
+                        </tr>
+                    </table>
+            </isif>
+            <isif condition="${!empty(transactionDetails.order)}">
+                <div class="jpmc-title">
+                    ${Resource.msg('csc.transaction.order', 'jpmcorbitalbm', null)}
+                </div>
+                <table>
+                        <tr>
+                            <div class= "jpmc-group">
+                                <td>
+                                    ${Resource.msg('csc.transaction.orderID', 'jpmcorbitalbm', null)}
+                                </td>
+                                <td>
+                                    ${transactionDetails.order.orderID}
+                                </td>
+                            </div>
+                        </tr>
+                        <tr>
+                            <div class= "jpmc-group">
+                                <td>
+                                    ${Resource.msg('csc.transaction.respDateTime', 'jpmcorbitalbm', null)}
+                                </td>
+                                <td>
+                                    ${transactionDetails.order.respDateTime}
+                                </td>
+                            </div>
+                        </tr>
+                        <tr>
+                            <div class= "jpmc-group">
+                                <td>
+                                    ${Resource.msg('csc.transaction.txRefIdx', 'jpmcorbitalbm', null)}
+                                </td>
+                                <td>
+                                    ${transactionDetails.order.txRefIdx}
+                                </td>
+                            </div>
+                        </tr>
+                        <tr>
+                            <div class= "jpmc-group">
+                                <td>
+                                    ${Resource.msg('csc.transaction.txRefNum', 'jpmcorbitalbm', null)}
+                                </td>
+                                <td>
+                                    ${transactionDetails.order.txRefNum}
+                                </td>
+                            </div>
+                        </tr>
+                    </table>
+                    <isif condition="${!empty(transactionDetails.order.status)}">
+                        <div class="jpmc-title">
+                            ${Resource.msg('csc.transaction.status', 'jpmcorbitalbm', null)}
+                        </div>
+                        <table>
+                            <tr>
+                                <div class= "jpmc-group">
+                                    <td>
+                                        ${Resource.msg('csc.transaction.approvalStatus', 'jpmcorbitalbm', null)}
+                                    </td>
+                                    <td>
+                                        ${transactionDetails.order.status.approvalStatus}
+                                    </td>
+                                </div>
+                            </tr>
+                            <tr>
+                                <div class= "jpmc-group">
+                                    <td>
+                                        ${Resource.msg('csc.transaction.authorizationCode', 'jpmcorbitalbm', null)}
+                                    </td>
+                                    <td>
+                                        ${transactionDetails.order.status.authorizationCode}
+                                    </td>
+                                </div>
+                            </tr>
+                            <tr>
+                                <div class= "jpmc-group">
+                                    <td>
+                                        ${Resource.msg('csc.transaction.hostRespCode', 'jpmcorbitalbm', null)}
+                                    </td>
+                                    <td>
+                                        ${transactionDetails.order.status.hostRespCode}
+                                    </td>
+                                </div>
+                            </tr>
+                            <tr>
+                                <div class= "jpmc-group">
+                                    <td>
+                                        ${Resource.msg('csc.transaction.procStatus', 'jpmcorbitalbm', null)}
+                                    </td>
+                                    <td>
+                                        ${transactionDetails.order.status.procStatus}
+                                    </td>
+                                </div>
+                            </tr>
+                            <tr>
+                                <div class= "jpmc-group">
+                                    <td>
+                                        ${Resource.msg('csc.transaction.respCode', 'jpmcorbitalbm', null)}
+                                    </td>
+                                    <td>
+                                        ${transactionDetails.order.status.respCode}
+                                    </td>
+                                </div>
+                            </tr>
+                        </table>
+                    </isif>
+            </isif>
+
+            <isif condition="${!empty(transactionDetails.paymentInstrument)}">
+                <div class="jpmc-title">
+                    ${Resource.msg('csc.transaction.paymentInstrument', 'jpmcorbitalbm', null)}
+                </div>
+                <isif condition="${!empty(transactionDetails.paymentInstrument.card)}">
+                    <div class="jpmc-title jpmc-card">
+                        ${Resource.msg('csc.transaction.card', 'jpmcorbitalbm', null)}
+                    </div>
+                    <table>
+                        <tr>
+                            <div class= "jpmc-group">
+                                <td>
+                                    ${Resource.msg('csc.transaction.cardBrand', 'jpmcorbitalbm', null)}
+                                </td>
+                                <td>
+                                    ${transactionDetails.paymentInstrument.card.cardBrand}
+                                </td>
+                            </div>
+                        </tr>
+                        <tr>
+                        <isif condition="${transactionDetails.paymentInstrument.card.cardBrand === JPMCOrbitalConstants.EC} ">
+                        <iselse/>
+                            <div class= "jpmc-group">
+                                <td>
+                                    ${Resource.msg('csc.transaction.ccAccountNum', 'jpmcorbitalbm', null)}
+                                </td>
+                                <td>
+                                    ${pdict.hiddenCardNr}
+                                </td>
+                            </div>
+                        </isif>
+                        </tr>
+                    </table>
+                </isif>
+            </isif>
+            <isif condition="${!empty(transactionDetails.avsBilling)}">
+                <div class="jpmc-title">
+                    ${Resource.msg('csc.transaction.avsBilling', 'jpmcorbitalbm', null)}
+                </div>
+                <table>
+                    <tr>
+                        <div class= "jpmc-group">
+                            <td>
+                                ${Resource.msg('csc.transaction.avsRespCode', 'jpmcorbitalbm', null)}
+                            </td>
+                            <td>
+                                ${transactionDetails.avsBilling.avsRespCode}
+                            </td>
+                        </div>
+                    </tr>
+                </table>
+            </isif>
+            <isif condition="${!empty(transactionDetails.cardholderVerification)}">
+                <div class="jpmc-title">
+                    ${Resource.msg('csc.transaction.cardholderVerification', 'jpmcorbitalbm', null)}
+                </div>
+                <table>
+                    <tr>
+                        <div class= "jpmc-group">
+                            <td>
+                                ${Resource.msg('csc.transaction.cvvRespCode', 'jpmcorbitalbm', null)}
+                            </td>
+                            <td>
+                                ${transactionDetails.cardholderVerification.cvvRespCode}
+                            </td>
+                        </div>
+                    </tr>
+                    <tr>
+                        <div class= "jpmc-group">
+                            <td>
+                                ${Resource.msg('csc.transaction.hostCVVRespCode', 'jpmcorbitalbm', null)}
+                            </td>
+                            <td>
+                                ${transactionDetails.cardholderVerification.hostCVVRespCode}
+                            </td>
+                        </div>
+                    </tr>
+                </table>
+            </isif>
+        </div>
+        <div class="container">
+            <isif condition="${pdict.orderTransaction.custom.jpmcOPaymentStatus}">
+                <h5> ${Resource.msgf('csc.orderTransaction.status', 'jpmcorbitalbm', null, pdict.orderTransaction.custom.jpmcOPaymentStatus)} </h5>
+            </isif>
+            <isif condition="${pdict.orderTransaction.custom.jpmcOPaymentIncrementedAmount}">
+                <h5> ${Resource.msgf('csc.orderTransaction.incrementedAmount', 'jpmcorbitalbm', null, pdict.orderTransaction.custom.jpmcOPaymentIncrementedAmount.toFixed(2))} </h5>
+            </isif>
+            <isif condition="${pdict.orderTransaction.custom.jpmcOPaymentReversedAmount}">
+                <h5> ${Resource.msgf('csc.orderTransaction.reversedAmount', 'jpmcorbitalbm', null, pdict.orderTransaction.custom.jpmcOPaymentReversedAmount.toFixed(2))} </h5>
+            </isif>
+            <isif condition="${pdict.orderTransaction.custom.jpmcOPaymentCapturedAmount}">
+                 <h5> ${Resource.msgf('csc.orderTransaction.capturedAmount', 'jpmcorbitalbm', null, pdict.orderTransaction.custom.jpmcOPaymentCapturedAmount.toFixed(2))} </h5>
+            </isif>
+            <isif condition="${pdict.orderTransaction.custom.jpmcOPaymentRefundedAmount}">
+                 <h5> ${Resource.msgf('csc.orderTransaction.refundedAmount', 'jpmcorbitalbm', null,pdict.orderTransaction.custom.jpmcOPaymentRefundedAmount.toFixed(2))} </h5>
+            </isif>
+            <isif condition="${!empty(pdict.orderTransaction.custom.jpmcOPaymentRemainedAmount) && pdict.orderTransaction.custom.jpmcOPaymentRemainedAmount > 0}">
+                <h5> ${Resource.msgf('csc.orderTransaction.remainedAmount', 'jpmcorbitalbm', null,pdict.orderTransaction.custom.jpmcOPaymentRemainedAmount.toFixed(2))} </h5>
+            <iselse/>
+                <isif condition="${!empty(pdict.orderTransaction.custom.jpmcOPaymentRefundedAmount) && pdict.orderTransaction.custom.jpmcOPaymentRefundedAmount > 0}">
+                    <h5> ${Resource.msgf('csc.orderTransaction.remainedCapturedAmount', 'jpmcorbitalbm', null, (pdict.orderTransaction.custom.jpmcOPaymentCapturedAmount - pdict.orderTransaction.custom.jpmcOPaymentRefundedAmount).toFixed(2))}</h5>
+                </isif>
+            </isif>
+        </div>
+        <isif condition="${transactionDetails.error}">
+            <h3 class="error">${transactionDetails.errorMessage}</h3>
+        </isif>
+        <div class="order-remained-amount" data-amount = "${pdict.remainedAmount}">
+        <isif condition = "${pdict.paymentStatus !== JPMCOrbitalConstants.RF || pdict.paymentStatus !== JPMCOrbitalConstants.PRF}">
+            <div class="order-amount" data-amount = "${pdict.amount}">
+            <div class="order-refunded-amount" data-amount = "${pdict.orderTransaction.custom.jpmcOPaymentRefundedAmount}">
+            <isif
+                condition="${pdict.paymentStatus !== JPMCOrbitalConstants.RV && pdict.paymentStatus === JPMCOrbitalConstants.Authorization || pdict.paymentStatus === JPMCOrbitalConstants.IA || pdict.paymentStatus === JPMCOrbitalConstants.PC}">
+                <form method="post" class="block" id="jpmc-orbital-capture"
+                    action="${URLUtils.url('JPMCOrbitalCSC-CustomerServiceCenter', 'orderNo', pdict.orderId, 'capture', 'true', pdict.csrf.tokenName, pdict.csrf.token)}">
+                    <isif condition="${pdict.renderCaptureAmountField && transactionDetails.paymentInstrument.card.cardBrand !== JPMCOrbitalConstants.EC} ">
+                        <input type="text" id="jpmc-orbital-capture-input"  class= "jpmc-input">
+                    <iselse>
+                        <input type="text" id="jpmc-orbital-capture-input"  class= "jpmc-input jpmc-input-hidden">
+                    </isif>
+                    <input type="button" id="jpmc-orbital-capture-button"  class= "button"
+                        value="${Resource.msg('bm.order.capture.button', 'jpmcorbitalbm', null)}">
+                    <isif condition="${pdict.renderCaptureAmountField && transactionDetails.paymentInstrument.card.cardBrand !== JPMCOrbitalConstants.EC}">
+                        <div class="capture-full-amount-checkbox">
+                            <div class="form-group custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="captureFullAmount" name="captureFullAmount">
+                                <label class="custom-control-label" for="captureFullAmount">
+                                    ${Resource.msg('label.capture.full.amount', 'jpmcorbitalbm', null)}
+                                </label>
+                            </div>
+                        </div>
+                    </isif>
+                    </br>
+                    <isif condition="${pdict.remainedAmount && pdict.remainedAmount > 0}">
+                        <span id="error-message-capture" class="hide-message-capture">${Resource.msgf('csc.error.amount', 'jpmcorbitalbm', null, pdict.remainedAmount)}</span>
+                    <iselse>
+                        <span id="error-message-capture" class="hide-message-capture">${Resource.msgf('csc.error.amount', 'jpmcorbitalbm', null, pdict.amount)}</span>
+                    </isif>
+                </form>
+                <form method="post" class="block" id="jpmc-orbital-reversal"
+                        action="${URLUtils.url('JPMCOrbitalCSC-CustomerServiceCenter', 'orderNo', pdict.orderId, 'reversal', 'true',  pdict.csrf.tokenName, pdict.csrf.token)}">
+                        <input type="button" id="jpmc-orbital-reversal-button" class= "button"
+                            value="${Resource.msg('bm.order.reversal.button', 'jpmcorbitalbm', null)}">
+                </form>
+                 <isif condition="${pdict.paymentStatus !== JPMCOrbitalConstants.RV && pdict.incrementalAuthorizationEnabled && transactionDetails.paymentInstrument.card.cardBrand !== JPMCOrbitalConstants.EC && transactionDetails.paymentInstrument.card.cardBrand !== JPMCOrbitalConstants.DI && pdict.paymentStatus !== JPMCOrbitalConstants.PC}">
+                    <form method="post" class="block" id="jpmc-orbital-incremental-authorization"
+                            action="${URLUtils.url('JPMCOrbitalCSC-CustomerServiceCenter', 'orderNo', pdict.orderId, 'incrementalAuthorization', 'true',  pdict.csrf.tokenName, pdict.csrf.token)}">
+                            <input type="text" id="jpmc-orbital-incremental-authorization-input" class= "jpmc-input">
+                            <input type="button" id="jpmc-orbital-incremental-authorization-button" class= "button"
+                                value="${Resource.msg('bm.order.incremental.authorization.button', 'jpmcorbitalbm', null)}">
+                            </br>
+                            <span id="error-message-incremental-authorization" class="hide-message-incremental-authorization">${Resource.msgf('csc.error.incremental', 'jpmcorbitalbm', null, pdict.amount)}</span>
+                    </form>
+                </isif>
+            </isif>
+            <isif
+                condition="${(pdict.paymentStatus === JPMCOrbitalConstants.AuthorizationAndCapture || pdict.paymentStatus === JPMCOrbitalConstants.C || pdict.paymentStatus === JPMCOrbitalConstants.PRF|| pdict.paymentStatus === JPMCOrbitalConstants.RV || pdict.paymentStatus === JPMCOrbitalConstants.PC)
+                && (pdict.orderTransaction.custom.jpmcOPaymentCapturedAmount !== pdict.orderTransaction.custom.jpmcOPaymentRefundedAmount||pdict.paymentStatus === JPMCOrbitalConstants.AuthorizationAndCapture)}">
+                <div class="order-full-captured-amount" data-amount = "${pdict.orderTransaction.custom.jpmcOPaymentCapturedAmount || pdict.amount}">
+                <form method="post" class="block" id="jpmc-orbital-refund"
+                action="${URLUtils.url('JPMCOrbitalCSC-CustomerServiceCenter', 'orderNo', pdict.orderId, 'refund', 'true',  pdict.csrf.tokenName, pdict.csrf.token)}">
+                <isif condition="${transactionDetails.paymentInstrument.card.cardBrand !== JPMCOrbitalConstants.EC}">
+                    <input type="text" id="jpmc-orbital-refund-input" class= "jpmc-input">
+                <iselse>
+                    <input type="text" id="jpmc-orbital-refund-input"  class= "jpmc-input jpmc-input-hidden-refund">
+                </isif>
+                <input type="button" id="jpmc-orbital-refund-button" class= "button"
+                    value="${Resource.msg('bm.order.refund.button', 'jpmcorbitalbm', null)}">
+                <isif condition="${transactionDetails.paymentInstrument.card.cardBrand !== JPMCOrbitalConstants.EC}">
+                    <div class="refund-full-amount-checkbox">
+                        <div class="form-group custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="refundFullAmount" name="refundFullAmount">
+                            <label class="custom-control-label" for="refundFullAmount">
+                                ${Resource.msg('label.refund.full.amount', 'jpmcorbitalbm', null)}
+                            </label>
+                        </div>
+                    </div>
+                </isif>
+                </br>
+                <span id="error-message-refund" class="hide-message-refund">${Resource.msgf('csc.error.amount', 'jpmcorbitalbm', null,  pdict.orderTransaction.custom.jpmcOPaymentCapturedAmount-pdict.orderTransaction.custom.jpmcOPaymentRefundedAmount)}</span>
+                </form>
+            </isif>
+        </isif>
+
+    <div class="error none">
+
+    </div>
+<script src="${URLUtils.staticURL('/js/jquery.js')}"></script>
+<script src="${URLUtils.staticURL('/js/cscOrder.js')}"></script>
+</div>

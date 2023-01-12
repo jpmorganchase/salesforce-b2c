@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<form xmlns="http://www.demandware.com/xml/form/2008-04-19">
+    <field formid="applepay" type="string" mandatory="true"/>
+    <field formid="saveCustomerPaymentCheckboxAP" type="boolean" mandatory="false" />
+    <field formid="securityCodeApple" type="string" mandatory="false" binding="securityCodeApple" />
+</form>

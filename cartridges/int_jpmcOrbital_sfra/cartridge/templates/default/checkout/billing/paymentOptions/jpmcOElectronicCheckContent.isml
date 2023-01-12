@@ -1,0 +1,13 @@
+
+<isset name="jpmcOElectronicCheckFields" value="${pdict.jpmcOElectronicCheckForm}" scope="page"/>
+<div
+    class="tab-pane jpmco-electronic_check-content js-jpmco-electronic_check-content"
+    id="jpmco-electronic_check-content"
+    role="tabpanel"
+>
+    <fieldset class="payment-form-fields">
+        <!--- form --->
+        <isinclude template="checkout/billing/jpmcOElectronicCheckForm" />
+
+    </fieldset>
+</div>

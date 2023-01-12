@@ -1,0 +1,82 @@
+.box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.75rem;
+}
+
+.radio-button {
+    margin-right: revert;
+}
+
+.error-message {
+    margin-top: auto;
+    margin-bottom: 0.063rem;
+    color: #c00;
+    font-size: 90%;
+}
+
+.info-icon {
+    .tooltip {
+        margin-left: 0.9375rem;
+    }
+
+    .icon {
+        margin-left: 1.5625rem;
+    }
+}
+
+.loading {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 1051;
+    opacity: 0.5;
+    background-color: #999;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+
+    &-gif {
+        display: none;
+        position: fixed;
+        z-index: 1052;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+/* stylelint-disable selector-type-no-unknown, declaration-empty-line-before */
+apple-pay-button {
+    --apple-pay-button-width: 10.625rem;
+    --apple-pay-button-height: 2.5rem;
+    --apple-pay-button-border-radius: 0.375rem;
+    --apple-pay-button-padding: 0 0;
+    --apple-pay-button-box-sizing: border-box;
+    display: block;
+    margin: auto;
+}
+/* stylelint-enable selector-type-no-unknown, declaration-empty-line-before */
+.card-body {
+    display: flex;
+    flex-direction: column;
+
+    @for $i from 0 through 5 {
+        .flex-order-#{$i} {
+            order: #{$i};
+        }
+    }
+
+    .google-pay-row {
+        margin-top: -1.438rem;
+    }
+
+    .jpmco-apple-pay-content + .row {
+        margin-top: 0.625rem;
+    }
+}
+
+.js-applepay-payment-row {
+    display: none;
+}

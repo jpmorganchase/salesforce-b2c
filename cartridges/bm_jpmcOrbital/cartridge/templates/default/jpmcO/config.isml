@@ -1,0 +1,60 @@
+<isdecorate template="application/MenuFrame">
+<isinclude template="jpmcO/header" />
+    <iscomment>
+        Property of OSF Global Services, Inc., (with its brand OSF Commerce). OSF remains the sole owner of all right,
+        title and interest in the software.
+        Do not copy, sell, reverse engineer or otherwise attempt to derive or obtain information about the functioning,
+        manufacture or operation therein.
+    </iscomment>
+    <div id="dashboard-container">
+        <h1 class="table_title main-dashboard__title">${Resource.msg('dashboard_title','jpmcorbitalbm', null)}</h1>
+        <isinclude template="jpmcO/mainMenu" />
+        <div class="content-section">
+            <div id="config-section">
+                <form method="post" action="${URLUtils.url('JPMCOConfigurations-Config')}" autocomplete="off">
+
+
+                    <div class="form-row">
+                        <label for="merchantIDs[]">
+                            <span>${Resource.msg('forms.config.merchantID.label','jpmcorbitalbm', null)}</span>
+                        </label>
+                        <div class="multi-input-wrapper">
+                            <isloop items="${pdict.merchantIDs}" var="mID">
+                                <div class="input-value-remove">
+                                    <input required type="text" name="merchantIDs[]" value="${mID}">
+                                </div>
+                            </isloop>
+                        </div>
+                        <div class="input-value-add">
+                            <input type="text" id="merchantIDs" value="">
+                        </div>
+                        <p>${Resource.msg('forms.config.merchantID.description','jpmcorbitalbm', null)}</p>
+                    </div>
+
+                    <div class="form-row ${!session.forms.config.username.valid ? 'red' : ''}">
+                        <label for="${session.forms.config.username.htmlName}">
+                            <span>${Resource.msg(session.forms.config.username.label,'jpmcorbitalbm', null)}</span>
+                        </label>
+                        <input required id="${session.forms.config.username.htmlName}" type="text"
+                            name="${session.forms.config.username.htmlName}"
+                            value="${session.forms.config.username.htmlValue}">
+                        <p>${Resource.msg(session.forms.config.username.description,'jpmcorbitalbm', null)}</p>
+                    </div>
+
+                    <div class="form-row ${!session.forms.config.password.valid ? 'red' : ''}">
+                        <label for="${session.forms.config.password.htmlName}">
+                            <span>${Resource.msg(session.forms.config.password.label,'jpmcorbitalbm', null)}</span>
+                        </label>
+                        <input required id="${session.forms.config.password.htmlName}" type="password"
+                            name="${session.forms.config.password.htmlName}"
+                            value="${session.forms.config.password.htmlValue}">
+                        <p>${Resource.msg(session.forms.config.password.description,'jpmcorbitalbm', null)}</p>
+                    </div>
+
+                    <input type="submit" value="${Resource.msg(session.forms.config.save.label, 'jpmcorbitalbm', null)}" id="config-save-button"
+                        name="${session.forms.config.save.htmlName}" />
+                </form>
+            </div>
+        </div> 
+    </div>
+</isdecorate>

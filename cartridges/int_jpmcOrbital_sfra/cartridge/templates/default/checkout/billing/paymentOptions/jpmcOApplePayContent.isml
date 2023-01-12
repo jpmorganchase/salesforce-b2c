@@ -1,0 +1,11 @@
+<div
+    id="jpmco-apple-pay-content"
+    class="tab-pane jpmco-apple-pay-content"
+    role="tabpanel"
+>
+    <fieldset class="payment-form-fields">
+        <!--- form --->
+        <isinclude template="checkout/billing/jpmcOApplePayForm" />
+
+    </fieldset>
+</div>

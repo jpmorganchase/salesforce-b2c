@@ -1,0 +1,73 @@
+<!--- applicable credit cards--->
+<div class="tab-pane jpmco-electronic_check-content" id="jpmco-electronic_check-content" role="tabpanel">
+    <fieldset class="payment-form-fields">
+
+        <!--- payment method is credit card --->
+        <isset name="JPMCOrbitalConstants" value="${require('*/cartridge/scripts/helpers/jpmcOConstantsHelper')}" scope="page" />
+        <isif condition="${pdict.forms}">
+            <input type="hidden" class="form-control js-method-id-input" name="${pdict.forms.billingForm.paymentMethod.htmlName}"
+                value="${JPMCOrbitalConstants.JPMC_ORBITAL_ELECTRONIC_CHECK_METHOD}">
+        </isif>
+        <!--- Hidden input for credit card type --->
+        <input type="hidden" class="form-control js-mp-token" id="token" name="${jpmcOCreditFields.token.htmlName}" data-mp-token>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group ${jpmcOElectronicCheckFields.ecpCheckRT.mandatory === true ? 'required' : ''}">
+                    <label class="form-control-label" for="ecpCheckRT">${Resource.msg('label.input.electroniccheck.ecpCheckRT', 'jpmcO', null)}</label>
+                    <input type="text" class="form-control jpmcOCreditEcpCheckRT ecpCheckRT creditContentSe ecpInput" id="ecpCheckRT" placeholder='${Resource.msg('label.input.electroniccheck.numeric', 'jpmcO', null)}'
+                        value="${jpmcOElectronicCheckFields.ecpCheckRT.htmlValue}" <isprint value="${jpmcOElectronicCheckFields.ecpCheckRT.attributes}" encoding="htmlsinglequote" />
+                        data-pattern-mismatch="${Resource.msg('erroe.message.checkrrt.ec', 'forms', null)}"
+                    >
+                    <div class="invalid-feedback" id="ecpCheckRTInvalidMessage"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group ${jpmcOElectronicCheckFields.ecpCheckDDA.mandatory === true ? 'required' : ''}">
+                    <label class="form-control-label" for="ecpCheckDDA">${Resource.msg('label.input.electroniccheck.ecpCheckDDA', 'jpmcO', null)}</label>
+                    <input type="text" class="form-control jpmcOCreditEcpCheckDDA ecpCheckDDA creditContentSe ecpInput" id="ecpCheckDDA" placeholder='${Resource.msg('label.input.electroniccheck.alphanumeric', 'jpmcO', null)}'
+                        value="${jpmcOElectronicCheckFields.ecpCheckDDA.htmlValue}" <isprint value="${jpmcOElectronicCheckFields.ecpCheckDDA.attributes}" encoding="htmlsinglequote" />
+                        data-pattern-mismatch="${Resource.msg('erroe.message.checkdda.ec', 'forms', null)}"
+                    >
+                    <div class="invalid-feedback" id="ecpCheckDDAInvalidMessage"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group ${jpmcOElectronicCheckFields.ecpBankAcctType.mandatory === true ? 'required' : ''}">
+                    <label class="form-control-label" for="ecpBankAcctType">${Resource.msg('select.electroniccheck.ecpBankAcctType', 'jpmcO', null)}</label>
+                    <select class="form-control ecpBankAcctType custom-select" id="ecpBankAcctType"
+                            <isprint value="${jpmcOElectronicCheckFields.ecpBankAcctType.attributes}" encoding="htmlsinglequote" />
+                        >
+                        <isloop items="${jpmcOElectronicCheckFields.ecpBankAcctType.options}" var="ecpBankAcctType">
+                            <option id="${ecpBankAcctType.id}" value="${ecpBankAcctType.htmlValue}"
+                                <isif condition="${ecpBankAcctType.htmlValue == pdict.jpmcOElectronicCheckForm.ecpBankAcctType.selectedOption}">
+                                    selected
+                                </isif>
+                            >
+                                ${Resource.msg(ecpBankAcctType.label, 'jpmcO', null)}
+                            </option>
+                        </isloop>
+                    </select>
+                    <div class="invalid-feedback" id="ecpCheckBATInvalidMessage"></div>
+                </div>
+            </div>
+        </div>
+        <isif condition="${pdict.customer}">
+            <isif condition="${pdict.customer.registeredUser}">
+                <input type="hidden" class="form-control" id="saveCustomerPaymentCheckboxEC" name="${jpmcOElectronicCheckFields.saveCustomerPaymentCheckboxEC.htmlName}">
+                <div class="form-group custom-checkbox">
+                    <input type="checkbox" class="control-input" name="customerPaymentCheckboxEC" id="customerPaymentCheckboxEC">
+                    <label class="control-label" for="customerPaymentCheckboxEC">
+                        ${Resource.msg('label.save.customer.payment.checkbox', 'jpmcO', null)}
+                    </label>
+                </div>
+            </isif>
+        </isif>
+    </fieldset>
+</div>

@@ -1,0 +1,12 @@
+<li class="nav-item js-method-id jpmco-credit-card w-100 ${paymentOption.isHidden} flex-order-0" data-method-id="${paymentOption.ID}">
+    <a
+        class="nav-link js-payment-option-tab"
+        data-toggle="tab"
+        href="#jpmco-credit-content"
+        role="tab"
+        data-payment-option-tab
+    >
+        ${paymentOption.name}
+    </a>
+</li>
+<iscomment> Its called for tab contents id </iscomment>

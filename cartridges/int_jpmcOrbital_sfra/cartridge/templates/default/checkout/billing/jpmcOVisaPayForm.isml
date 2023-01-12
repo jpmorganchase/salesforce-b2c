@@ -1,0 +1,42 @@
+<!--- applicable credit cards--->
+<div class="tab-pane credit-card-content" id="visa-pay-content" role="tabpanel">
+    <fieldset class="payment-form-fields">
+    <isif condition="${!pdict.hideSecurityCodeVisa}">
+            <div class="form-group security-code-input required">
+                <label class="form-control-label" for="securityCodeVisa">${Resource.msg('label.credit.card-security.code', 'checkout', null)}</label>
+                <button type="button" class="info-icon">
+                    <span class="icon" aria-hidden="true">i</span>
+                    <span class="sr-only">${Resource.msg('button.help.assistive.text', 'common', null)}</span>
+                    <span class="tooltip d-none">
+                        ${Resource.msg('tooltip.security.code', 'creditCard', null)}
+                    </span>
+                </button>
+
+                <input type="text" class="form-control securityCode" id="securityCodeVisa" maxlength="4" name="${pdict.jpmcOVisaPayForm.securityCodeVisa.htmlName}"
+                    aria-describedby="savedPaymentSecurityCodeInvalidMessage">
+                <div class="invalid-feedback" id="savedPaymentSecurityCodeInvalidMessage">
+                    ${Resource.msg('error.message.security.code.required', 'checkout', null)}</div>
+            </div>
+        </isif>
+
+        <!--- payment method is visa checkout --->
+        <isset name="JPMCOrbitalConstants" value="${require('*/cartridge/scripts/helpers/jpmcOConstantsHelper')}" scope="page" />
+        <isif condition="${pdict.forms}">
+            <input type="hidden" class="form-control js-method-id-input" name="${pdict.forms.billingForm.paymentMethod.htmlName}"
+                value="${JPMCOrbitalConstants.JPMC_ORBITAL_VISA_CHECKOUT_METHOD}">
+        </isif>
+        <!--- Hidden input for visa checkout --->
+        <input type="hidden" class="form-control" id="visaPay" name="${pdict.jpmcOVisaPayForm.visaPay.htmlName}" value="">
+        <isif condition="${pdict.customer}">
+            <isif condition="${pdict.customer.registeredUser}">
+                <input type="hidden" class="form-control" id="saveCustomerPaymentCheckboxVP" name="${pdict.jpmcOVisaPayForm.saveCustomerPaymentCheckboxVP.htmlName}">
+                <div class="form-group custom-checkbox">
+                    <input type="checkbox" class="control-input" id="customerPaymentCheckboxVP">
+                    <label class="control-label" for="customerPaymentCheckboxVP">
+                        ${Resource.msg('label.save.customer.payment.checkbox', 'jpmcO', null)}
+                    </label>
+                </div>
+            </isif>
+        </isif>
+    </fieldset>
+</div>

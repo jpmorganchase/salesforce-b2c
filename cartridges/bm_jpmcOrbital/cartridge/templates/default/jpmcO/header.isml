@@ -1,0 +1,8 @@
+<iscomment>
+Property of OSF Global Services, Inc., (with its brand OSF Commerce). OSF remains the sole owner of all right, title and interest in the software.
+Do not copy, sell, reverse engineer or otherwise attempt to derive or obtain information about the functioning, manufacture or operation therein.
+</iscomment>
+<link rel="stylesheet" href="${URLUtils.staticURL('/css/jpmcOBM.css')}" />
+<hr>
+<link rel="stylesheet" href="${URLUtils.staticURL('/css/bootstrap.css')}" />
+<script src="${URLUtils.staticURL('/js/jpmcOBM.js')}"></script>

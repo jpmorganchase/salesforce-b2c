@@ -1,0 +1,123 @@
+@import 'fonts/fonts';
+
+$lightBlue: #17a8f1;
+$red: #f00;
+$lightGray : #ddd;
+$baseFontFamily: 'PT Sans', sans-serif;
+
+.csc-order {
+    padding: 0.625rem;
+    font-family: $baseFontFamily;
+
+    .jpmc-table {
+        border: 0.063rem solid $lightGray;
+        width: 100%;
+    }
+
+    .jpmc-title {
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .jpmc-response {
+        border-top: 0.063rem solid $lightGray;
+        border-bottom: 0.063rem solid $lightGray;
+        text-align: center;
+    }
+
+    .jpmc-card {
+        border-top: 0.063rem solid $lightGray;
+    }
+
+    table {
+        width: 100%;
+    }
+
+    tr,
+    td {
+        border: 0.063rem solid $lightGray;
+    }
+
+    .button {
+        background: transparent;
+        border: 0.1rem solid #17a8f1;
+        color: #17a8f1;
+        font-weight: 600;
+        font-size: 1rem;
+        margin: 0.5rem;
+        padding: 0.25rem 1.5rem;
+        text-decoration: none;
+        border-radius: 0;
+        transition: all 0.1s ease-out;
+        cursor: pointer;
+
+        &:hover {
+            background-color: $lightBlue;
+            color: #fff;
+            border: 0.1rem solid $lightBlue;
+        }
+    }
+
+    .jpmc-input {
+        background: transparent;
+        border: 0.1rem solid $lightGray;
+        padding: 0.25rem;
+        text-decoration: none;
+        border-radius: 0;
+        transition: all 0.1s ease-out;
+        cursor: pointer;
+    }
+
+    .none {
+        display: none;
+    }
+
+    .error {
+        color: $red;
+    }
+
+    .inline-block {
+        display: inline-block;
+    }
+}
+
+.hide-message-capture {
+    display: none;
+}
+
+.hide-message-refund {
+    display: none;
+}
+
+.hide-message-reversal {
+    display: none;
+}
+
+.jpmc-input-hidden {
+    display: none;
+}
+
+.jpmc-input-hidden-refund {
+    display: none;
+}
+
+.hide-message-incremental-authorization {
+    display: none;
+}
+
+#error-message-capture {
+    color: $red;
+}
+
+#error-message-reversal {
+    color: $red;
+}
+
+#error-message-refund {
+    color: $red;
+}
+
+#error-message-incremental-authorization {
+    color: $red;
+}
+

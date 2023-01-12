@@ -1,0 +1,2 @@
+<div><span>${Resource.msg('label.payment.credit','account',null)} ${payment.creditCardType}</span></div>
+<div><span>${payment.maskedBankAccountNumber}</span></div>

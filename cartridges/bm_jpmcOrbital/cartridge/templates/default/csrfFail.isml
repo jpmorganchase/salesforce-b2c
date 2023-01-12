@@ -1,0 +1,9 @@
+<isdecorate template="application/MenuFrame" encoding="UTF-8">
+    <div class="container error-page-content">
+        <div class="row">
+            <div class="col-sm-6 offset-sm-3 text-center">
+                <h2 class="error-message">${Resource.msg('error.csrf.token.mismatch', 'jpmcorbitalbm', null)}</h2>
+            </div>
+        </div>
+    </div>
+</isdecorate>

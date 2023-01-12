@@ -1,0 +1,293 @@
+<isif condition="${pdict.isOrbitalAPIEnabled && !pdict.showCreditCardForm}">
+    <isscript>
+        var assets = require('*/cartridge/scripts/assets.js');
+        assets.addJs('/js/jpmcOGooglePayCommon.js');
+        assets.addJs('/js/jpmcOVisaPay.js');
+        assets.addJs('/js/thirdParty/jpmcApplePay.js');
+        assets.addCss('css/myAccount.css');
+        assets.addCss('css/applePay.css');
+    </isscript>
+    <isloop items="${pdict.paymentMethods}" var="paymentOption">
+        <isif condition="${paymentOption.ID === pdict.JPMC_ORBITAL_CC_METHOD}">
+            <isset name="jpmcOrbitalPageEncryption" value="${require('*/cartridge/scripts/helpers/preferenceHelper').isPageEncryptionEnabled()}" scope="page" />
+            <div class="row flex-order-0">
+                <form action="${URLUtils.url('PaymentInstruments-SavePayment', 'customerNo', pdict.customerNo, 'paymentOption', paymentOption.ID )}"
+                    class="payment-form" method="POST" name="payment-form" ${pdict.jpmcOCreditForm.attributes}>
+                    <div class="form-check col">
+                        <input id="paymentOption-cc" name="paymentOption" type="radio">
+                        <label class="form-check-label masked-card-number" data-toggle="tab" role="tab"
+                            data-payment-option-tab>
+                            ${paymentOption.name}
+                        </label>
+                    </div>
+                    <div class="jpmc-card-content" hidden>
+                        <div class="container">
+                            <isinclude template="checkout/billing/paymentOptions/jpmcOCreditContent" />
+                            <div class="row">
+                                <div class="col">
+                                    <a href="${URLUtils.url('PaymentInstruments-List')}"
+                                        class="btn btn-block btn-outline-primary">${Resource.msg('button.cancel','account',null)}</a>
+                                </div>
+                                <div class="col">
+                                    <button type="submit" id="submit-payment-form" name="save"
+                                        class="btn btn-save btn-block btn-primary">${Resource.msg('button.save','account',null)}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <input type="hidden" name="${pdict.csrf.tokenName}" value="${pdict.csrf.token}" />
+                </form>
+            </div>
+        </isif>
+        <isif condition="${paymentOption.ID === pdict.JPMC_ORBITAL_ELECTRONIC_CHECK_METHOD && !pdict.disableEC}">
+            <div class="row flex-order-4">
+                <form action="${URLUtils.url('PaymentInstruments-SavePayment', 'customerNo', pdict.customerNo, 'paymentOption', paymentOption.ID)}"
+                    class="payment-form" method="POST" name="payment-form" ${pdict.jpmcOElectronicCheckForm.attributes}>
+                    <div class="form-check col">
+                        <input id="paymentOption-ecp" name="paymentOption" type="radio">
+                        <label class="form-check-label masked-card-number" data-toggle="tab" role="tab"
+                            data-payment-option-tab>
+                            ${paymentOption.name}
+                        </label>
+                    </div>
+                    <div class="jpmc-ecp-content" hidden>
+                        <div class="container">
+                            <isinclude template="checkout/billing/paymentOptions/jpmcOElectronicCheckContent" />
+                            <div class="row">
+                                <div class="col">
+                                    <a href="${URLUtils.url('PaymentInstruments-List')}"
+                                        class="btn btn-block btn-outline-primary">${Resource.msg('button.cancel','account',null)}</a>
+                                </div>
+                                <div class="col">
+                                    <button type="submit" id="submit-payment-form" name="save"
+                                        class="btn btn-save btn-block btn-primary">${Resource.msg('button.save','account',null)}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                <input type="hidden" name="${pdict.csrf.tokenName}" value="${pdict.csrf.token}" />
+                </form>
+            </div>
+        </isif>
+        <isif condition="${paymentOption.ID === pdict.JPMC_ORBITAL_GOOGLEPAY_METHOD && pdict.showGooglePayForm}">
+            <div class="row flex-order-1 google-pay-row">
+                <form action="${URLUtils.url('PaymentInstruments-SavePayment', 'customerNo', pdict.customerNo, 'paymentOption', paymentOption.ID )}"
+                    class="payment-form" method="POST" name="payment-form" ${pdict.jpmcOGooglePayForm.attributes}>
+                    <div class="form-check col">
+                        <div class="box">
+                            <input id="paymentOption-gp" name="paymentOption" type="radio" class="radio-button">
+                            <label class="form-check-label jpmcO-google-pay " id="google-pay-my-account" data-toggle="tab" role="tab"
+                                data-payment-option-tab data-google-pay-configurations="${pdict.googlePayConfigurations}">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="jpmc-google-pay-content" hidden>
+                        <div class="container">
+                            <isinclude template="checkout/billing/paymentOptions/jpmcOGooglePayContent" />
+                            <div class="row">
+                                <div class="col">
+                                    <a href="${URLUtils.url('PaymentInstruments-List')}"
+                                        class="btn btn-block btn-outline-primary">${Resource.msg('button.cancel','account',null)}</a>
+                                </div>
+                                <div class="col">
+                                    <button type="submit" id="submit-payment-form" name="save"
+                                        class="btn btn-save btn-block btn-primary">${Resource.msg('button.save','account',null)}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                <input type="hidden" name="${pdict.csrf.tokenName}" value="${pdict.csrf.token}" />
+                </form>
+            </div>
+        </isif>
+        <isif condition="${paymentOption.ID === pdict.JPMC_ORBITAL_VISA_CHECKOUT_METHOD && pdict.showVisaPayForm}">
+            <div class="row flex-order-2">
+                <form action="${URLUtils.url('PaymentInstruments-SavePayment', 'customerNo', pdict.customerNo, 'paymentOption', paymentOption.ID )}"
+                    class="payment-form" method="POST" name="payment-form" ${pdict.jpmcOVisaPayForm.attributes}>
+                    <div class="form-check col">
+                        <div class="box">
+                            <input id="paymentOption-vp" name="paymentOption" type="radio" class="radio-button">
+                            <label class="form-check-label jpmcO-visa-pay " data-toggle="tab" role="tab"
+                                data-payment-option-tab data-visa-pay-configurations="${JSON.stringify(pdict.visaPayConfigurations)}">
+                                    <img alt="Visa Checkout" class="v-button" role="button" src="https://sandbox.secure.checkout.visa.com/wallet-services-web/xo/button.png"/>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="jpmc-visa-pay-content" hidden>
+                        <div class="container">
+                            <isinclude template="checkout/billing/paymentOptions/jpmcOVisaPayContent" />
+                            <div class="row">
+                                <div class="col">
+                                    <a href="${URLUtils.url('PaymentInstruments-List')}"
+                                        class="btn btn-block btn-outline-primary">${Resource.msg('button.cancel','account',null)}</a>
+                                </div>
+                                <div class="col">
+                                    <button type="submit" id="submit-payment-form" name="save"
+                                        class="btn btn-save btn-block btn-primary">${Resource.msg('button.save','account',null)}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                <input type="hidden" name="${pdict.csrf.tokenName}" value="${pdict.csrf.token}" />
+                </form>
+            </div>
+        </isif>
+        <isif condition="${paymentOption.ID === pdict.JPMC_ORBITAL_APPLEPAY_METHOD && pdict.showApplePayForm}">
+            <div class="row flex-order-3 js-applepay-payment-row">
+                <form action="${URLUtils.url('PaymentInstruments-SavePayment', 'customerNo', pdict.customerNo, 'paymentOption', paymentOption.ID )}"
+                    class="payment-form" method="POST" name="payment-form" ${pdict.jpmcOApplePayForm.attributes}>
+                    <div class="form-check col d-flex">
+                        <div class="box">
+                            <input id="paymentOption-ap" name="paymentOption" type="radio" class="radio-button">
+                            <label class="form-check-label jpmcO-apple-pay" id="apple-pay-my-account" data-toggle="tab" role="tab"
+                                data-payment-option-tab data-apple-pay-configurations="${pdict.applePayConfigurations}">
+                            </label>
+                            <apple-pay-button id="applePayButton" buttonstyle="black" type="plain" locale="en"></apple-pay-button>
+                        </div>
+                    </div>
+                    <div class="jpmc-apple-pay-content" hidden>
+                        <div class="container">
+                            <isinclude template="checkout/billing/paymentOptions/jpmcOApplePayContent" />
+                            <div class="row">
+                                <div class="col">
+                                    <a href="${URLUtils.url('PaymentInstruments-List')}"
+                                        class="btn btn-block btn-outline-primary">${Resource.msg('button.cancel','account',null)}</a>
+                                </div>
+                                <div class="col">
+                                    <button type="submit" id="submit-payment-form" name="save"
+                                        class="btn btn-save btn-block btn-primary">${Resource.msg('button.save','account',null)}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                <input type="hidden" name="${pdict.csrf.tokenName}" value="${pdict.csrf.token}" />
+                </form>
+            </div>
+        </isif>
+    </isloop>
+    <br>
+    <div class="error-message flex-order-5"></div>
+    <iselse>
+        <form action="${URLUtils.url('PaymentInstruments-SavePayment', 'UUID', pdict.UUID)}" class="payment-form"
+            method="POST" name="payment-form" ${pdict.paymentForm.attributes}>
+
+            <!-- Credit Card Type -->
+            <input type="hidden" class="form-control" id="cardType" value="" <isprint
+                value="${pdict.paymentForm.cardType.attributes}" encoding="xmlcomment" /> autocomplete="cc-type">
+
+            <div class="form-group custom-control custom-radio">
+                <input id="paymentOption-Credit" name="paymentOption-Credit" type="radio" class="custom-control-input"
+                    checked <isprint value="${pdict.paymentForm.paymentMethod.attributes}" encoding="xmlcomment" />
+                >
+                <label for="paymentOption-Credit" class="custom-control-label">
+                    <span>${Resource.msg('label.payment.credit','payment',null)}</span>
+                </label>
+                <div class="invalid-feedback"></div>
+            </div>
+            <!-- Name on Card -->
+            <div class="form-group
+            <isif condition=" ${pdict.paymentForm.cardOwner.mandatory===true}">required
+</isif>">
+<label class="form-control-label" for="cardOwner">
+    <isprint value="${pdict.paymentForm.cardOwner.label}" encoding="htmlcontent" />
+</label>
+<input type="text" class="form-control" id="cardOwner" <isprint value="${pdict.paymentForm.cardOwner.attributes}"
+    encoding="xmlcomment" />
+autocomplete="cc-name">
+<div class="invalid-feedback">
+    <isprint value="${pdict.paymentForm.cardOwner.error}" encoding="htmlcontent" />
+</div>
+</div>
+
+
+<!-- Card Number -->
+<isset name="JPMCOrbitalConstants" value="${require('*/cartridge/scripts/helpers/jpmcOConstantsHelper')}" scope="page" />
+<div class="form-group
+            <isif condition=" ${pdict.paymentForm.cardNumber.mandatory===true}">required</isif>">
+    <label class="form-control-label" for="cardNumber">
+        <isprint value="${pdict.paymentForm.cardNumber.label}" encoding="htmlcontent" />
+    </label>
+    <div class="card-number-wrapper" data-jpmc-o-constants-helper="${JSON.stringify(JPMCOrbitalConstants)}">
+        <input type="text" class="form-control" id="cardNumber" <isprint
+            value="${pdict.paymentForm.cardNumber.attributes}" encoding="xmlcomment" />
+        autocomplete="cc-number">
+        <div class="invalid-feedback">
+            <isprint value="${pdict.paymentForm.cardNumber.error}" encoding="htmlcontent" />
+        </div>
+    </div>
+</div>
+
+<!-- Month -->
+<div class="row">
+    <div class="col-6">
+        <div class="form-group
+                    <isif condition=" ${pdict.paymentForm.expirationMonth.mandatory===true}">required</isif>">
+            <label class="form-control-label" for="month">
+                <isprint value="${pdict.paymentForm.expirationMonth.label}" encoding="htmlcontent" />
+            </label>
+            <select class="form-control custom-select" id="month" <isprint
+                value="${pdict.paymentForm.expirationMonth.attributes}" encoding="xmlcomment" /> autocomplete="cc-exp-month">
+            <isloop items=${pdict.paymentForm.expirationMonth.options} var="month">
+                <option id="${month.id}" value="${month.htmlValue}" <isif condition="${month.selected}">selected</isif>
+                    >${month.label}</option>
+            </isloop>
+            </select>
+            <div class="invalid-feedback">
+                <isprint value="${pdict.paymentForm.expirationMonth.error}" encoding="htmlcontent" />
+            </div>
+        </div>
+    </div>
+
+    <div class="col-6">
+        <div class="form-group
+                    <isif condition=" ${pdict.paymentForm.expirationYear.mandatory===true}">required</isif>">
+            <label class="form-control-label" for="year">
+                <isprint value="${pdict.paymentForm.expirationYear.label}" encoding="htmlcontent" />
+            </label>
+            <select class="form-control custom-select" id="year" <isprint
+                value="${pdict.paymentForm.expirationYear.attributes}" encoding="xmlcomment" /> autocomplete="cc-exp-year">
+            <option value="${pdict.paymentForm.expirationYear.options[0].htmlValue}">
+                ${pdict.paymentForm.expirationYear.options[0].label}</option>
+            <isloop items=${pdict.expirationYears} var="year">
+                <option id="${year}" value="${year}" <isif
+                    condition="${year == pdict.paymentForm.expirationYear.value}">selected</isif> >${year}</option>
+            </isloop>
+            </select>
+            <div class="invalid-feedback"></div>
+        </div>
+    </div>
+</div>
+
+<div class="make-default-payment">
+    <div class="form-group custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="makeDefaultPayment" name="makeDefaultPayment">
+        <label class="custom-control-label" for="makeDefaultPayment">
+            ${Resource.msg('label.payment.checkbox.makedefault', 'payment', null)}
+        </label>
+    </div>
+</div>
+
+<input type="hidden" name="${pdict.csrf.tokenName}" value="${pdict.csrf.token}" />
+
+<!-- Cancel and Save Buttons -->
+<div class="row">
+    <div class="col">
+        <a href="${URLUtils.url('PaymentInstruments-List')}"
+            class="btn btn-block btn-outline-primary">${Resource.msg('button.cancel','account',null)}</a>
+    </div>
+    <div class="col">
+        <button type="submit" name="save"
+            class="btn btn-save btn-block btn-primary">${Resource.msg('button.save','account',null)}</button>
+    </div>
+</div>
+
+</form>
+</isif>
+<script src="https://pay.google.com/gp/p/js/pay.js"></script>
+<script src="https://sandbox-assets.secure.checkout.visa.com/checkout-widget/resources/js/integration/v1/sdk.js">
+</script>
+<script defer src="https://applepay.cdn-apple.com/jsapi/v1/apple-pay-sdk.js"></script>

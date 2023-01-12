@@ -1,0 +1,182 @@
+@import 'fonts/fonts';
+
+/**
+ *  Property of OSF Global Services, Inc., (with its brand OSF Commerce). OSF remains the sole owner of all right, title and interest in the software.
+ *  Do not copy, sell, reverse engineer or otherwise attempt to derive or obtain information about the functioning, manufacture or operation therein.
+ */
+$lightGray : #e0e0e0;
+$mediumGray: #8b8b8b;
+$lightBlue: #17a8f1;
+$red: #f00;
+$green: #84bd00;
+$baseFontFamily: "Open Sans", sans-serif;
+
+@function size($input) {
+    @return ($input * 1rem) / 16;
+}
+
+// General styles
+#bm_content_column {
+    padding: 0;
+}
+// Main Dashboard
+#dashboard-container {
+    margin: 0 size(80) size(30);
+}
+
+.table_title.main-dashboard__title {
+    color: $lightBlue;
+    margin-bottom: size(5);
+    margin-top: 0;
+    font-weight: 500;
+}
+
+.flex.module__buttons-container {
+    height: size(60);
+    border-top: size(1) solid $lightGray;
+    border-bottom: size(1) solid $lightGray;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: size(20);
+
+    a {
+        background: none;
+        border: 0;
+        color: $mediumGray;
+        font-size: size(18);
+        padding: size(16) 0;
+        margin: 0 size(16);
+    }
+
+    a:first-child {
+        margin-left: 0;
+    }
+
+    a:hover {
+        color: $lightBlue;
+        text-decoration: none;
+    }
+
+    .navCurrentTab {
+        font-weight: 600;
+        color: $lightBlue;
+        border-bottom: size(3) solid $lightBlue;
+        border-radius: 0;
+    }
+}
+
+.content-section {
+    all: unset;
+    font-family: $baseFontFamily;
+    font-size: size(14);
+
+    form {
+        width: size(350);
+
+        .form-row {
+            display: flex;
+            flex-flow: column;
+            padding: 5% 0;
+
+            .input-value-add {
+                position: relative;
+
+                &::after {
+                    content: "+";
+                    font-size: 2em;
+                    color: green;
+                    position: absolute;
+                    display: block;
+                    top: 0;
+                    right: -7%;
+                    cursor: pointer;
+                }
+
+                input {
+                    width: 100%;
+                }
+            }
+
+            .input-value-remove {
+                position: relative;
+                padding-bottom: 3%;
+
+                &::after {
+                    content: "x";
+                    font-size: 2em;
+                    color: red;
+                    position: absolute;
+                    display: block;
+                    top: 0;
+                    right: -7%;
+                    cursor: pointer;
+                }
+
+                input {
+                    width: 100%;
+                }
+            }
+
+            input,
+            select {
+                padding: 3%;
+                border: size(1) solid $lightBlue;
+            }
+
+            input.red {
+                border-color: $red;
+            }
+
+            input.pw {
+                -webkit-text-security: disc;
+            }
+
+            &.red input {
+                border-color: $red;
+            }
+
+            > * {
+                flex: 1;
+            }
+
+            label {
+                font-size: size(16);
+                color: $mediumGray;
+            }
+        }
+
+        input[type="submit"] {
+            background: transparent;
+            border: size(1) solid $lightBlue;
+            color: $lightBlue;
+            font-weight: 600;
+            font-size: size(13);
+            margin: size(15) 0 0;
+            padding: size(7) size(20);
+            text-decoration: none;
+            border-radius: 0;
+            transition: 0.1s all ease-out;
+
+            &:hover {
+                background-color: $lightBlue;
+                color: #fff;
+                border: size(1) solid $lightBlue;
+            }
+        }
+    }
+
+    table {
+        border-collapse: collapse;
+
+        tr {
+            border-bottom: size(1) solid $lightGray;
+            vertical-align: text-top;
+
+            td {
+                padding: size(20) size(10);
+                width: 100%;
+            }
+        }
+    }
+}

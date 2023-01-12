@@ -1,0 +1,391 @@
+<isdecorate template="application/MenuFrame">
+    <isinclude template="jpmcO/header" />
+    <iscomment>
+        Property of OSF Global Services, Inc., (with its brand OSF Commerce). OSF remains the sole owner of all right,
+        title and interest in the software.
+        Do not copy, sell, reverse engineer or otherwise attempt to derive or obtain information about the functioning,
+        manufacture or operation therein.
+    </iscomment>
+    <isset name="JPMCOrbitalConstants" value="${require('*/cartridge/scripts/helpers/jpmcOConstantsHelper')}" scope="page" />
+    <div id="dashboard-container">
+        <h1 class="table_title main-dashboard__title">${Resource.msg('dashboard_title','jpmcorbitalbm', null)}</h1>
+        <isinclude template="jpmcO/mainMenu" />
+        <div class="content-section">
+            <div id="config-section">
+                <form method="post" action="${URLUtils.url('JPMCOConfigurations-ConfigMerchant', "merchantID", pdict.navigation)}" autocomplete="off">
+                <input type="hidden" class="selectedMerchant" value="${pdict.navigation}"/>
+                <input type="hidden" class="allMLocales" value="${JSON.stringify(pdict.allMLocales)}" />
+                    <div class="form-row" data-jpmc-o-constants-helper="${JSON.stringify(JPMCOrbitalConstants)}">
+                        <div class="locales-form-row">
+                            <label for="locales[]">
+                                <span>${Resource.msg('forms.config.locales.label','jpmcorbitalbm', null)}</span>
+                            </label>
+                            <div class="multi-input-wrapper">
+                                <isloop items="${pdict.locales}" var="locale">
+                                    <div class="input-value-remove">
+                                        <input required type="text" name="locales[]" value="${locale}">
+                                    </div>
+                                </isloop>
+                            </div>
+                            <div class="input-value-add">
+                                <input type="text" id="locales" value="" >
+                            </div>
+                            <div class="hidden error locale-error-message">
+                            ${Resource.msg('forms.config.locales.error.message','jpmcorbitalbm', null)}
+                            </div>
+                            <p>${Resource.msg('forms.config.locales.description','jpmcorbitalbm', null)}</p>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="${session.forms.config.enabled.formId}">
+                            <span>${Resource.msg(session.forms.config.enabled.label, "jpmcorbitalbm", null)}</span>
+                        </label>
+                        <select id="${session.forms.config.enabled.htmlName}"
+                            name="${session.forms.config.enabled.htmlName}">
+                            <isloop items="${session.forms.config.enabled.options}" var="option" status="loopstatus">
+                                <option id="${option.optionId}" value="${option.value}" ${option.selected ? 'selected'
+                                    : '' }>${Resource.msg(option.label, "jpmcorbitalbm", null)}</option>
+                            </isloop>
+                        </select>
+                        <p>${Resource.msg('forms.config.enabled.description','jpmcorbitalbm', null)}</p>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="${session.forms.config.platformMode.formId}">
+                            <span>${Resource.msg(session.forms.config.platformMode.label, "jpmcorbitalbm", null)}</span>
+                        </label>
+                        <select id="${session.forms.config.platformMode.htmlName}"
+                            name="${session.forms.config.platformMode.htmlName}">
+                            <isloop items="${session.forms.config.platformMode.options}" var="option" status="loopstatus">
+                                <option id="${option.optionId}" value="${option.value}" ${option.selected ? 'selected'
+                                    : '' }>${Resource.msg(option.label, "jpmcorbitalbm", null)}</option>
+                            </isloop>
+                        </select>
+                        <p>${Resource.msg('forms.config.platformMode.description','jpmcorbitalbm', null)}</p>
+                    </div>
+
+                    <hr>
+
+                    <div class="form-row">
+                        <label for="${session.forms.config.customerSavedPaymentType.formId}">
+                            <span>${Resource.msg(session.forms.config.customerSavedPaymentType.label, "jpmcorbitalbm", null)}</span>
+                        </label>
+                        <select id="${session.forms.config.customerSavedPaymentType.htmlName}"
+                            name="${session.forms.config.customerSavedPaymentType.htmlName}">
+                            <isloop items="${session.forms.config.customerSavedPaymentType.options}" var="option" status="loopstatus">
+                                <option id="${option.optionId}" value="${option.value}" ${option.selected ? 'selected'
+                                    : '' }>${Resource.msg(option.label, "jpmcorbitalbm", null)}</option>
+                            </isloop>
+                        </select>
+                        <p>${Resource.msg('forms.config.customerSavedPaymentType.description','jpmcorbitalbm', null)}</p>
+                    </div>
+
+                    <hr>
+
+                    <div class="form-row">
+                        <label for="${session.forms.config.pageEncryptionEnabled.formId}">
+                            <span>${Resource.msg(session.forms.config.pageEncryptionEnabled.label, "jpmcorbitalbm", null)}</span>
+                        </label>
+                        <select id="${session.forms.config.pageEncryptionEnabled.htmlName}"
+                            name="${session.forms.config.pageEncryptionEnabled.htmlName}">
+                            <isloop items="${session.forms.config.pageEncryptionEnabled.options}" var="option" status="loopstatus">
+                                <option id="${option.optionId}" value="${option.value}" ${option.selected ? 'selected'
+                                    : '' }>${Resource.msg(option.label, "jpmcorbitalbm", null)}</option>
+                            </isloop>
+                        </select>
+                        <p>${Resource.msg('forms.config.pageEncryptionEnabled.description','jpmcorbitalbm', null)}</p>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="${session.forms.config.pageEncryptionConfiguration.formId}">
+                            <span>${Resource.msg(session.forms.config.pageEncryptionConfiguration.label, "jpmcorbitalbm", null)}</span>
+                        </label>
+                        <select id="${session.forms.config.pageEncryptionConfiguration.htmlName}"
+                            name="${session.forms.config.pageEncryptionConfiguration.htmlName}">
+                            <isloop items="${session.forms.config.pageEncryptionConfiguration.options}" var="option" status="loopstatus">
+                                <option id="${option.optionId}" value="${option.value}" ${option.selected ? 'selected'
+                                    : '' }>${Resource.msg(option.label, "jpmcorbitalbm", null)}</option>
+                            </isloop>
+                        </select>
+                        <p>${Resource.msg('forms.config.pageEncryptionConfiguration.description','jpmcorbitalbm', null)}</p>
+                    </div>
+
+                    <div class="form-row subID ${!session.forms.config.pageEncryptionConfigurationSubID.valid ? 'red' : ''}">
+                        <label for="${session.forms.config.pageEncryptionConfigurationSubID.htmlName}">
+                            <span>${Resource.msg(session.forms.config.pageEncryptionConfigurationSubID.label,'jpmcorbitalbm', null)}</span>
+                        </label>
+                        <input id="${session.forms.config.pageEncryptionConfigurationSubID.htmlName}" type="password"
+                            name="${session.forms.config.pageEncryptionConfigurationSubID.htmlName}"
+                            value="${session.forms.config.pageEncryptionConfigurationSubID.htmlValue}">
+                        <p>${Resource.msg(session.forms.config.pageEncryptionConfigurationSubID.description,'jpmcorbitalbm', null)}</p>
+                    </div>
+
+                    <hr>
+
+                    <div class="form-row">
+                        <label for="${session.forms.config.incrementalAuthorizationEnabled.formId}">
+                            <span>${Resource.msg(session.forms.config.incrementalAuthorizationEnabled.label, "jpmcorbitalbm", null)}</span>
+                        </label>
+                        <select id="${session.forms.config.incrementalAuthorizationEnabled.htmlName}"
+                            name="${session.forms.config.incrementalAuthorizationEnabled.htmlName}">
+                            <isloop items="${session.forms.config.incrementalAuthorizationEnabled.options}" var="option"
+                                status="loopstatus">
+                                <option id="${option.optionId}" value="${option.value}" ${option.selected ? 'selected' : ''}>
+                                    ${Resource.msg(option.label, "jpmcorbitalbm", null)}</option>
+                            </isloop>
+                        </select>
+                        <p>${Resource.msg('forms.config.incrementalAuthorizationEnabled.description', 'jpmcorbitalbm', null)}</p>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="${session.forms.config.paymentModeProfile.formId}">
+                            <span>${Resource.msg(session.forms.config.paymentModeProfile.label, "jpmcorbitalbm", null)}</span>
+                        </label>
+                        <select id="${session.forms.config.paymentModeProfile.htmlName}"
+                            name="${session.forms.config.paymentModeProfile.htmlName}">
+                            <isloop items="${session.forms.config.paymentModeProfile.options}" var="option" status="loopstatus">
+                                <option id="${option.optionId}" value="${option.value}" ${option.selected ? 'selected'
+                                    : '' }>${Resource.msg(option.label, "jpmcorbitalbm", null)}</option>
+                            </isloop>
+                        </select>
+                        <p>${Resource.msg('forms.config.paymentModeProfile.description','jpmcorbitalbm', null)}</p>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="${session.forms.config.paymentModeCard.formId}">
+                            <span>${Resource.msg(session.forms.config.paymentModeCard.label, "jpmcorbitalbm", null)}</span>
+                        </label>
+                        <select id="${session.forms.config.paymentModeCard.htmlName}"
+                            name="${session.forms.config.paymentModeCard.htmlName}">
+                            <isloop items="${session.forms.config.paymentModeCard.options}" var="option" status="loopstatus">
+                                <option id="${option.optionId}" value="${option.value}" ${option.selected ? 'selected'
+                                    : '' }>${Resource.msg(option.label, "jpmcorbitalbm", null)}</option>
+                            </isloop>
+                        </select>
+                        <p>${Resource.msg('forms.config.paymentModeCard.description','jpmcorbitalbm', null)}</p>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="${session.forms.config.paymentModeElectronicCheck.formId}">
+                            <span>${Resource.msg(session.forms.config.paymentModeElectronicCheck.label, "jpmcorbitalbm", null)}</span>
+                        </label>
+                        <select id="${session.forms.config.paymentModeElectronicCheck.htmlName}"
+                            name="${session.forms.config.paymentModeElectronicCheck.htmlName}">
+                            <isloop items="${session.forms.config.paymentModeElectronicCheck.options}" var="option" status="loopstatus">
+                                <option id="${option.optionId}" value="${option.value}" ${option.selected ? 'selected'
+                                    : '' }>${Resource.msg(option.label, "jpmcorbitalbm", null)}</option>
+                            </isloop>
+                        </select>
+                        <p>${Resource.msg('forms.config.paymentModeElectronicCheck.description','jpmcorbitalbm', null)}</p>
+                    </div>
+
+                    <hr>
+
+                    <div class="form-row">
+                        <label for="${session.forms.config.googlePayEnabled.formId}">
+                            <span>${Resource.msg(session.forms.config.googlePayEnabled.label, "jpmcorbitalbm", null)}</span>
+                        </label>
+                        <select id="${session.forms.config.googlePayEnabled.htmlName}"
+                            name="${session.forms.config.googlePayEnabled.htmlName}">
+                            <isloop items="${session.forms.config.googlePayEnabled.options}" var="option" status="loopstatus">
+                                <option id="${option.optionId}" value="${option.value}" ${option.selected ? 'selected'
+                                    : '' }>${Resource.msg(option.label, "jpmcorbitalbm", null)}</option>
+                            </isloop>
+                        </select>
+                        <p>${Resource.msg('forms.config.googlePayEnabled.description','jpmcorbitalbm', null)}</p>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="${session.forms.config.paymentModeGooglePay.formId}">
+                            <span>${Resource.msg(session.forms.config.paymentModeGooglePay.label, "jpmcorbitalbm", null)}</span>
+                        </label>
+                        <select id="${session.forms.config.paymentModeGooglePay.htmlName}"
+                            name="${session.forms.config.paymentModeGooglePay.htmlName}">
+                            <isloop items="${session.forms.config.paymentModeGooglePay.options}" var="option" status="loopstatus">
+                                <option id="${option.optionId}" value="${option.value}" ${option.selected ? 'selected'
+                                    : '' }>${Resource.msg(option.label, "jpmcorbitalbm", null)}</option>
+                            </isloop>
+                        </select>
+                        <p>${Resource.msg('forms.config.paymentModeGooglePay.description','jpmcorbitalbm', null)}</p>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="cards-form-row">
+                            <label for="googlePayConfAllowedCardNetworks[]">
+                                <span>${Resource.msg('forms.config.googlePayConfAllowedCardNetworks.label','jpmcorbitalbm', null)}</span>
+                            </label>
+                            <div class="multi-input-wrapper">
+                                <isloop items="${pdict.googlePayConfAllowedCardNetworks}" var="gValue">
+                                    <div class="input-value-remove">
+                                        <input type="text" name="googlePayConfAllowedCardNetworks[]" value="${gValue}">
+                                    </div>
+                                </isloop>
+                            </div>
+                            <div class="input-value-add">
+                                <input type="text" id="googlePayConfAllowedCardNetworks" value="">
+                            </div>
+                            <p>${Resource.msg('forms.config.googlePayConfAllowedCardNetworks.description','jpmcorbitalbm', null)}</p>
+                        </div>
+                    </div>
+
+                     <div class="form-row ${!session.forms.config.googlePayConfMerchantId.valid ? 'red' : ''}">
+                        <label for="${session.forms.config.googlePayConfMerchantId.htmlName}">
+                            <span>${Resource.msg(session.forms.config.googlePayConfMerchantId.label,'jpmcorbitalbm', null)}</span>
+                        </label>
+                        <input id="${session.forms.config.googlePayConfMerchantId.htmlName}" type="password"
+                            name="${session.forms.config.googlePayConfMerchantId.htmlName}"
+                            value="${session.forms.config.googlePayConfMerchantId.htmlValue}">
+                        <p>${Resource.msg(session.forms.config.googlePayConfMerchantId.description,'jpmcorbitalbm', null)}</p>
+                    </div>
+
+                    <div class="form-row ${!session.forms.config.googlePayConfMerchantName.valid ? 'red' : ''}">
+                        <label for="${session.forms.config.googlePayConfMerchantName.htmlName}">
+                            <span>${Resource.msg(session.forms.config.googlePayConfMerchantName.label,'jpmcorbitalbm', null)}</span>
+                        </label>
+                        <input  id="${session.forms.config.googlePayConfMerchantName.htmlName}" type="text"
+                            name="${session.forms.config.googlePayConfMerchantName.htmlName}"
+                            value="${session.forms.config.googlePayConfMerchantName.htmlValue}">
+                        <p>${Resource.msg(session.forms.config.googlePayConfMerchantName.description,'jpmcorbitalbm', null)}</p>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="${session.forms.config.googlePayConfMerchantEnvironment.formId}">
+                            <span>${Resource.msg(session.forms.config.googlePayConfMerchantEnvironment.label, "jpmcorbitalbm", null)}</span>
+                        </label>
+                        <select id="${session.forms.config.googlePayConfMerchantEnvironment.htmlName}"
+                            name="${session.forms.config.googlePayConfMerchantEnvironment.htmlName}">
+                            <isloop items="${session.forms.config.googlePayConfMerchantEnvironment.options}" var="option" status="loopstatus">
+                                <option id="${option.optionId}" value="${option.value}" ${option.selected ? 'selected'
+                                    : '' }>${Resource.msg(option.label, "jpmcorbitalbm", null)}</option>
+                            </isloop>
+                        </select>
+                        <p>${Resource.msg('forms.config.googlePayConfMerchantEnvironment.description','jpmcorbitalbm', null)}</p>
+                    </div>
+
+                    <hr>
+
+                    <div class="form-row">
+                        <label for="${session.forms.config.visaPayEnabled.formId}">
+                            <span>${Resource.msg(session.forms.config.visaPayEnabled.label, "jpmcorbitalbm", null)}</span>
+                        </label>
+                        <select id="${session.forms.config.visaPayEnabled.htmlName}"
+                            name="${session.forms.config.visaPayEnabled.htmlName}">
+                            <isloop items="${session.forms.config.visaPayEnabled.options}" var="option" status="loopstatus">
+                                <option id="${option.optionId}" value="${option.value}" ${option.selected ? 'selected':
+                                    '' }>${Resource.msg(option.label, "jpmcorbitalbm", null)}</option>
+                            </isloop>
+                        </select>
+                        <p>${Resource.msg('forms.config.visaPayEnabled.description','jpmcorbitalbm', null)}</p>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="${session.forms.config.paymentModeVisaPay.formId}">
+                            <span>${Resource.msg(session.forms.config.paymentModeVisaPay.label, "jpmcorbitalbm", null)}</span>
+                        </label>
+                        <select id="${session.forms.config.paymentModeVisaPay.htmlName}"
+                            name="${session.forms.config.paymentModeVisaPay.htmlName}">
+                            <isloop items="${session.forms.config.paymentModeVisaPay.options}" var="option" status="loopstatus">
+                                <option id="${option.optionId}" value="${option.value}" ${option.selected ? 'selected'
+                                    : '' }>${Resource.msg(option.label, "jpmcorbitalbm", null)}</option>
+                            </isloop>
+                        </select>
+                        <p>${Resource.msg('forms.config.paymentModeVisaPay.description','jpmcorbitalbm', null)}</p>
+                    </div>
+
+                    <div class="form-row ${!session.forms.config.visaPayApiKey.valid ? 'red' : ''}">
+                        <label for="${session.forms.config.visaPayApiKey.htmlName}">
+                            <span>${Resource.msg(session.forms.config.visaPayApiKey.label,'jpmcorbitalbm', null)}</span>
+                        </label>
+                        <input  id="${session.forms.config.visaPayApiKey.htmlName}" type="password"
+                            name="${session.forms.config.visaPayApiKey.htmlName}"
+                            value="${session.forms.config.visaPayApiKey.htmlValue}">
+                        <p>${Resource.msg(session.forms.config.visaPayApiKey.description,'jpmcorbitalbm', null)}</p>
+                    </div>
+
+                    <hr>
+
+                    <div class="form-row">
+                        <label for="${session.forms.config.applePayEnabled.formId}">
+                            <span>${Resource.msg(session.forms.config.applePayEnabled.label, "jpmcorbitalbm", null)}</span>
+                        </label>
+                        <select id="${session.forms.config.applePayEnabled.htmlName}"
+                            name="${session.forms.config.applePayEnabled.htmlName}">
+                            <isloop items="${session.forms.config.applePayEnabled.options}" var="option" status="loopstatus">
+                                <option id="${option.optionId}" value="${option.value}" ${option.selected ? 'selected':
+                                    '' }>${Resource.msg(option.label, "jpmcorbitalbm", null)}</option>
+                            </isloop>
+                        </select>
+                        <p>${Resource.msg('forms.config.applePayEnabled.description','jpmcorbitalbm', null)}</p>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="${session.forms.config.paymentModeApplePay.formId}">
+                            <span>${Resource.msg(session.forms.config.paymentModeApplePay.label, "jpmcorbitalbm", null)}</span>
+                        </label>
+                        <select id="${session.forms.config.paymentModeApplePay.htmlName}"
+                            name="${session.forms.config.paymentModeApplePay.htmlName}">
+                            <isloop items="${session.forms.config.paymentModeApplePay.options}" var="option" status="loopstatus">
+                                <option id="${option.optionId}" value="${option.value}" ${option.selected ? 'selected'
+                                    : '' }>${Resource.msg(option.label, "jpmcorbitalbm", null)}</option>
+                            </isloop>
+                        </select>
+                        <p>${Resource.msg('forms.config.paymentModeApplePay.description','jpmcorbitalbm', null)}</p>
+                    </div>
+
+                    <hr>
+
+                    <div class="form-row">
+                        <label for="${session.forms.config.avsEnabled.formId}">
+                            <span>${Resource.msg(session.forms.config.avsEnabled.label, "jpmcorbitalbm", null)}</span>
+                        </label>
+                        <select id="${session.forms.config.avsEnabled.htmlName}"
+                            name="${session.forms.config.avsEnabled.htmlName}">
+                            <isloop items="${session.forms.config.avsEnabled.options}" var="option" status="loopstatus">
+                                <option id="${option.optionId}" value="${option.value}" ${option.selected ? 'selected'
+                                    : '' }>${Resource.msg(option.label, "jpmcorbitalbm", null)}</option>
+                            </isloop>
+                        </select>
+                        <p>${Resource.msg('forms.config.avsEnabled.description','jpmcorbitalbm', null)}</p>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="avsUnacceptedValues[]">
+                            <span>${Resource.msg('forms.config.avsUnacceptedValues.label','jpmcorbitalbm', null)}</span>
+                        </label>
+                        <div class="multi-input-wrapper">
+                            <isloop items="${pdict.avsUnacceptedValues}" var="value">
+                                <div class="input-value-remove">
+                                    <input type="text" name="avsUnacceptedValues[]" value="${value}">
+                                </div>
+                            </isloop>
+                        </div>
+                        <div class="input-value-add">
+                            <input type="text" id="avsUnacceptedValues" value="">
+                        </div>
+                        <p>${Resource.msg('forms.config.avsUnacceptedValues.description','jpmcorbitalbm', null)}</p>
+                    </div>
+
+                    <hr>
+
+                    <div class="form-row">
+                        <label for="${session.forms.config.updateProfileEnabled.formId}">
+                            <span>${Resource.msg(session.forms.config.updateProfileEnabled.label, "jpmcorbitalbm", null)}</span>
+                        </label>
+                        <select id="${session.forms.config.updateProfileEnabled.htmlName}"
+                            name="${session.forms.config.updateProfileEnabled.htmlName}">
+                            <isloop items="${session.forms.config.updateProfileEnabled.options}" var="option" status="loopstatus">
+                                <option id="${option.optionId}" value="${option.value}" ${option.selected ? 'selected'
+                                    : '' }>${Resource.msg(option.label, "jpmcorbitalbm", null)}</option>
+                            </isloop>
+                        </select>
+                        <p>${Resource.msg('forms.config.updateProfileEnabled.description','jpmcorbitalbm', null)}</p>
+                    </div>
+
+                    <input type="submit" value="${Resource.msg(session.forms.config.save.label, 'jpmcorbitalbm', null)}"
+                        name="${session.forms.config.save.htmlName}" id="config-merchant-save-button"/>
+                </form>
+            </div>
+        </div>
+    </div>
+</isdecorate>

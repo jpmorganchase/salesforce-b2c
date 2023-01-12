@@ -1,0 +1,8 @@
+{
+    "caches": [
+      {
+        "id": "retryTrace",
+        "expireAfterSeconds": 10
+      }
+    ]
+}

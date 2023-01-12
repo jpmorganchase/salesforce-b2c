@@ -1,0 +1,5 @@
+<div><span>${Resource.msg('label.payment.credit','account',null)} ${payment.type}</span></div>
+<div><span>${payment.maskedCreditCardNumber}</span></div>
+<isif condition="${payment.expirationMonth && payment.expirationYear}">
+    <div><span>${Resource.msg('label.payment.ending','account',null)} ${payment.expirationMonth}/${payment.expirationYear}</span></div>
+</isif>

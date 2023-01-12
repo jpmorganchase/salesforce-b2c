@@ -1,0 +1,27 @@
+
+<isif condition="${customer.isAuthenticated() && pdict.jpmcOProfileForm}">
+    <isset name="jpmcOProfileFields" value="${pdict.jpmcOProfileForm}" scope="page"/>
+    <div
+        class="tab-pane jpmco-profile-content js-jpmco-profile-content"
+        id="jpmco-profile-content"
+        role="tabpanel"
+    >
+        <fieldset class="payment-form-fields">
+            <!--- payment method is credit card --->
+            <isset name="JPMCOrbitalConstants" value="${require('*/cartridge/scripts/helpers/jpmcOConstantsHelper')}" scope="page" />
+            <input type="hidden" class="form-control"
+                name="${pdict.forms.billingForm.paymentMethod.htmlName}"
+                value="${JPMCOrbitalConstants.JPMC_ORBITAL_PROFILE_METHOD}"
+            />
+            <!--- form --->
+            <isinclude template="checkout/billing/jpmcOProfileForm" />
+
+        </fieldset>
+    </div>
+    <div class="user-payment-instruments container">
+        <iscomment>Add new credit card button</iscomment>
+        <div class="row">
+            <button class="btn btn-block add-payment btn-outline-primary" type="button">${Resource.msg('button.add.jpmc.payment', 'checkout', null)}</button>
+        </div>
+    </div>
+</isif>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<extensions xmlns="http://www.demandware.com/xml/bmmodules/2007-12-11" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.demandware.com/xml/bmmodules/2007-12-11 bmext.xsd">
+    <menuitem id="custom_module_jpmc" position="2600" site="true">
+        <name xml:lang="x-default">JPMC Orbital Config</name>
+        <short_description xml:lang="x-default">Manage your JPMC Orbital configuration.</short_description>
+        <description xml:lang="x-default">Manage your JPMC Orbital configuration.</description>
+    </menuitem>
+
+    <menuaction id="custom_module_jpmc_config" menupath="custom_module_jpmc" position="1" site="true">
+        <name xml:lang="x-default">JPMC Orbital Config</name>
+        <short_description xml:lang="x-default">Manage your JPMC Orbital configuration.</short_description>
+        <description xml:lang="x-default">Manage your JPMC Orbital configuration.</description>
+        <exec pipeline="JPMCOConfigurations" node="Config" />
+        <sub-pipelines>
+            <pipeline name="JPMCOConfigurations" />
+        </sub-pipelines>
+    </menuaction>
+    
+    
+    <!-- CSC JPMC ORBITAL EXTENSION -->
+    <menuitem id="order" site="true" type="CSC">
+        <name xml:lang="x-default" >CSC Order</name>
+        <short_description xml:lang="x-default">Customer Service Center Order</short_description>
+        <description xml:lang="x-default">Customer Service Center Order</description>
+    </menuitem>
+
+    <menuaction id="order_loyalty_status" menupath="order" type="CSC" site="true" position="1">
+        <name xml:lang="x-default">JPMCOrbital</name>
+        <short_description xml:lang="x-default">JPMCOrbital</short_description>
+        <description xml:lang="x-default">JPMCOrbital</description>
+        <exec pipeline="JPMCOrbitalCSC" node="CustomerServiceCenter"/>
+        <sub-pipelines>
+            <pipeline name="JPMCOrbitalCSC" />
+        </sub-pipelines>
+        <parameters>
+            <parameter name="orderNo" value="/order_no"/>
+            <parameter name="capture" value="/capture"/>
+            <parameter name="refund" value="/refund"/>
+            <parameter name="reversal" value="/reversal"/>
+        </parameters>
+    </menuaction>
+
+</extensions>

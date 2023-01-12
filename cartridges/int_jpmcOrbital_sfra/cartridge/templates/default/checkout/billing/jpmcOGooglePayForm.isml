@@ -1,0 +1,42 @@
+<!--- applicable credit cards--->
+<div class="tab-pane credit-card-content" id="google-pay-content" role="tabpanel">
+    <fieldset class="payment-form-fields">
+        <isif condition="${!pdict.hideSecurityCodeGoogle}">
+            <div class="form-group security-code-input required">
+                <label class="form-control-label" for="securityCodeGoogle">${Resource.msg('label.credit.card-security.code', 'checkout', null)}</label>
+                <button type="button" class="info-icon">
+                    <span class="icon" aria-hidden="true">i</span>
+                    <span class="sr-only">${Resource.msg('button.help.assistive.text', 'common', null)}</span>
+                    <span class="tooltip d-none">
+                        ${Resource.msg('tooltip.security.code', 'creditCard', null)}
+                    </span>
+                </button>
+
+                <input type="text" class="form-control securityCode" id="securityCodeGoogle" maxlength="4" name="${pdict.jpmcOGooglePayForm.securityCodeGoogle.htmlName}"
+                    aria-describedby="savedPaymentSecurityCodeInvalidMessage">
+                <div class="invalid-feedback" id="savedPaymentSecurityCodeInvalidMessage">
+                    ${Resource.msg('error.message.security.code.required', 'checkout', null)}</div>
+            </div>
+        </isif>
+        <!--- payment method is google pay --->
+        <isset name="JPMCOrbitalConstants" value="${require('*/cartridge/scripts/helpers/jpmcOConstantsHelper')}" scope="page" />
+        <isif condition="${pdict.forms}">
+            <input type="hidden" class="form-control js-method-id-input" name="${pdict.forms.billingForm.paymentMethod.htmlName}"
+            value="${JPMCOrbitalConstants.JPMC_ORBITAL_GOOGLEPAY_METHOD}">
+        </isif>
+        <!--- Hidden input for google pay --->
+        <input type="hidden" class="form-control" id="googlePayToken" name="${pdict.jpmcOGooglePayForm.googlepay.htmlName}" value="">
+        <isif condition="${pdict.customer}">
+            <isif condition="${pdict.customer.registeredUser}">
+                <input type="hidden" class="form-control" id="saveCustomerPaymentCheckboxGP" name="${pdict.jpmcOGooglePayForm.saveCustomerPaymentCheckboxGP.htmlName}">
+                <div class="form-group custom-checkbox">
+                    <input type="checkbox" class="control-input" id="customerPaymentCheckboxGP">
+                    <label class="control-label" for="customerPaymentCheckboxGP">
+                        ${Resource.msg('label.save.customer.payment.checkbox', 'jpmcO', null)}
+                    </label>
+                </div>
+            </isif>
+        </isif>
+    </fieldset>
+</div>
+

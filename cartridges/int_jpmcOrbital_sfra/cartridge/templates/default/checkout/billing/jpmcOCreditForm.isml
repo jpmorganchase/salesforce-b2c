@@ -1,0 +1,128 @@
+<!--- applicable credit cards--->
+<isscript>
+    var assets = require('*/cartridge/scripts/assets.js');
+    assets.addCss('css/myAccount.css');
+</isscript>
+<div class="tab-pane credit-card-content" id="jpmco-credit-card-content" role="tabpanel">
+    <fieldset class="payment-form-fields">
+
+        <!--- payment method is credit card --->
+        <isset name="JPMCOrbitalConstants" value="${require('*/cartridge/scripts/helpers/jpmcOConstantsHelper')}" scope="page" />
+        <isif condition="${pdict.forms}">
+            <input type="hidden" class="form-control js-method-id-input" name="${pdict.forms.billingForm.paymentMethod.htmlName}"
+            value="${JPMCOrbitalConstants.JPMC_ORBITAL_CC_METHOD}">
+        </isif>
+
+        <isset name="jpmcOrbitalPageEncryption" value="${require('*/cartridge/scripts/helpers/preferenceHelper').isPageEncryptionEnabled()}" scope="page" />
+        <isif condition="${jpmcOrbitalPageEncryption}"><input type="hidden" class="form-control js-method-id-input encryptedData" name="${!empty(pdict.encryptedData) && !empty(pdict.encryptedData.htmlName) ? pdict.encryptedData.htmlName : pdict.forms ? pdict.forms.billingForm.encryptedData.htmlName : ''}" value=""/></isif>
+
+        <!--- Hidden input for credit card type --->
+        <input type="hidden" class="form-control jpmcOCreditCardType" id="cardType" name="${jpmcOCreditFields.cardType.htmlName}" value="">
+
+        <!--- Hidden input for credit card type --->
+        <input type="hidden" class="form-control js-mp-token" id="token" name="${jpmcOCreditFields.token.htmlName}" data-mp-token>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group
+            <isif condition=${jpmcOCreditFields.cardNumber.mandatory === true}>required</isif>
+            ${jpmcOCreditFields.cardNumber.htmlName}">
+                    <label class="form-control-label"
+                        for="cardNumber">${Resource.msg('field.credit.card.number', 'creditCard', null)}</label>
+                    <div class="card-number-wrapper">
+                    <iscomment> not the best practice changing name of input so it works with cleave as a new input </iscomment>
+                        <input type="text" class="form-control jpmcOCreditCardNumber cardNumber creditContentSe" id="cardNumber" value="${pdict.paymentInstrument ? pdict.paymentInstrument.creditCardNumber : pdict.order ? (pdict.order.billing.payment.selectedPaymentInstruments && pdict.order.billing.payment.selectedPaymentInstruments.length > 0 ? pdict.order.billing.payment.selectedPaymentInstruments[0].maskedCreditCardNumber : ''):''}" <isprint value=${jpmcOCreditFields.cardNumber.attributes} encoding="xmlcomment" />
+                        autocomplete="cc-number"
+                        aria-describedby="cardNumberInvalidMessage"
+                        >
+                        <div class="invalid-feedback" id="cardNumberInvalidMessage"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group
+            <isif condition=${jpmcOCreditFields.expirationMonth.mandatory === true}>required</isif>
+            ${jpmcOCreditFields.expirationMonth.htmlName}">
+                    <label class="form-control-label"
+                        for="expirationMonth">${Resource.msg('field.credit.card.expiration.month', 'creditCard', null)}</label>
+                    <select class="form-control expirationMonth custom-select" id="expirationMonth" <isprint
+                        value=${jpmcOCreditFields.expirationMonth.attributes} encoding="xmlcomment" />
+                    autocomplete="cc-exp-month"
+                    aria-describedby="expirationMonthInvalidMessage">
+                    <isloop items=${jpmcOCreditFields.expirationMonth.options} var="month">
+                        <option id="${month.id}" value="${month.htmlValue}" <isif condition="${month.selected ? month.selected : pdict.order ?pdict.order.billing.payment.selectedPaymentInstruments && pdict.order.billing.payment.selectedPaymentInstruments
+                                                                                             .length > 0 && month.id === pdict.order.billing.payment.selectedPaymentInstruments[0].expirationMonth : null}">
+                            selected
+                            </isif> >
+                            ${month.label}
+                        </option>
+                    </isloop>
+                    </select>
+                    <div class="invalid-feedback" id="expirationMonthInvalidMessage"></div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group
+            <isif condition=${jpmcOCreditFields.expirationYear.mandatory === true}>required</isif>
+            ${jpmcOCreditFields.expirationYear.htmlName}">
+                    <label class="form-control-label"
+                        for="expirationYear">${Resource.msg('field.credit.card.expiration.year', 'creditCard', null)}</label>
+                    <select class="form-control expirationYear custom-select" id="expirationYear" <isprint
+                        value=${jpmcOCreditFields.expirationYear.attributes} encoding="xmlcomment" />
+                    autocomplete="cc-exp-year"
+                    aria-describedby="expirationYearInvalidMessage">
+                    <option value="${jpmcOCreditFields.expirationYear.options[0].htmlValue}">
+                        ${jpmcOCreditFields.expirationYear.options[0].label}</option>
+                    <isloop items=${pdict.expirationYears} var="year">
+
+                        <option id="${year.toFixed(0)}" value="${year.toFixed(0)}"  <isif condition="${year.toFixed(0) === (jpmcOCreditFields.expirationYear.htmlValue)}">
+                            selected
+                            </isif> >
+                            <isprint value="${year}" formatter="####" />
+                        </option>
+                    </isloop>
+                    </select>
+                    <div class="invalid-feedback" id="expirationYearInvalidMessage"></div>
+                </div>
+            </div>
+        </div>
+        <isif condition="${!pdict.hideSecurityCode}">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group security-code-input
+                <isif condition=${jpmcOCreditFields.securityCode.mandatory === true}>required</isif>
+                ${jpmcOCreditFields.securityCode.htmlName}">
+                        <label class="form-control-label"
+                            for="securityCode">${Resource.msg('label.credit.card-security.code', 'checkout', null)}</label>
+
+                        <button type="button" class="info-icon">
+                            <span class="icon" aria-hidden="true">i</span>
+                            <span class="sr-only">${Resource.msg('button.help.assistive.text', 'common', null)}</span>
+                            <span class="tooltip d-none">
+                                ${Resource.msg('tooltip.security.code', 'creditCard', null)}
+                            </span>
+                        </button>
+
+                        <input type="text" class="form-control securityCode" id="securityCode" name="${jpmcOCreditFields.securityCode.htmlName}"
+                        aria-describedby="securityCodeInvalidMessage" <isprint value=${jpmcOCreditFields.securityCode.attributes} encoding="xmlcomment" /> <isif condition=${jpmcOCreditFields.securityCode.mandatory === true}>required</isif>>
+                        <div class="invalid-feedback" id="securityCodeInvalidMessage"></div>
+                    </div>
+                </div>
+            </div>
+        </isif>
+         <isif condition="${pdict.customer}">
+            <isif condition="${pdict.customer.registeredUser}">
+                <input type="hidden" class="form-control" id="saveCustomerPaymentCheckbox" name="${jpmcOCreditFields.saveCustomerPaymentCheckbox.htmlName}">
+                <div class="form-group custom-checkbox">
+                    <input type="checkbox" class="control-input" id="customerPaymentCheckbox">
+                    <label class="control-label" for="customerPaymentCheckbox">
+                        ${Resource.msg('label.save.customer.payment.checkbox', 'jpmcO', null)}
+                    </label>
+                </div>
+            </isif>
+        </isif>
+    </fieldset>
+</div>
