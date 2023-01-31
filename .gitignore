@@ -1,0 +1,25 @@
+node_modules
+dw.json
+.vscode
+app_storefront_base
+
+# Compiled files
+# cartridges/**/cartridge/static/default/js/
+# cartridges/**/cartridge/static/default/css/
+/cartridges/bm_jpmcOrbital/cartridge/static/default/js/cscOrder.js
+/cartridges/bm_jpmcOrbital/cartridge/static/default/css/cscOrder.css
+/cartridges/int_jpmcOrbital_sfra/cartridge/static/default/js/checkout.js
+/cartridges/int_jpmcOrbital_sfra/cartridge/static/default/js/paymentInstruments.js
+/cartridges/int_jpmcOrbital_sfra/cartridge/static/default/js/jpmcOGooglePay.js
+/cartridges/int_jpmcOrbital_sfra/cartridge/static/default/js/jpmcOGooglePayMyAccount.js
+/cartridges/int_jpmcOrbital_sfra/cartridge/static/default/js/jpmcOGooglePayCommon.js
+/cartridges/int_jpmcOrbital_sfra/cartridge/static/default/js/jpmcOrbital.js
+/cartridges/int_jpmcOrbital_sfra/cartridge/static/default/css/jpmcOstyle.css
+/cartridges/jpmcOrbital_sfra_changes/cartridge/static/default/js/checkout.js
+cartridges/int_jpmcOrbital_sfra/cartridge/static/default/js/pageEncryption.js
+cartridges/int_jpmcOrbital_sfra/cartridge/static/default/js/jpmcOrbital.js
+cartridges/bm_jpmcOrbital/cartridge/static/default/css/jpmcOBM.css
+cartridges/bm_jpmcOrbital/cartridge/static/default/js/jpmcOBM.js
+cartridges/int_jpmcOrbital_sfra/cartridge/static/default/css/myAccount.css
+cartridges/int_jpmcOrbital_sfra/cartridge/static/default/js/jpmcOVisaPay.js
+cartridges/int_jpmcOrbital_sfra/cartridge/static/default/css/applePay.css
