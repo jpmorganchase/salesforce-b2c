@@ -1,11 +1,5 @@
 <isdecorate template="application/MenuFrame">
     <isinclude template="jpmcO/header" />
-    <iscomment>
-        Property of OSF Global Services, Inc., (with its brand OSF Commerce). OSF remains the sole owner of all right,
-        title and interest in the software.
-        Do not copy, sell, reverse engineer or otherwise attempt to derive or obtain information about the functioning,
-        manufacture or operation therein.
-    </iscomment>
     <isset name="JPMCOrbitalConstants" value="${require('*/cartridge/scripts/helpers/jpmcOConstantsHelper')}" scope="page" />
     <div id="dashboard-container">
         <h1 class="table_title main-dashboard__title">${Resource.msg('dashboard_title','jpmcorbitalbm', null)}</h1>

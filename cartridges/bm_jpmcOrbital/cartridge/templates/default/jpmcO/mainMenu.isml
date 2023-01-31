@@ -1,7 +1,3 @@
-<iscomment>
-Property of OSF Global Services, Inc., (with its brand OSF Commerce). OSF remains the sole owner of all right, title and interest in the software.
-Do not copy, sell, reverse engineer or otherwise attempt to derive or obtain information about the functioning, manufacture or operation therein.
-</iscomment>
 <div class="flex module__buttons-container">
     <a class="button ${pdict.navigation == 'config' ? 'navCurrentTab' : ''}" href="${URLUtils.url('JPMCOConfigurations-Config')}">
         ${Resource.msg('nav.config','jpmcorbitalbm',null)}

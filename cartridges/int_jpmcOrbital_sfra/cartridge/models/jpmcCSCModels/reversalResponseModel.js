@@ -3,10 +3,6 @@
 var JPMCOrbitalConstants = require('*/cartridge/scripts/helpers/jpmcOConstantsHelper');
 
 /**
- *  Property of OSF Global Services, Inc., d/b/a OSF Digital. OSF remains the sole owner of all right, title and interest in the software.
- *  Do not copy, sell, reverse engineer or otherwise attempt to derive or obtain information about the functioning, manufacture or operation therein.
- */
-/**
  * @module ReversalResponseModel
  */
 /**
