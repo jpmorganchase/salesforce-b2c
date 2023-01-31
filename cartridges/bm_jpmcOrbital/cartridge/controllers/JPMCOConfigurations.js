@@ -1,9 +1,4 @@
 /* eslint-disable consistent-return */
-/**
- *  Property of OSF Global Services, Inc., (with its brand OSF Commerce). OSF remains the sole owner of all right, title and interest in the software.
- *  Do not copy, sell, reverse engineer or otherwise attempt to derive or obtain information about the functioning, manufacture or operation therein.
- */
-
 'use strict';
 
 var ISML = require('dw/template/ISML');

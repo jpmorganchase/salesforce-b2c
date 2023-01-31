@@ -1,0 +1,7 @@
+cartridges/**/cartridge/static/
+coverage/
+doc/
+bin/
+codecept.conf.js
+cartridges/bm_app_storefront_base/cartridge/static/
+webpack.config.js
