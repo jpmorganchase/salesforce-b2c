@@ -4,4 +4,4 @@
 # Default Code Owners will be your maintainer team. 
 # Set a 
 # review when someone opens a pull request.
-*       @jpmorganchase/demo-wholesale-payments_maintainer
+*       @jpmorganchase/payments_maintainer
