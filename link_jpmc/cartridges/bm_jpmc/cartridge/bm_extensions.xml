@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<extensions xmlns="http://www.demandware.com/xml/bmmodules/2007-12-11" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.demandware.com/xml/bmmodules/2007-12-11 bmext.xsd">
+
+    <menuaction id="jpmc_payment_management" menupath="order" type="CSC" site="true" position="2">
+        <name xml:lang="x-default">JPMC Payments</name>
+        <short_description xml:lang="x-default">JPMC Payment Management</short_description>
+        <description xml:lang="x-default">Manage JPMC payment transactions: capture, refund, and void</description>
+        <exec pipeline="JPMCPaymentCSC" node="ManagePayment"/>
+        <sub-pipelines>
+            <pipeline name="JPMCPaymentCSC"/>
+        </sub-pipelines>
+        <parameters>
+            <parameter name="orderNo" value="/order_no"/>
+            <parameter name="capture" value="/capture"/>
+            <parameter name="refund" value="/refund"/>
+            <parameter name="voidAuth" value="/voidAuth"/>
+        </parameters>
+    </menuaction>
+
+    <menuitem id="jpmc_tools" position="900" site="true">
+        <name xml:lang="x-default">JPMC Tools</name>
+        <short_description xml:lang="x-default">JPMC Integration Tools</short_description>
+        <description xml:lang="x-default">Tools for managing JPMC payment integration</description>
+    </menuitem>
+
+    <menuaction id="jpmc_thumbprint_generator" menupath="jpmc_tools" position="10" site="true">
+        <name xml:lang="x-default">Certificate Thumbprint Generator</name>
+        <short_description xml:lang="x-default">Generate SHA-1 thumbprint</short_description>
+        <description xml:lang="x-default">Generate SHA-1 thumbprint from BM Certificate Manager</description>
+        <exec pipeline="JPMCTools" node="ThumbprintGenerator"/>
+        <sub-pipelines>
+            <pipeline name="JPMCTools"/>
+        </sub-pipelines>
+    </menuaction>
+
+    <menuaction id="jpmc_merchant_config" menupath="jpmc_tools" position="20" site="true">
+        <name xml:lang="x-default">Multi-Merchant Configuration</name>
+        <short_description xml:lang="x-default">Manage Multi-MID Configurations</short_description>
+        <description xml:lang="x-default">Create and Manage per-locale JPMC merchant configurations</description>
+        <exec pipeline="JPMCMerchantAdmin" node="List"/>
+        <sub-pipelines>
+            <pipeline name="JPMCMerchantAdmin"/>
+        </sub-pipelines>
+    </menuaction>
+
+</extensions>

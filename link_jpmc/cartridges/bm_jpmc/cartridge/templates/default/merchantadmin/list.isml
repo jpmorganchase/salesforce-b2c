@@ -1,0 +1,95 @@
+<isdecorate template="application/MenuFrame">
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+
+<link rel="stylesheet" href="${URLUtils.staticURL('/css/bmMultiMerchant.css')}" />
+
+<div class="jpmc-merchant-list">
+    <h1>${Resource.msg('merchant.config.title','jpmcbm', null)}</h1>
+
+    <isif condition="${pdict.multiMerchantEnabled === false}">
+        <div class="info-panel info-panel--disabled" role="alert">
+            <h2>${Resource.msg('merchantconfig.disabled.title','jpmcbm', null)}</h2>
+            <p>${Resource.msg('merchantconfig.disabled.description','jpmcbm', null)}</p>
+        </div>
+    <iselse/>
+        <isif condition="${!empty(pdict.error)}">
+            <div class="error-message" role="alert">
+                <isprint value="${pdict.error}" encoding="htmlcontent"/>
+            </div>
+        </isif>
+
+        <div class="info-panel">
+            <h2>${Resource.msg('merchantconfig.about.title','jpmcbm', null)}</h2>
+            <p>${Resource.msg('merchantconfig.about.description','jpmcbm', null)}</p>
+            <p>
+                <strong>${Resource.msg('merchantconfig.about.default','jpmcbm', null)}</strong>
+            </p>
+        </div>
+
+        <div class="action-bar">
+            <div class="actions">
+                <a href="${URLUtils.url('JPMCMerchantAdmin-New')}" class="btn btn-primary">
+                    ${Resource.msg('merchantconfig.action.create.edit','jpmcbm', null)}
+                </a>
+                <a href="${URLUtils.url('JPMCMerchantAdmin-InvalidateCache', pdict.csrf.tokenName, pdict.csrf.token)}" 
+                   class="btn btn-secondary"
+                   onclick="return confirm('<isprint value="${Resource.msgf('merchantconfig.action.cache.confirm','jpmcbm', null, pdict.siteId)}" encoding="jshtml"/>');">
+                    ${Resource.msg('merchantconfig.action.cache','jpmcbm', null)}
+                </a>
+                <span class="config-count" role="status" aria-live="polite">
+                    <isif condition="${!empty(pdict.configs) && pdict.configs.length > 0}">
+                        <strong>${pdict.configs.length}</strong> ${Resource.msg('merchantconfig.configs.found','jpmcbm',null)}
+                    <iselse/>
+                        ${Resource.msg('merchantconfig.configs.empty','jpmcbm', null)}
+                    </isif>
+                </span>
+            </div>
+        </div>
+
+        <div class="table-wrapper">
+            <isif condition="${!empty(pdict.configs) && pdict.configs.length > 0}">
+                <table class="config-table" summary="${Resource.msg('merchantconfig.table.summary','jpmcbm', null)}">
+                    <thead>
+                        <tr>
+                            <th class="col-locale" scope="col">${Resource.msg('merchantconfig.table.locale','jpmcbm', null)}</th>
+                            <th class="col-merchant" scope="col">${Resource.msg('merchantconfig.table.merchantId','jpmcbm', null)}</th>
+                            <th class="col-actions" scope="col">${Resource.msg('merchantconfig.table.actions','jpmcbm', null)}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <isloop items="${pdict.configs}" var="cfg" status="loop">
+                            <tr class="${loop.index % 2 === 0 ? 'row-even' : 'row-odd'}" data-config-key="${cfg.configKey}">
+                                <td class="col-locale"><strong><isprint value="${cfg.locale}" encoding="htmlcontent"/></strong></td>
+                                <td class="col-merchant"><isprint value="${cfg.merchantId}" encoding="htmlcontent"/></td>
+                                <td class="col-actions">
+                                    <a href="${URLUtils.url('JPMCMerchantAdmin-Edit', 'configKey', cfg.configKey)}" class="link-edit">${Resource.msg('merchantconfig.action.edit','jpmcbm', null)}</a>
+                                    <span class="divider" role="presentation">${Resource.msg('merchantconfig.action.divider','jpmcbm', null)}</span>
+                                    <a href="${URLUtils.url('JPMCMerchantAdmin-Delete', 'configKey', cfg.configKey, pdict.csrf.tokenName, pdict.csrf.token)}"
+                                       onclick="return confirm('<isprint value="${Resource.msgf('merchantconfig.action.delete.confirm','jpmcbm', null, cfg.locale)}" encoding="jshtml"/>');"
+                                       class="link-delete">${Resource.msg('merchantconfig.action.delete','jpmcbm', null)}</a>
+                                </td>
+                            </tr>
+                        </isloop>
+                    </tbody>
+                </table>
+            <iselse/>
+                <div class="empty-state">
+                    <div class="empty-state-content">
+                        <h3>${Resource.msg('merchantconfig.empty.title','jpmcbm', null)}</h3>
+                        <ul class="empty-tips">
+                            <li>
+                                <strong>${Resource.msg('merchantconfig.action.create.edit','jpmcbm', null)}</strong>
+                                ${Resource.msg('merchantconfig.empty.desc.create','jpmcbm', null)}
+                            </li>
+                            <li>
+                                <strong>${Resource.msg('merchantconfig.action.cache','jpmcbm', null)}</strong>
+                                ${Resource.msg('merchantconfig.empty.desc.cache','jpmcbm', null)}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </isif>
+        </div>
+    </isif>
+</div>
+</isdecorate>

@@ -1,0 +1,69 @@
+// Shared BM design tokens and mixins.
+// Imported by: bmMultiMerchant.scss, bmMerchantEdit.scss, cscOrder.scss, thumbprintGenerator.scss
+// WARNING: Changes to variables ($primary, $error, $border, etc.) propagate to all four consumers.
+
+$primary: #0070d2;
+$primary-hover: #005cb8;
+$secondary: #f4f6f9;
+$border: #ddd;
+$error: #c00;
+$success: #28a745;
+$text: #333;
+$text-light: #666;
+$bg-light: #f9f9f9;
+$bg-panel: #f0f4f8;
+$border-accent: #0070d2;
+
+@mixin jpmc-shared-components {
+    .btn {
+        padding: 0.5rem 0.875rem;
+        text-decoration: none;
+        border-radius: 0.1875rem;
+        font-weight: 600;
+        font-size: 0.8125rem;
+        display: inline-block;
+        cursor: pointer;
+        border: none;
+        transition: background-color 0.2s;
+
+        &.btn-primary {
+            background-color: $primary;
+            color: #fff;
+
+            &:hover {
+                background-color: $primary-hover;
+            }
+        }
+
+        &.btn-secondary {
+            background: #fff;
+            color: $text;
+            border: 0.0625rem solid $border;
+
+            &:hover {
+                background: $secondary;
+            }
+        }
+
+        &.btn-link {
+            background: none;
+            color: $text;
+            padding: 0.5rem 0.875rem;
+            border: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .error-message {
+        margin: 0.9375rem 0 1.25rem;
+        padding: 0.75rem 0.9375rem;
+        background-color: #fee;
+        border-left: 0.25rem solid $error;
+        border-radius: 0.1875rem;
+        color: $error;
+        font-weight: 500;
+    }
+}

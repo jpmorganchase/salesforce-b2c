@@ -1,0 +1,166 @@
+@import 'bm-common';
+
+.jpmc-merchant-edit {
+    @include jpmc-shared-components;
+
+    h1 {
+        margin-bottom: 1.25rem;
+        font-size: 1.5rem;
+        color: $text;
+    }
+
+    form {
+        background-color: #fff;
+        padding: 0;
+    }
+
+    fieldset {
+        margin: 0 0 1.5625rem 0;
+        padding: 0;
+        border: none;
+    }
+
+    .form-section-title {
+        margin: 1.25rem 0 0.9375rem 0;
+        padding-bottom: 0.625rem;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #003d82;
+        border-bottom: 0.125rem solid $border-accent;
+        display: block;
+    }
+
+    .form-group {
+        margin-bottom: 0.9375rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-label {
+        margin-bottom: 0.375rem;
+        font-weight: 500;
+        color: $text;
+        font-size: 0.8125rem;
+        display: block;
+
+        .required {
+            color: $error;
+            margin-left: 0.25rem;
+            font-weight: 600;
+        }
+    }
+
+    .form-input,
+    select {
+        padding: 0.5rem;
+        border: 0.0625rem solid $border;
+        border-radius: 0.1875rem;
+        font-size: 0.8125rem;
+        background-color: #fff;
+        color: $text;
+
+        &:focus {
+            outline: none;
+            border-color: $primary;
+            box-shadow: 0 0 0 0.125rem rgba(0, 112, 210, 0.1);
+        }
+
+        &:disabled,
+        &[readonly] {
+            background-color: $bg-light;
+            cursor: not-allowed;
+        }
+    }
+
+    select {
+        cursor: pointer;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="url"] {
+        max-width: 31.25rem;
+    }
+
+    .form-help {
+        margin-top: 0.375rem;
+        font-size: 0.75rem;
+        color: $text-light;
+        line-height: 1.5;
+    }
+
+    .form-code {
+        background-color: $bg-light;
+        border: 0.0625rem solid $border;
+        border-radius: 0.125rem;
+        padding: 0.25rem 0.5rem;
+        font-family: monospace;
+        font-size: 0.6875rem;
+        display: inline-block;
+        color: #666;
+    }
+
+    .form-static {
+        margin-bottom: 0.9375rem;
+
+        p {
+            margin: 0 0 0.375rem 0;
+            font-size: 0.8125rem;
+            color: $text;
+
+            &:first-child {
+                font-weight: 500;
+            }
+        }
+    }
+
+    .alert {
+        margin: 0.9375rem 0;
+        padding: 0.75rem 0.9375rem;
+        border-radius: 0.1875rem;
+        font-size: 0.8125rem;
+        line-height: 1.5;
+
+        &.alert-warning {
+            background-color: #fef5e7;
+            border-left: 0.25rem solid #f39c12;
+            color: #8b6914;
+        }
+
+        &.alert-error {
+            background-color: #fee;
+            border-left: 0.25rem solid $error;
+            color: $error;
+        }
+    }
+
+    .error-message {
+        margin: 0.9375rem 0 1.25rem;
+        padding: 0.75rem 0.9375rem;
+        background-color: #fee;
+        border-left: 0.25rem solid $error;
+        border-radius: 0.1875rem;
+        color: $error;
+        font-weight: 500;
+        font-size: 0.8125rem;
+    }
+
+    .form-actions {
+        margin-top: 1.5625rem;
+        padding: 0.9375rem 0;
+        display: flex;
+        gap: 0.75rem;
+        align-items: center;
+        border-top: 0.0625rem solid $border;
+    }
+
+    .btn {
+        cursor: pointer;
+
+        &:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+    }
+}

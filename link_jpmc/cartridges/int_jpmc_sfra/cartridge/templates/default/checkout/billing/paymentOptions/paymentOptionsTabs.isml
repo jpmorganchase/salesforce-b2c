@@ -1,0 +1,22 @@
+
+<isif condition="${pdict.jpmcCheckoutMode === 'DROP_IN'}">
+    <li class="nav-item" data-method-id="JPMC_DROP_IN" role="presentation">
+        <a class="nav-link credit-card-tab active" id="jpmc-dropin-tab" role="tab" data-toggle="tab"
+           data-method-id="JPMC_DROP_IN" href="#jpmc-dropin-content"
+           aria-controls="jpmc-dropin-content" aria-selected="true">
+            ${Resource.msg('msg.payment.type.options','checkout',null)}
+        </a>
+    </li>
+<iselse/>
+<isloop items="${pdict.order.billing.payment.applicablePaymentMethods}" var="paymentOption">
+    <isif condition="${paymentOption.ID === 'CREDIT_CARD'}">
+        <isinclude template="checkout/billing/paymentOptions/creditCardTab" />
+    </isif>
+    <isif condition="${paymentOption.ID === 'DW_APPLE_PAY' && session.privacy.applepaysession === 'yes'}">
+        <isinclude template="checkout/billing/paymentOptions/applePayTab" />
+    </isif>
+    <isif condition="${paymentOption.ID === 'JPMC_GOOGLE_PAY'}">
+        <isinclude template="checkout/billing/paymentOptions/googlePayTab" />
+    </isif>
+</isloop>
+</isif>

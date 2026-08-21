@@ -1,0 +1,30 @@
+<div class="tab-pane active jpmc-dropin-content" id="jpmc-dropin-content" role="tabpanel">
+    <div class="jpmc-dropin-wrapper">
+        <div class="jpmc-dropin-error alert alert-danger d-none" role="alert"></div>
+        <div id="jpmc-dropin-container">
+            <div class="jpmc-dropin-loading text-center py-4">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="sr-only">Loading payment form...</span>
+                </div>
+                <p class="mt-2 text-muted">Loading payment form...</p>
+            </div>
+        </div>
+
+        <div class="payment-form-fields d-none">
+            <input type="hidden"
+                name="${pdict.forms.billingForm.paymentMethod.htmlName}"
+                value="JPMC_DROP_IN" />
+        </div>
+
+        <div id="jpmc-dropin-config" class="d-none"
+            data-script-url="<isprint value="${pdict.jpmcDropIn.scriptUrl}" encoding="htmldoublequote"/>"
+            data-theme-overrides="<isprint value="${pdict.jpmcDropIn.themeOverrides ? JSON.stringify(pdict.jpmcDropIn.themeOverrides) : ''}" encoding="htmldoublequote"/>"
+            data-create-session-url="<isprint value="${pdict.jpmcDropIn.createSessionUrl}" encoding="htmldoublequote"/>"
+            data-get-intent-url="<isprint value="${pdict.jpmcDropIn.getIntentUrl}" encoding="htmldoublequote"/>"
+            data-place-order-url="<isprint value="${pdict.jpmcDropIn.placeOrderUrl}" encoding="htmldoublequote"/>"
+            data-order-confirm-url="<isprint value="${pdict.jpmcDropIn.orderConfirmUrl}" encoding="htmldoublequote"/>"
+            data-csrf-token-name="<isprint value="${pdict.jpmcDropIn.csrfTokenName}" encoding="htmldoublequote"/>"
+            data-csrf-token="<isprint value="${pdict.jpmcDropIn.csrfToken}" encoding="htmldoublequote"/>">
+        </div>
+    </div>
+</div>

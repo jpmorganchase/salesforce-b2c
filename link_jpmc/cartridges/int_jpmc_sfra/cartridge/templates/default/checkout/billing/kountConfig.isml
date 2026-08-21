@@ -1,0 +1,27 @@
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+<isscript>
+    var Site = require('dw/system/Site');
+    var session = require('dw/system/Session');
+    var fraudCheckEnabled = Site.current.getCustomPreferenceValue('JPMCEnableFraudCheck') || false;
+    var kountClientId = Site.current.getCustomPreferenceValue('jpmcKountClientId');
+    var kountEnvironment = Site.current.getCustomPreferenceValue('jpmcKountEnvironment');
+    var kountEnvironmentValue = kountEnvironment ? kountEnvironment.value : 'TEST';
+    var UUIDUtils = require('dw/util/UUIDUtils');
+    var kountSessionId = UUIDUtils.createUUID();
+    var shouldEnableKount = fraudCheckEnabled && kountClientId && kountSessionId;
+</isscript>
+
+<script>
+    window.jpmcFraudCheckEnabled = <isprint value="${fraudCheckEnabled}" encoding="jsblock"/>;
+</script>
+
+<isif condition="${shouldEnableKount}">
+    <div id="kount-config" 
+         data-client-id="<isprint value="${kountClientId}" encoding="htmldoublequote"/>" 
+         data-environment="<isprint value="${kountEnvironmentValue}" encoding="htmldoublequote"/>" 
+         data-session-id="<isprint value="${kountSessionId}" encoding="htmldoublequote"/>"
+         class="jpmc-hidden">
+    </div>
+    
+    <input type="hidden" name="kountSessionId" value="<isprint value="${kountSessionId}" encoding="htmldoublequote"/>" />
+</isif>

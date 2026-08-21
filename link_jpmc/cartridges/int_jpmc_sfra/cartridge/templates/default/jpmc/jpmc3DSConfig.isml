@@ -1,0 +1,34 @@
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+<isscript>
+    var JPMCConfig = require('*/cartridge/scripts/helpers/JPMCConfig');
+    var JPMCMerchantResolver = require('*/cartridge/scripts/helpers/JPMCMerchantResolver');
+    
+    var resolvedConfig = JPMCMerchantResolver.resolve();
+    var is3DSEnabled = (resolvedConfig && resolvedConfig.jpmc3DSEnabled === true) || JPMCConfig.is3DSEnabled();
+</isscript>
+
+<script>
+    window.jpmc3DSEnabled = ${is3DSEnabled ? 'true' : 'false'};
+</script>
+
+<isif condition="${is3DSEnabled}">
+    <div id="jpmc-3ds-container" class="jpmc-3ds-overlay">
+        <div class="jpmc-3ds-inner">
+            <iframe
+                id="jpmc-3ds-iframe"
+                name="jpmc-3ds-iframe"
+                frameborder="0"
+                class="jpmc-3ds-iframe"
+                title="${Resource.msg('3ds.iframe.title', 'checkout', '3D Secure Authentication')}">
+            </iframe>
+            <button
+                id="jpmc-3ds-cancel"
+                type="button"
+                class="jpmc-3ds-cancel-btn">
+                ${Resource.msg('3ds.cancel.button', 'checkout', 'Cancel Authentication')}
+            </button>
+            <input type="hidden" id="jpmc-3ds-order-no" value="" />
+            <input type="hidden" id="jpmc-3ds-order-token" value="" />
+        </div>
+    </div>
+</isif>

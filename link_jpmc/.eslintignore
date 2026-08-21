@@ -1,0 +1,7 @@
+node_modules/
+cartridges/**/cartridge/static/
+coverage/
+doc/
+bin/
+test/
+codecept.conf.js

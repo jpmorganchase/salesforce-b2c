@@ -1,7 +1,0 @@
-<isdecorate template="application/MenuFrame">
-    <div id="dashboard-container">
-        <h1 class="table_title main-dashboard__title">${Resource.msg('dashboard_title','jpmcorbitalbm', null)}</h1>
-        <isinclude template="jpmcO/header" />
-        <isinclude template="jpmcO/mainMenu" />
-    </div>
-</isdecorate>

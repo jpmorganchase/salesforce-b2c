@@ -1,0 +1,5 @@
+<li class="nav-item" data-method-id="${paymentOption.ID}">
+    <a class="nav-link googlepay-tab" data-toggle="tab" href="#googlepay-content" role="tab">
+        <isprint value="${paymentOption.name}" encoding="htmlcontent"/>
+    </a>
+</li>

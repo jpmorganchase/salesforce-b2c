@@ -1,0 +1,12 @@
+{
+    "hooks": [
+        {
+            "name": "dw.order.createOrderNo",
+            "script": "./cartridge/scripts/hooks/createOrderNoHook"
+        },
+        {
+            "name": "dw.ocapi.shop.order.beforePOST",
+            "script": "./cartridge/scripts/hooks/order/beforePOST"
+        }
+    ]
+}

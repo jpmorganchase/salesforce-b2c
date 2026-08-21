@@ -1,0 +1,60 @@
+{
+    "root": true,
+    "extends": [
+        "standard",
+        "prettier"
+    ],
+    "globals": {
+        "dw": true,
+        "session": true,
+        "request": true,
+        "response": true,
+        "customer": true,
+        "empty": true,
+        "XML": true,
+        "$": true,
+        "jQuery": true
+    },
+    "rules": {
+        "import/no-unresolved": "off",
+        "indent": ["error", 4, { "SwitchCase": 1, "VariableDeclarator": 1 }],
+        "func-names": "off",
+        "require-jsdoc": "error",
+        "valid-jsdoc": ["error", { "preferType": { "Boolean": "boolean", "Number": "number", "object": "Object", "String": "string" }, "requireReturn": false}],
+        "vars-on-top": "off",
+        "global-require": "off",
+        "no-unused-vars": ["error", { "args": "none" }],
+        "no-shadow": ["error", { "allow": ["err", "callback"]}],
+        "max-len": "off",
+        "no-plusplus": "off",
+        "no-console": "error",
+        "no-alert": "off",
+        "no-debugger": "error",
+        "no-param-reassign": "off",
+        "block-scoped-var": "off",
+        "no-use-before-define": "off",
+        "no-underscore-dangle": "off",
+        "no-bitwise": "off",
+        "no-restricted-globals": "off",
+        "no-loop-func": "off",
+        "no-continue": "off",
+        "strict": "off"
+    },
+    "overrides": [
+        {
+            "files": ["cartridges/*/cartridge/client/**/*.js"],
+            "env": {
+                "browser": true,
+                "commonjs": true,
+                "es6": true
+            },
+            "globals": {
+                "google": true,
+                "Promise": true
+            },
+            "rules": {
+                "no-console": ["error", { "allow": ["warn", "error"] }]
+            }
+        }
+    ]
+}

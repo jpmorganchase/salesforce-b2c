@@ -1,0 +1,32 @@
+<isscript>
+    var JPMCMerchantResolver = require('*/cartridge/scripts/helpers/JPMCMerchantResolver');
+    var checkoutMode = JPMCMerchantResolver.getCheckoutMode();
+    var isDirectApiMode = checkoutMode === 'PIE';
+    var showGPayOnPDP = isDirectApiMode && JPMCMerchantResolver.isGooglePayOnPDPEnabled();
+    var gpayPdpConfig = showGPayOnPDP ? JPMCMerchantResolver.getGooglePayConfig() : { enabled: false };
+    if (showGPayOnPDP && gpayPdpConfig.enabled) {
+        var assets = require('*/cartridge/scripts/assets.js');
+        assets.addJs('/js/gpayPdp.js');
+    }
+</isscript>
+<isif condition="${showGPayOnPDP && gpayPdpConfig.enabled}">
+    <div class="mt-2 pdp-googlepay-container">
+        <input type="hidden" name="${dw.web.CSRFProtection.getTokenName()}" value="${dw.web.CSRFProtection.generateToken()}"/>
+        <div id="googlepay-button-wrapper"
+             class="text-center"
+             data-config-url="${URLUtils.https('JPMCGooglePay-GetConfig')}"
+             data-store-url="${URLUtils.https('JPMCGooglePay-StoreToken')}"
+             data-clear-url="${URLUtils.https('JPMCGooglePay-ClearToken')}"
+             data-shipping-details-url="${URLUtils.https('JPMCGooglePay-SelectShippingDetails')}"
+             data-shipping-method-url="${URLUtils.https('JPMCGooglePay-SelectShippingMethod')}"
+             data-submit-order-url="${URLUtils.https('JPMCGooglePay-SubmitOrder')}"
+             data-place-order-url="${URLUtils.https('CheckoutServices-PlaceOrder')}"
+             data-prepare-basket-url="${URLUtils.https('JPMCGooglePay-PrepareBasket')}"
+             data-restore-basket-url="${URLUtils.https('JPMCGooglePay-RestoreBasket')}"
+             data-gpay-context="pdp">
+        </div>
+        <div id="googlepay-error" class="googlepay-error text-center mt-2 text-danger d-none">
+            <span>${Resource.msg('error.technical', 'checkout', null)}</span>
+        </div>
+    </div>
+</isif>

@@ -1,0 +1,5 @@
+{
+    "name": "int_jpmc_core",
+    "caches": "./cartridge/caches.json",
+    "hooks": "./hooks.json"
+}

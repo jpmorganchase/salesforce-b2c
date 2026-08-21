@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<form xmlns="http://www.demandware.com/xml/form/2008-04-19">
+	<field formid="stateCode" label="label.input.state" type="string" mandatory="true" binding="stateCode"
+		   missing-error="address.state.missing" value-error="address.field.invalid" parse-error="error.message.required">
+		<options>
+			<option optionid=""   label="resource.select"                   value=""/>
+			<option optionid="AB" label="state.ca.alberta"                  value="AB"/>
+			<option optionid="BC" label="state.ca.britishcolumbia"          value="BC"/>
+			<option optionid="MB" label="state.ca.manitoba"                 value="MB"/>
+			<option optionid="NB" label="state.ca.newbrunswick"             value="NB"/>
+			<option optionid="NL" label="state.ca.newfoundland"             value="NL"/>
+			<option optionid="NT" label="state.ca.northwestterritories"     value="NT"/>
+			<option optionid="NS" label="state.ca.novascotia"               value="NS"/>
+			<option optionid="NU" label="state.ca.nunavut"                  value="NU"/>
+			<option optionid="ON" label="state.ca.ontario"                  value="ON"/>
+			<option optionid="PE" label="state.ca.princeedwardisland"       value="PE"/>
+			<option optionid="QC" label="state.ca.quebec"                   value="QC"/>
+			<option optionid="SK" label="state.ca.saskatchewan"             value="SK"/>
+			<option optionid="YT" label="state.ca.yukon"                    value="YT"/>
+		</options>
+	</field>
+</form>

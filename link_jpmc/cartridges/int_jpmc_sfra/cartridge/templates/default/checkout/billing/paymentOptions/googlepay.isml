@@ -1,0 +1,22 @@
+    <fieldset class="payment-form-fields">
+
+        <input type="hidden" class="form-control"
+               name="${pdict.forms.billingForm.paymentMethod.htmlName}"
+               value="JPMC_GOOGLE_PAY"
+        />
+
+        <div class="googlepay-button-container">
+            <input type="hidden" name="${dw.web.CSRFProtection.getTokenName()}" value="${dw.web.CSRFProtection.generateToken()}"/>
+            <div id="googlepay-button-wrapper" class="text-center"
+                 data-config-url="${URLUtils.https('JPMCGooglePay-GetConfig')}"
+                 data-store-url="${URLUtils.https('JPMCGooglePay-StoreToken')}"
+                 data-clear-url="${URLUtils.https('JPMCGooglePay-ClearToken')}"
+                 data-gpay-context="checkout">
+            </div>
+
+            <div id="googlepay-error" class="googlepay-error text-center mt-3 text-danger d-none">
+                <span>${Resource.msg('error.technical', 'checkout', null)}</span>
+            </div>
+        </div>
+
+    </fieldset>

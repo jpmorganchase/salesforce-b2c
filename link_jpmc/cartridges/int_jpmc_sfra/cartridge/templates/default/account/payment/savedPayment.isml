@@ -1,0 +1,3 @@
+<p><isprint value="${Resource.msg('label.payment.credit','account',null)}" encoding="htmlcontent"/> <isprint value="${payment.creditCardType}" encoding="htmlcontent"/></p>
+<p><isprint value="${payment.maskedCreditCardNumber}" encoding="htmlcontent"/></p>
+<p><isprint value="${Resource.msg('label.payment.ending','account',null)}" encoding="htmlcontent"/> <isprint value="${payment.creditCardExpirationMonth}" encoding="htmlcontent"/>/<isprint value="${payment.creditCardExpirationYear}" encoding="htmlcontent"/></p>

@@ -1,0 +1,59 @@
+<div class="checkout-and-applepay">
+
+    <isscript>
+        var JPMCMerchantResolver = require('*/cartridge/scripts/helpers/JPMCMerchantResolver');
+        var checkoutMode = JPMCMerchantResolver.getCheckoutMode();
+        var isDirectApiMode = checkoutMode === 'PIE';
+        var showGPayOnCart = isDirectApiMode && JPMCMerchantResolver.isGooglePayOnCartEnabled();
+        var gpayConfig = showGPayOnCart ? JPMCMerchantResolver.getGooglePayConfig() : { enabled: false };
+        if (showGPayOnCart && gpayConfig.enabled) {
+            var assets = require('*/cartridge/scripts/assets.js');
+            assets.addJs('/js/cart.js');
+        }
+        var hasApplePay = isDirectApiMode && session.privacy.applepaysession === 'yes';
+        var hasGPay = showGPayOnCart && gpayConfig.enabled && !pdict.valid.error;
+    </isscript>
+
+    <isset name="checkoutBtnClass" value="btn btn-primary btn-block checkout-btn${pdict.valid.error ? ' disabled' : ''}" scope="page"/>
+
+    <div class="row no-gutters payment-buttons-row">
+        <div class="col">
+            <a href="${URLUtils.https('Checkout-Begin')}"
+                class="${checkoutBtnClass}"
+                role="button">
+                <isprint value="${Resource.msg('button.checkout', 'cart', null)}" encoding="htmlcontent"/>
+            </a>
+        </div>
+    </div>
+
+    <isif condition="${hasApplePay && pdict.miniCart !== true}">
+        <div class="row no-gutters payment-buttons-row mt-2">
+            <div class="col">
+                <isapplepay class="apple-pay-cart btn btn-block"></isapplepay>
+            </div>
+        </div>
+    </isif>
+
+    <isif condition="${hasGPay && pdict.miniCart !== true}">
+        <div class="row no-gutters payment-buttons-row mt-2">
+            <div class="col cart-googlepay-col">
+                <input type="hidden" name="${dw.web.CSRFProtection.getTokenName()}" value="${dw.web.CSRFProtection.generateToken()}"/>
+                <div id="googlepay-button-wrapper"
+                     data-config-url="${URLUtils.https('JPMCGooglePay-GetConfig')}"
+                     data-store-url="${URLUtils.https('JPMCGooglePay-StoreToken')}"
+                     data-clear-url="${URLUtils.https('JPMCGooglePay-ClearToken')}"
+                     data-shipping-details-url="${URLUtils.https('JPMCGooglePay-SelectShippingDetails')}"
+                     data-shipping-method-url="${URLUtils.https('JPMCGooglePay-SelectShippingMethod')}"
+                     data-submit-order-url="${URLUtils.https('JPMCGooglePay-SubmitOrder')}"
+                     data-place-order-url="${URLUtils.https('CheckoutServices-PlaceOrder')}"
+                     data-restore-basket-url="${URLUtils.https('JPMCGooglePay-RestoreBasket')}"
+                     data-gpay-context="cart">
+                </div>
+                <div id="googlepay-error" class="googlepay-error text-center mt-2 text-danger d-none">
+                    <span>${Resource.msg('error.technical', 'checkout', null)}</span>
+                </div>
+            </div>
+        </div>
+    </isif>
+
+</div>

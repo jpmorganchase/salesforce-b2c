@@ -1,0 +1,21 @@
+<isif condition="${pdict.jpmcCheckoutMode === 'DROP_IN'}">
+    <isinclude template="checkout/billing/jpmcDropIn" />
+<iselse/>
+<isloop items="${pdict.order.billing.payment.applicablePaymentMethods}" var="paymentOption">
+    <isif condition="${paymentOption.ID === 'CREDIT_CARD'}">
+        <isif condition="${pdict.jpmcPieGetKeyUrl}">
+            <script src="<isprint value="${pdict.jpmcPieGetKeyUrl}" encoding="htmldoublequote"/>"></script>
+        </isif>
+        <isif condition="${pdict.jpmcPieEncryptionUrl}">
+            <script src="<isprint value="${pdict.jpmcPieEncryptionUrl}" encoding="htmldoublequote"/>"></script>
+        </isif>
+        <input type="hidden" name="csrf_token" value="<isprint value="${dw.web.CSRFProtection.generateToken()}" encoding="htmldoublequote"/>"/>
+        <isinclude template="checkout/billing/paymentOptions/creditCardContent" />
+    <iselseif condition="${paymentOption.ID === 'DW_APPLE_PAY'}"/>
+        <isinclude template="checkout/billing/paymentOptions/applePayContent" />
+    </isif>
+    <isif condition="${paymentOption.ID === 'JPMC_GOOGLE_PAY'}">
+        <isinclude template="checkout/billing/paymentOptions/googlePayContent" />
+    </isif>
+</isloop>
+</isif>
