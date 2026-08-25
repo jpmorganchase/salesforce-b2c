@@ -1,0 +1,114 @@
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+<isdecorate template="application/MenuFrame">
+
+<link rel="stylesheet" href="${URLUtils.staticURL('/css/thumbprintGenerator.css')}" />
+
+<h1 class="overview_title">${Resource.msg('thumbprint.title','jpmcbm',null)}</h1>
+
+<div class="thumbprint-page">
+
+<div class="info-section">
+    <h2>${Resource.msg('thumbprint.section.current','jpmcbm',null)}</h2>
+    <div class="info-content">
+        <div class="fielditem">
+            <label><strong>${Resource.msg('thumbprint.label.certAlias','jpmcbm',null)}</strong></label>
+            <div id="curCertAlias">&mdash;</div>
+        </div>
+        <div class="fielditem">
+            <label><strong>${Resource.msg('thumbprint.label.keyAlias','jpmcbm',null)}</strong></label>
+            <div id="curKeyAlias">&mdash;</div>
+        </div>
+        <div class="fielditem" id="curKidRow">
+            <label><strong>${Resource.msg('thumbprint.label.kid','jpmcbm',null)}</strong></label>
+            <div><em>${Resource.msg('thumbprint.label.configured','jpmcbm',null)}</em></div>
+        </div>
+    </div>
+</div>
+
+<div class="info-section">
+    <h2>${Resource.msg('thumbprint.section.generate','jpmcbm',null)}</h2>
+    <div class="info-content">
+        <iscomment>--- Scope selector: Site Preferences or a specific locale ---</iscomment>
+        <div class="fielditem">
+            <label for="localeSelect"><strong>Configuration Scope</strong></label>
+            <select id="localeSelect" class="inputfield_en">
+                <iscomment>Site Preferences option (single-MID / legacy path)</iscomment>
+                <option value=""
+                    data-configkey=""
+                    data-cert="<isprint value="${pdict.certAlias}" encoding="htmlcontent"/>"
+                    data-key="<isprint value="${pdict.privateKeyAlias}" encoding="htmlcontent"/>"
+                    data-has-co="false"
+                    data-kid="<isprint value="${pdict.kidConfigured ? 'configured' : ''}" encoding="htmlcontent"/>">
+                    Site Preferences (single-MID)
+                </option>
+                <iscomment>One option per site locale — carries CO data when a config exists</iscomment>
+                <isloop items="${pdict.localeEntries}" var="entry">
+                    <option value="<isprint value="${entry.locale}" encoding="htmlcontent"/>"
+                        data-configkey="<isprint value="${entry.configKey}" encoding="htmlcontent"/>"
+                        data-cert="<isprint value="${entry.certAlias}" encoding="htmlcontent"/>"
+                        data-key="<isprint value="${entry.privateKeyAlias}" encoding="htmlcontent"/>"
+                        data-has-co="<isprint value="${entry.hasCO ? 'true' : 'false'}" encoding="htmlcontent"/>"
+                        data-kid="<isprint value="${entry.hasKid ? 'configured' : ''}" encoding="htmlcontent"/>">
+                        <isprint value="${entry.locale}" encoding="on"/>
+                    </option>
+                </isloop>
+            </select>
+            <p id="scopeHint" class="scope-hint"></p>
+        </div>
+
+        <div class="fielditem">
+            <label for="certAlias"><strong>${Resource.msg('thumbprint.label.certAlias','jpmcbm',null)}</strong></label>
+            <input type="text" id="certAlias" value="" size="50" class="inputfield_en"/>
+        </div>
+
+        <div class="fielditem">
+            <label for="keyAlias"><strong>${Resource.msg('thumbprint.label.keyAlias','jpmcbm',null)}</strong></label>
+            <input type="text" id="keyAlias" value="" size="50" class="inputfield_en"/>
+        </div>
+
+        <div class="action-buttons">
+            <button type="button" id="genBtn" class="button">${Resource.msg('thumbprint.button','jpmcbm',null)}</button>
+        </div>
+    </div>
+</div>
+
+<div class="info-section hidden" id="resultsTable">
+    <h2>${Resource.msg('thumbprint.section.result','jpmcbm',null)}</h2>
+    <div class="info-content">
+        <div class="fielditem">
+            <label><strong>${Resource.msg('thumbprint.label.status','jpmcbm',null)}</strong></label>
+            <code id="hexResult"></code>
+        </div>
+    </div>
+
+    <div id="msgBox" class="hidden">
+        <div id="msgTable" class="info-section">
+            <div id="msgContent" class="info-content"></div>
+        </div>
+    </div>
+</div>
+
+<div id="thumbprintConfig" class="hidden" aria-hidden="true"
+    data-get-cert-url="<isprint value="${pdict.getCertUrl}" encoding="htmldoublequote"/>"
+    data-save-url="<isprint value="${pdict.saveUrl}" encoding="htmldoublequote"/>"
+    data-site-id="<isprint value="${pdict.siteId}" encoding="htmldoublequote"/>"
+    data-csrf-get="<isprint value="${pdict.csrfTokenGet}" encoding="htmldoublequote"/>"
+    data-csrf-save="<isprint value="${pdict.csrfTokenSave}" encoding="htmldoublequote"/>"
+    data-i18n-error-cert-required="<isprint value="${Resource.msg('thumbprint.js.error.cert.required','jpmcbm',null)}" encoding="htmldoublequote"/>"
+    data-i18n-error-key-required="<isprint value="${Resource.msg('thumbprint.js.error.key.required','jpmcbm',null)}" encoding="htmldoublequote"/>"
+    data-i18n-btn-retrieving="<isprint value="${Resource.msg('thumbprint.js.button.retrieving','jpmcbm',null)}" encoding="htmldoublequote"/>"
+    data-i18n-btn-computing="<isprint value="${Resource.msg('thumbprint.js.button.computing','jpmcbm',null)}" encoding="htmldoublequote"/>"
+    data-i18n-btn-saving="<isprint value="${Resource.msg('thumbprint.js.button.saving','jpmcbm',null)}" encoding="htmldoublequote"/>"
+    data-i18n-btn-default="<isprint value="${Resource.msg('thumbprint.js.button.default','jpmcbm',null)}" encoding="htmldoublequote"/>"
+    data-i18n-success-saved="<isprint value="${Resource.msg('thumbprint.js.success.saved','jpmcbm',null)}" encoding="htmldoublequote"/>"
+    data-i18n-error-cert-not-found="<isprint value="${Resource.msg('thumbprint.js.error.cert.not.found','jpmcbm',null)}" encoding="htmldoublequote"/>"
+    data-i18n-error-sha1-failed="<isprint value="${Resource.msg('thumbprint.js.error.sha1.failed','jpmcbm',null)}" encoding="htmldoublequote"/>"
+    data-i18n-error-cert-decode="<isprint value="${Resource.msg('thumbprint.js.error.cert.decode.failed','jpmcbm',null)}" encoding="htmldoublequote"/>"
+    data-i18n-error-network="<isprint value="${Resource.msg('thumbprint.js.error.network','jpmcbm',null)}" encoding="htmldoublequote"/>"
+    data-i18n-error-parse="<isprint value="${Resource.msg('thumbprint.js.error.parse','jpmcbm',null)}" encoding="htmldoublequote"/>"
+    data-i18n-error-save-failed="<isprint value="${Resource.msg('thumbprint.js.error.save.failed','jpmcbm',null)}" encoding="htmldoublequote"/>"
+></div>
+
+<script src="${URLUtils.staticURL('/js/thumbprintGenerator.js')}"></script>
+</div>
+</isdecorate>

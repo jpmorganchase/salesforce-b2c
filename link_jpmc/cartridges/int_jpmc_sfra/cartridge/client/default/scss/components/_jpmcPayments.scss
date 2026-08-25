@@ -1,0 +1,224 @@
+@import "~base/variables";
+@import "bootstrap/scss/mixins/breakpoints";
+@import "bootstrap/scss/variables";
+
+$payment-btn-height: 3rem;
+
+
+.applepay-content {
+    .dw-apple-pay-button {
+        display: block !important;
+        width: 100% !important;
+        height: $payment-btn-height !important;
+        min-height: $payment-btn-height !important;
+        box-sizing: border-box;
+    }
+}
+
+.googlepay-content {
+    #googlepay-button-wrapper {
+        button {
+            display: block !important;
+            width: 100% !important;
+            height: $payment-btn-height !important;
+            min-height: $payment-btn-height;
+            max-height: $payment-btn-height;
+            box-sizing: border-box;
+        }
+    }
+}
+
+
+.checkout-and-applepay {
+
+    .payment-buttons-row {
+        width: 100%;
+    }
+
+    .btn,
+    .dw-apple-pay-button {
+        width: 100%;
+        height: $payment-btn-height;
+        padding: 0.5em 1em;
+        border-radius: $border-radius;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        white-space: nowrap;
+    }
+
+    .cart-googlepay-col {
+        #googlepay-button-wrapper {
+            width: 100%;
+
+            button {
+                width: 100%;
+                height: $payment-btn-height !important;
+                min-height: $payment-btn-height;
+            }
+        }
+    }
+}
+
+
+
+.cart-and-ipay {
+
+    .row {
+        margin-left: 0;
+        margin-right: 0;
+        align-items: stretch;
+    }
+
+    .pdp-checkout-button,
+    .pdp-apple-pay-button {
+        padding-left: 0;
+        padding-right: 0;
+        display: flex;
+        align-items: stretch;
+
+        &.pdp-apple-pay-button {
+            padding-left: 0.5rem;
+        }
+    }
+
+    .pdp-checkout-button .add-to-cart {
+        width: 100%;
+        height: $payment-btn-height;
+        min-height: $payment-btn-height;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.5em 1em;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .pdp-apple-pay-button .dw-apple-pay-button {
+        display: block !important;
+        width: 100% !important;
+        height: $payment-btn-height !important;
+        min-height: $payment-btn-height !important;
+        box-sizing: border-box;
+        border-radius: $border-radius;
+        margin: 0;
+    }
+
+    .pdp-googlepay-container {
+        #googlepay-button-wrapper {
+            width: 100%;
+
+            button {
+                display: block !important;
+                width: 100% !important;
+                height: $payment-btn-height !important;
+                min-height: $payment-btn-height;
+                max-height: $payment-btn-height;
+                box-sizing: border-box;
+            }
+        }
+    }
+}
+
+.dw-apple-pay-button.apple-pay-cart,
+.dw-apple-pay-button.apple-pay-cart:hover {
+    padding: 0.5em 1em;
+    margin: auto;
+    border-radius: $border-radius;
+}
+
+
+
+.dw-apple-pay-button.apple-pay-pdp,
+.dw-apple-pay-button.apple-pay-pdp:hover {
+    width: 100%;
+    padding: 0.5em 1em;
+    flex-basis: 0;
+    flex-grow: 1;
+    max-width: 100%;
+    border-radius: $border-radius;
+}
+
+isapplepay.btn {
+    display: none !important;
+}
+
+
+.add-to-cart,
+.add-to-cart-global {
+    flex-basis: 0;
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    @include media-breakpoint-down(xs) {
+        max-width: 100%;
+    }
+}
+
+
+
+.applepay-tab-wrapper {
+    display: none;
+}
+
+body.apple-pay-enabled .applepay-tab-wrapper {
+    display: block;
+}
+
+// 3DS overlay styles (moved from inline)
+.jpmc-3ds-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    background: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.jpmc-3ds-inner {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.jpmc-3ds-iframe {
+    display: none;
+    width: 50rem;
+    height: 37.5rem;
+    background: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.25rem 0.375rem rgba(0, 0, 0, 0.1);
+}
+
+.jpmc-3ds-cancel-btn {
+    display: none;
+    margin-top: 1.25rem;
+    padding: 0.75rem 1.5rem;
+    background: #fff;
+    color: #333;
+    border: 0.0625rem solid #ccc;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 500;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+}
+
+// Hidden utility
+.jpmc-hidden {
+    display: none;
+}
+
+// Drop-in UI — error div starts hidden via d-none; shown by JS on failure.
+// Config data div is always hidden (data carrier only).
+#jpmc-dropin-config {
+    display: none;
+}

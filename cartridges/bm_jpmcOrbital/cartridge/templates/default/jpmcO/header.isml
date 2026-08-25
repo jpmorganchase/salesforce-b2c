@@ -1,4 +1,0 @@
-<link rel="stylesheet" href="${URLUtils.staticURL('/css/jpmcOBM.css')}" />
-<hr>
-<link rel="stylesheet" href="${URLUtils.staticURL('/css/bootstrap.css')}" />
-<script src="${URLUtils.staticURL('/js/jpmcOBM.js')}"></script>

@@ -1,0 +1,107 @@
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication Complete</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background: #f5f5f5;
+        }
+        
+        .container {
+            text-align: center;
+            padding: 40px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #0066b2;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .status {
+            font-size: 18px;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .status.success {
+            color: #4CAF50;
+        }
+        
+        .status.error {
+            color: #f44336;
+        }
+        
+        .message {
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="spinner"></div>
+        <div class="status <isprint value="${pdict.success ? 'success' : 'error'}" encoding="htmldoublequote"/>">
+            <isif condition="${pdict.success}">
+                ✓ Authentication Successful
+            <iselse/>
+                ✗ Authentication ${pdict.authenticationStatus === 'N' ? 'Failed' : 'Incomplete'}
+            </isif>
+        </div>
+        <div class="message">Returning to checkout...</div>
+    </div>
+    
+    <isscript>
+        // Create JSON-safe object on server side to prevent XSS injection
+        var authDataObject = {
+            type: 'jpmc3dsComplete',
+            responseStatus: pdict.responseStatus || '',
+            authenticationStatus: pdict.authenticationStatus || '',
+            authenticationValue: pdict.authenticationValue || '',
+            eci: pdict.eci || '',
+            transactionId: pdict.transactionId || '',
+            success: Boolean(pdict.success),
+            orderID: pdict.orderID || '',
+            orderToken: pdict.orderToken || '',
+            continueUrl: pdict.continueUrl || ''
+        };
+        var authDataJson = JSON.stringify(authDataObject);
+    </isscript>
+    
+    <div id="jpmc-auth-data" data-auth="<isprint value="${authDataJson}" encoding="htmldoublequote"/>"></div>
+    <script>
+        (function() {
+            var dataEl = document.getElementById('jpmc-auth-data');
+            // getAttribute() decodes HTML entities automatically, so JSON.parse works correctly
+            var authData = JSON.parse(dataEl.getAttribute('data-auth'));
+
+            // Send postMessage to parent window (checkout page)
+            if (window.parent && window.parent !== window) {
+                window.parent.postMessage(authData, window.location.origin);
+            }
+        })();
+    </script>
+</body>
+</html>

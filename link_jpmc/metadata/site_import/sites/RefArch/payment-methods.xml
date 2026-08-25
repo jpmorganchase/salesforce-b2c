@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<payment-settings xmlns="http://www.demandware.com/xml/impex/paymentsettings/2009-09-15">
+    <payment-method method-id="DW_APPLE_PAY">
+        <name xml:lang="x-default">Apple Pay</name>
+        <enabled-flag>true</enabled-flag>
+        <processor-id>JPMC_Payment</processor-id>
+    </payment-method>
+
+
+    <payment-method method-id="CREDIT_CARD">
+        <name xml:lang="x-default">Credit Card</name>
+        <name xml:lang="fr-FR">Carte de crédit</name>
+        <name xml:lang="it-IT">Carta di credito</name>
+        <name xml:lang="ja-JP">クレジットカード</name>
+        <name xml:lang="zh-CN">信用卡</name>
+        <enabled-flag>true</enabled-flag>
+        <processor-id>JPMC_Payment</processor-id>
+    </payment-method>
+
+    <payment-method method-id="JPMC_DROP_IN">
+        <name xml:lang="x-default">JPMC DROP IN</name>
+        <image>icons8-google-pay-100.png</image>
+        <enabled-flag>false</enabled-flag>
+        <processor-id>JPMC_Payment</processor-id>
+    </payment-method>
+
+    <payment-method method-id="JPMC_GOOGLE_PAY">
+        <name xml:lang="x-default">Google Pay</name>
+        <image>icons8-google-pay-100.png</image>
+        <enabled-flag>true</enabled-flag>
+        <processor-id>JPMC_Payment</processor-id>
+    </payment-method>
+
+    <payment-card card-type="Visa">
+        <name xml:lang="x-default">Visa</name>
+        <name xml:lang="fr-FR">Visa</name>
+        <name xml:lang="it-IT">Visa</name>
+        <name xml:lang="ja-JP">Visa</name>
+        <name xml:lang="zh-CN">Visa</name>
+        <enabled-flag>true</enabled-flag>
+        <card-number-settings>
+            <enable-checksum-verification>true</enable-checksum-verification>
+            <number-length>
+                <length>13</length>
+                <length>16</length>
+            </number-length>
+            <number-prefix>
+                <prefix>4</prefix>
+            </number-prefix>
+        </card-number-settings>
+        <security-code-length>3</security-code-length>
+    </payment-card>
+
+    <payment-card card-type="Amex">
+        <name xml:lang="x-default">American Express</name>
+        <name xml:lang="fr-FR">American Express</name>
+        <name xml:lang="it-IT">American Express</name>
+        <name xml:lang="ja-JP">American Express</name>
+        <name xml:lang="zh-CN">American Express（美国运通卡）</name>
+        <enabled-flag>true</enabled-flag>
+        <card-number-settings>
+            <enable-checksum-verification>true</enable-checksum-verification>
+            <number-length>
+                <length>15</length>
+            </number-length>
+            <number-prefix>
+                <prefix>34</prefix>
+                <prefix>37</prefix>
+            </number-prefix>
+        </card-number-settings>
+        <security-code-length>4</security-code-length>
+    </payment-card>
+
+    <payment-card card-type="Master Card">
+        <name xml:lang="x-default">MasterCard</name>
+        <name xml:lang="fr-FR">MasterCard</name>
+        <name xml:lang="it-IT">MasterCard</name>
+        <name xml:lang="ja-JP">MasterCard</name>
+        <name xml:lang="zh-CN">MASTERCARD</name>
+        <enabled-flag>true</enabled-flag>
+        <card-number-settings>
+            <enable-checksum-verification>true</enable-checksum-verification>
+            <number-length>
+                <length>16</length>
+            </number-length>
+            <number-prefix>
+                <prefix>51-55</prefix>
+            </number-prefix>
+        </card-number-settings>
+        <security-code-length>3</security-code-length>
+    </payment-card>
+
+    <payment-card card-type="Discover">
+        <name xml:lang="x-default">Discover</name>
+        <name xml:lang="fr-FR">Discover</name>
+        <name xml:lang="it-IT">Discover</name>
+        <name xml:lang="ja-JP">Discover</name>
+        <name xml:lang="zh-CN">Discover</name>
+        <enabled-flag>true</enabled-flag>
+        <card-number-settings>
+            <enable-checksum-verification>true</enable-checksum-verification>
+            <number-length>
+                <length>16</length>
+            </number-length>
+            <number-prefix>
+                <prefix>6011</prefix>
+                <prefix>622126-622925</prefix>
+                <prefix>644-649</prefix>
+                <prefix>65</prefix>
+            </number-prefix>
+        </card-number-settings>
+        <security-code-length>3</security-code-length>
+    </payment-card>
+
+    <payment-card card-type="DinersClub">
+        <name xml:lang="x-default">Diners Club International</name>
+        <name xml:lang="fr-FR">Diners Club International</name>
+        <name xml:lang="it-IT">Diners Club International</name>
+        <name xml:lang="ja-JP">Diners Club International</name>
+        <name xml:lang="zh-CN">Diners Club（大莱卡）</name>
+        <enabled-flag>true</enabled-flag>
+        <card-number-settings>
+            <enable-checksum-verification>true</enable-checksum-verification>
+            <number-length>
+                <length>14</length>
+            </number-length>
+            <number-prefix>
+                <prefix>30</prefix>
+                <prefix>36</prefix>
+                <prefix>38</prefix>
+            </number-prefix>
+        </card-number-settings>
+        <security-code-length>3</security-code-length>
+    </payment-card>
+
+    <payment-card card-type="JCB">
+        <name xml:lang="x-default">Japan Credit Bureau</name>
+        <name xml:lang="fr-FR">Japan Credit Bureau</name>
+        <name xml:lang="it-IT">Japan Credit Bureau</name>
+        <name xml:lang="ja-JP">Japan Credit Bureau</name>
+        <name xml:lang="zh-CN">Japan Credit Bureau</name>
+        <enabled-flag>true</enabled-flag>
+        <card-number-settings>
+            <enable-checksum-verification>true</enable-checksum-verification>
+            <number-length>
+                <length>16</length>
+            </number-length>
+            <number-prefix>
+                <prefix>3528-3589</prefix>
+            </number-prefix>
+        </card-number-settings>
+        <security-code-length>3</security-code-length>
+    </payment-card>
+
+    <payment-card card-type="China UnionPay">
+        <name xml:lang="x-default">China UnionPay</name>
+        <name xml:lang="fr-FR">China UnionPay</name>
+        <name xml:lang="it-IT">China UnionPay</name>
+        <name xml:lang="ja-JP">China UnionPay</name>
+        <name xml:lang="zh-CN">中国银联</name>
+        <enabled-flag>true</enabled-flag>
+        <card-number-settings>
+            <enable-checksum-verification>true</enable-checksum-verification>
+            <number-length>
+                <length>16</length>
+                <length>17</length>
+                <length>18</length>
+                <length>19</length>
+            </number-length>
+            <number-prefix>
+                <prefix>62</prefix>
+            </number-prefix>
+        </card-number-settings>
+        <security-code-length>3</security-code-length>
+        <countries>
+            <country country-code="US"/>
+        </countries>
+    </payment-card>
+
+</payment-settings>

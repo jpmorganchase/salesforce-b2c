@@ -1,0 +1,32 @@
+{
+    "hooks": [
+        {
+            "name": "app.payment.processor.jpmc_payment",
+            "script": "./cartridge/scripts/hooks/payment/processor/jpmc_payment"
+        },
+        {
+            "name": "app.payment.form.processor.jpmc_payment",
+            "script": "./cartridge/scripts/hooks/payment/processor/jpmc_payment"
+        },
+        {
+            "name": "dw.extensions.applepay.paymentAuthorized.authorizeOrderPayment",
+            "script": "./cartridge/scripts/hooks/payment/processor/jpmc_applepay"
+        },
+        {
+            "name": "dw.extensions.applepay.getRequest",
+            "script": "./cartridge/scripts/hooks/payment/processor/jpmc_applepay"
+        },
+        {
+            "name": "dw.extensions.applepay.cancel",
+            "script": "./cartridge/scripts/hooks/payment/processor/jpmc_applepay"
+        },
+        {
+            "name": "dw.extensions.applepay.shippingContactSelected",
+            "script": "./cartridge/scripts/hooks/payment/processor/jpmc_applepay"
+        },
+        {
+            "name": "app.safetech.fraud.detection",
+            "script": "./cartridge/scripts/hooks/payment/processor/fraudDetection"
+        }
+    ]
+}

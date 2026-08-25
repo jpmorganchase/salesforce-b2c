@@ -1,0 +1,115 @@
+{
+  "step-types": {
+    "script-module-step": [
+      {
+        "@type-id": "custom.JPMCMerchantCacheWarmup",
+        "@supports-parallel-execution": false,
+        "@supports-site-context": true,
+        "@supports-organization-context": false,
+        "description": "Pre-warms the JPMC merchant configuration cache for all allowed locales on the current site.",
+        "module": "int_jpmc_core/cartridge/scripts/jobs/JPMCMerchantCacheWarmup.js",
+        "function": "execute",
+        "transactional": false,
+        "timeout-in-seconds": 60,
+        "parameters": {},
+        "status-codes": {
+          "status": [
+            {
+              "@code": "OK",
+              "description": "Cache warmed successfully for all locales"
+            },
+            {
+              "@code": "ERROR",
+              "description": "One or more cache warmup entries failed"
+            }
+          ]
+        }
+      },
+      {
+        "@type-id": "custom.JPMCNotificationsPoll",
+        "@supports-parallel-execution": false,
+        "@supports-site-context": true,
+        "@supports-organization-context": false,
+        "description": "Polls JPMC for new checkout notifications, stores them in a custom object queue, and ACKs the notifications to JPMC. This step is intended to be run on a schedule (e.g., every 5 minutes) to ensure timely processing of checkout notifications.",
+        "module": "int_jpmc_core/cartridge/scripts/jobs/jpmcNotificationsPoll.js",
+        "function": "execute",
+        "transactional": false,
+        "timeout-in-seconds": 900,
+        "parameters": {},
+        "status-codes": {
+          "status": [
+            {
+              "@code": "OK",
+              "description": "All pages fetched, stored, and ACKed. State cursor advanced."
+            },
+            {
+              "@code": "TRANSIENT_ERROR",
+              "description": "Transient HTTP error (502/503/504) — state cursor not advanced. Retry on next cron cycle."
+            },
+            {
+              "@code": "ERROR",
+              "description": "Permanent error (config missing, hard API failure, unhandled exception). State cursor not advanced."
+            }
+          ]
+        }
+      },
+      {
+        "@type-id": "custom.JPMCNotificationQueueProcessor",
+        "@supports-parallel-execution": false,
+        "@supports-site-context": true,
+        "@supports-organization-context": false,
+        "description": "Processes queued JPMC checkout notifications from custom objects. Retrieves NEW notifications, processes order updates asynchronously, and deletes successfully processed records.",
+        "module": "int_jpmc_core/cartridge/scripts/jobs/processJPMCNotificationQueue.js",
+        "function": "execute",
+        "transactional": false,
+        "timeout-in-seconds": 300,
+        "parameters": {},
+        "status-codes": {
+          "status": [
+            {
+              "@code": "OK",
+              "description": "Notification queue processed successfully"
+            },
+            {
+              "@code": "ERROR",
+              "description": "Notification queue processing failed"
+            }
+          ]
+        }
+      },
+      {
+        "@type-id": "custom.JPMCNotificationQueueCleanup",
+        "@supports-parallel-execution": false,
+        "@supports-site-context": true,
+        "@supports-organization-context": false,
+        "description": "Purges stale JPMC notification queue custom objects (FAILED, ERROR, ACK_FAILED) older than the retention window so retained token/PII payloads are not held at rest indefinitely.",
+        "module": "int_jpmc_core/cartridge/scripts/jobs/cleanupJPMCNotificationQueue.js",
+        "function": "execute",
+        "transactional": false,
+        "timeout-in-seconds": 300,
+        "parameters": {
+          "parameter": [
+            {
+              "@name": "retentionDays",
+              "@type": "long",
+              "@required": false,
+              "description": "Days to retain FAILED/ERROR/ACK_FAILED notification records before purging. Records older than this are removed. Defaults to 30 when unset."
+            }
+          ]
+        },
+        "status-codes": {
+          "status": [
+            {
+              "@code": "OK",
+              "description": "Cleanup completed; stale records purged"
+            },
+            {
+              "@code": "ERROR",
+              "description": "Cleanup failed (query or removal error)"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

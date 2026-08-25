@@ -1,0 +1,20 @@
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+<isloop items="${pdict.order.billing.payment.selectedPaymentInstruments}" var="payment">
+    <isif condition="${payment.paymentMethod === 'CREDIT_CARD'}">
+        <div class="payment-type">
+            <span><isprint value="${Resource.msg('msg.payment.type.credit', 'confirmation', null)}" encoding="htmlcontent"/> <isprint value="${payment.type}" encoding="htmlcontent"/></span>
+        </div>
+        <div class="payment-card-number"><isprint value="${payment.maskedCreditCardNumber}" encoding="htmlcontent"/></div>
+        <div class="payment-card-expiry">
+            <span><isprint value="${Resource.msg('msg.card.type.ending', 'confirmation', null)}" encoding="htmlcontent"/> <isprint value="${payment.expirationMonth}" encoding="htmlcontent"/>/<isprint value="${payment.expirationYear}" encoding="htmlcontent"/></span>
+        </div>
+    <iselseif condition="${payment.paymentMethod === 'DW_APPLE_PAY'}"/>
+        <div class="payment-type">
+            <span><isprint value="${Resource.msg('label.payment.applepay', 'checkout', null)}" encoding="htmlcontent"/></span>
+        </div>
+    <iselseif condition="${payment.paymentMethod === 'JPMC_GOOGLE_PAY'}"/>
+        <div class="payment-type">
+            <span>${Resource.msg('label.googlepay', 'checkout', null)}</span>
+        </div>
+    </isif>
+</isloop>

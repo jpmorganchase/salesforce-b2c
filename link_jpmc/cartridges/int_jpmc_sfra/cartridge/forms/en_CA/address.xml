@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<form xmlns="http://www.demandware.com/xml/form/2008-04-19">
+
+    <field formid="addressId" label="label.input.addressid" type="string" mandatory="true"
+    	   max-length="20" missing-error="error.message.required" range-error="error.message.20orless"/>
+    <field formid="firstName" label="label.input.firstname.profile" type="string" mandatory="true" binding="firstName"
+           max-length="50" missing-error="error.message.required" range-error="error.message.50orless"/>
+    <field formid="lastName" label="label.input.lastname.profile" type="string" mandatory="true" binding="lastName" max-length="50"
+           missing-error="error.message.required" range-error="error.message.50orless"/>
+    <field formid="address1" label="label.input.address1" type="string" mandatory="true" binding="address1" max-length="50"
+           missing-error="error.message.required" range-error="error.message.50orless"/>
+    <field formid="address2" label="label.input.address2" type="string" mandatory="false" binding="address2"
+           max-length="50" range-error="error.message.50orless"/>
+    <field formid="city" label="label.input.city" type="string" mandatory="true" binding="city" min-length="2"
+           max-length="50" missing-error="error.message.required" range-error="error.message.between2and50"/>
+
+    <field formid="postalCode" label="label.input.zipcode" type="string" mandatory="true" min-length="6" max-length="7"
+           regexp="^[ABCEGHJKLMNPRSTVXY]\d[ABCEGHJKLMNPRSTVWXYZ] ?\d[ABCEGHJKLMNPRSTVWXYZ]\d$"
+           binding="postalCode"
+           range-error="error.message.between6and7"
+           missing-error="error.message.required"
+           parse-error="error.message.parse.zip"/>
+
+    <field formid="country" label="label.input.country" type="string" mandatory="true" binding="countryCode"
+           missing-error="error.message.required">
+        <options>
+            <option optionid="CA" label="select.option.country.canada" value="CA"/>
+        </options>
+    </field>
+
+    <include formid="states" name="states"/>
+
+    <field formid="phone" label="label.input.phonenumber" description="address.phone.example" type="string" mandatory="true"
+           binding="phone" min-length="10" max-length="20"
+           missing-error="error.message.required"
+           range-error="error.message.between10and20"
+           parse-error="error.message.parse.phone"
+           regexp="^(\+?1[-.\s]?)?(\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4})$"/>
+
+    <action formid="apply" valid-form="true"/>
+    <action formid="remove" valid-form="false"/>
+</form>

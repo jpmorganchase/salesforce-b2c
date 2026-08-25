@@ -1,0 +1,10 @@
+<iscontent type="text/html" charset="UTF-8" />
+
+<link rel="stylesheet" href="${URLUtils.staticURL('/css/cscOrder.css')}" />
+
+<div class="csc-order">
+    <div class="csc-banner csc-banner--error">
+        <strong>${Resource.msg('error.csrf.title', 'jpmcbm', 'Security Error')}</strong>
+        <isprint value="${' — ' + Resource.msg('error.csrf.token.mismatch', 'jpmcbm', 'Security validation failed. Please refresh and try again.')}" encoding="htmlcontent" />
+    </div>
+</div>

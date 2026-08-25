@@ -1,0 +1,14 @@
+{
+    "caches": [
+        {
+            "id": "jpmc_access_token_cache",
+            "expireAfterSeconds": 3600,
+            "description": "Cache for JPMC OAuth2 access tokens with 1-hour TTL"
+        },
+        {
+            "id": "jpmc_merchant_config_cache",
+            "expireAfterSeconds": 600,
+            "description": "Cache for JPMCMerchantConfig Custom Object lookups. 10-minute TTL balances freshness with DB call elimination. Invalidate via BM publish or cache invalidation after config changes."
+        }
+    ]
+}

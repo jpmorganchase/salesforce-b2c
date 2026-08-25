@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<services xmlns="http://www.demandware.com/xml/impex/services/2014-09-26">
+    <service-credential service-credential-id="JPMCPaymentServiceCredentials">
+        <url>https://api-mock.payments.jpmorgan.com/api/v2/payments</url>
+        <user-id/>
+        <password/>
+    </service-credential>
+
+    <service-credential service-credential-id="JPMCPaymentCaptureCredentials">
+        <url>https://api-mock.payments.jpmorgan.com/api/v2/payments/{place-holder-id}/captures</url>
+        <user-id/>
+        <password/>
+    </service-credential>
+
+    <service-credential service-credential-id="JPMCPaymentRefundCredentials">
+        <url>https://api-mock.payments.jpmorgan.com/api/v2/refunds</url>
+        <user-id/>
+        <password/>
+    </service-credential>
+
+    <service-credential service-credential-id="JPMCPaymentVoidCredentials">
+        <url>https://api-mock.payments.jpmorgan.com/api/v2/payments/{place-holder-id}</url>
+        <user-id/>
+        <password/>
+    </service-credential>
+
+    <service-credential service-credential-id="JPMCAccessTokenCredentials">
+        <url>https://id.payments.jpmorgan.com/am/oauth2/alpha/access_token</url>
+        <user-id/>
+        <password/>
+    </service-credential>
+
+    <service-credential service-credential-id="JPMCFraudCheckCredentials">
+        <url>https://api-mock.payments.jpmorgan.com/api/v2/fraudcheck</url>
+        <user-id/>
+        <password/>
+    </service-credential>
+
+    <service-credential service-credential-id="JPMCVerificationCredentials">
+        <url>https://api-mock.payments.jpmorgan.com/api/v2/verifications</url>
+        <user-id/>
+        <password/>
+    </service-credential>
+
+    <service-credential service-credential-id="JPMCCheckoutIntentCredentials">
+        <url/>
+        <user-id/>
+        <password/>
+    </service-credential>
+
+    <service-credential service-credential-id="JPMCNotificationsReceiveCredentials">
+        <url/>
+        <user-id/>
+        <password/>
+    </service-credential>
+
+    <service-credential service-credential-id="JPMCNotificationsAckCredentials">
+        <url/>
+        <user-id/>
+        <password/>
+    </service-credential>
+
+    <service-profile service-profile-id="JPMCServiceProfile">
+        <timeout-millis>30000</timeout-millis>
+        <rate-limit-enabled>false</rate-limit-enabled>
+        <rate-limit-calls>0</rate-limit-calls>
+        <rate-limit-millis>0</rate-limit-millis>
+        <cb-enabled>true</cb-enabled>
+        <cb-calls>5</cb-calls>
+        <cb-millis>60000</cb-millis>
+    </service-profile>
+    
+    <service service-id="JPMCAccessToken">
+        <service-type>HTTP</service-type>
+        <enabled>true</enabled>
+        <log-prefix>jpmc</log-prefix>
+        <comm-log-enabled>false</comm-log-enabled>
+        <force-prd-enabled>true</force-prd-enabled>
+        <mock-mode-enabled>false</mock-mode-enabled>
+        <profile-id>JPMCServiceProfile</profile-id>
+        <credential-id>JPMCAccessTokenCredentials</credential-id>
+    </service>
+
+    <service service-id="JPMCPaymentService">
+        <service-type>HTTP</service-type>
+        <enabled>true</enabled>
+        <log-prefix>jpmc</log-prefix>
+        <comm-log-enabled>false</comm-log-enabled>
+        <force-prd-enabled>true</force-prd-enabled>
+        <mock-mode-enabled>false</mock-mode-enabled>
+        <profile-id>JPMCServiceProfile</profile-id>
+        <credential-id>JPMCPaymentServiceCredentials</credential-id>
+    </service>
+    
+    <service service-id="JPMCPaymentCapture">
+        <service-type>HTTP</service-type>
+        <enabled>true</enabled>
+        <log-prefix>jpmc</log-prefix>
+        <comm-log-enabled>false</comm-log-enabled>
+        <force-prd-enabled>true</force-prd-enabled>
+        <mock-mode-enabled>false</mock-mode-enabled>
+        <profile-id>JPMCServiceProfile</profile-id>
+        <credential-id>JPMCPaymentCaptureCredentials</credential-id>
+    </service>
+
+    <service service-id="JPMCPaymentRefund">
+        <service-type>HTTP</service-type>
+        <enabled>true</enabled>
+        <log-prefix>jpmc</log-prefix>
+        <comm-log-enabled>false</comm-log-enabled>
+        <force-prd-enabled>true</force-prd-enabled>
+        <mock-mode-enabled>false</mock-mode-enabled>
+        <profile-id>JPMCServiceProfile</profile-id>
+        <credential-id>JPMCPaymentRefundCredentials</credential-id>
+    </service>
+
+    <service service-id="JPMCPaymentVoid">
+        <service-type>HTTP</service-type>
+        <enabled>true</enabled>
+        <log-prefix>jpmc</log-prefix>
+        <comm-log-enabled>false</comm-log-enabled>
+        <force-prd-enabled>true</force-prd-enabled>
+        <mock-mode-enabled>false</mock-mode-enabled>
+        <profile-id>JPMCServiceProfile</profile-id>
+        <credential-id>JPMCPaymentVoidCredentials</credential-id>
+    </service>
+
+    <service service-id="JPMCFraudCheck">
+        <service-type>HTTP</service-type>
+        <enabled>true</enabled>
+        <log-prefix>jpmc</log-prefix>
+        <comm-log-enabled>false</comm-log-enabled>
+        <force-prd-enabled>true</force-prd-enabled>
+        <mock-mode-enabled>false</mock-mode-enabled>
+        <profile-id>JPMCServiceProfile</profile-id>
+        <credential-id>JPMCFraudCheckCredentials</credential-id>
+    </service>
+
+    <service service-id="JPMCVerification">
+        <service-type>HTTP</service-type>
+        <enabled>true</enabled>
+        <log-prefix>jpmc</log-prefix>
+        <comm-log-enabled>false</comm-log-enabled>
+        <force-prd-enabled>true</force-prd-enabled>
+        <mock-mode-enabled>false</mock-mode-enabled>
+        <profile-id>JPMCServiceProfile</profile-id>
+        <credential-id>JPMCVerificationCredentials</credential-id>
+    </service>
+
+
+
+    <service service-id="JPMCCheckoutIntent">
+        <service-type>HTTP</service-type>
+        <enabled>true</enabled>
+        <log-prefix>jpmc</log-prefix>
+        <comm-log-enabled>false</comm-log-enabled>
+        <force-prd-enabled>true</force-prd-enabled>
+        <mock-mode-enabled>false</mock-mode-enabled>
+        <profile-id>JPMCServiceProfile</profile-id>
+        <credential-id>JPMCCheckoutIntentCredentials</credential-id>
+    </service>
+
+    <service service-id="JPMCNotificationsReceive">
+        <service-type>HTTP</service-type>
+        <enabled>true</enabled>
+        <log-prefix>jpmc</log-prefix>
+        <comm-log-enabled>false</comm-log-enabled>
+        <force-prd-enabled>true</force-prd-enabled>
+        <mock-mode-enabled>false</mock-mode-enabled>
+        <profile-id>JPMCServiceProfile</profile-id>
+        <credential-id>JPMCNotificationsReceiveCredentials</credential-id>
+    </service>
+
+    <service service-id="JPMCNotificationsAck">
+        <service-type>HTTP</service-type>
+        <enabled>true</enabled>
+        <log-prefix>jpmc</log-prefix>
+        <comm-log-enabled>false</comm-log-enabled>
+        <force-prd-enabled>true</force-prd-enabled>
+        <mock-mode-enabled>false</mock-mode-enabled>
+        <profile-id>JPMCServiceProfile</profile-id>
+        <credential-id>JPMCNotificationsAckCredentials</credential-id>
+    </service>
+</services>

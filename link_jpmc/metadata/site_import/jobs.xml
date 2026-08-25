@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jobs xmlns="http://www.demandware.com/xml/impex/jobs/2015-07-01">
+    <job job-id="JPMCMerchantCacheWarmup">
+        <description/>
+        <parameters/>
+        <flow>
+            <context site-id="RefArch"/>
+            <step step-id="JPMCMerchantCacheWarmup" type="custom.JPMCMerchantCacheWarmup" enforce-restart="false">
+                <description/>
+                <parameters/>
+            </step>
+        </flow>
+        <rules/>
+        <triggers>
+            <run-recurring enabled="true">
+                <recurrence>
+                    <date-from>2026-04-06Z</date-from>
+                    <start-time>23:10:00.000Z</start-time>
+                    <interval>8m</interval>
+                    <day-of-week>
+                        <weekday>Monday</weekday>
+                        <weekday>Tuesday</weekday>
+                        <weekday>Wednesday</weekday>
+                        <weekday>Thursday</weekday>
+                        <weekday>Friday</weekday>
+                        <weekday>Saturday</weekday>
+                        <weekday>Sunday</weekday>
+                    </day-of-week>
+                </recurrence>
+            </run-recurring>
+        </triggers>
+    </job>
+    <job job-id="JPMCNotificationsPoll">
+        <description>Poll notifications and queue for processing</description>
+        <parameters/>
+        <flow>
+            <context site-id="RefArch"/>
+            <step step-id="JPMCNotificationsPoll" type="custom.JPMCNotificationsPoll" enforce-restart="false">
+                <description>Poll notifications and queue for processing</description>
+                <parameters/>
+            </step>
+        </flow>
+        <rules/>
+        <triggers>
+            <run-recurring enabled="true">
+                <recurrence>
+                    <date-from>2026-05-11Z</date-from>
+                    <start-time>00:00:00.000Z</start-time>
+                    <interval>5m</interval>
+                    <day-of-week>
+                        <weekday>Monday</weekday>
+                        <weekday>Tuesday</weekday>
+                        <weekday>Wednesday</weekday>
+                        <weekday>Thursday</weekday>
+                        <weekday>Friday</weekday>
+                        <weekday>Saturday</weekday>
+                        <weekday>Sunday</weekday>
+                    </day-of-week>
+                </recurrence>
+            </run-recurring>
+        </triggers>
+    </job>
+    <job job-id="JPMCNotificationQueueProcessor">
+        <description>Process queued JPMC checkout notifications from custom objects</description>
+        <parameters/>
+        <flow>
+            <context site-id="RefArch"/>
+            <step step-id="JPMCNotificationQueueProcessor" type="custom.JPMCNotificationQueueProcessor" enforce-restart="false">
+                <description>Process queued notifications and update orders</description>
+                <parameters/>
+            </step>
+        </flow>
+        <rules/>
+        <triggers>
+            <run-recurring enabled="true">
+                <recurrence>
+                    <date-from>2026-06-08Z</date-from>
+                    <start-time>00:00:00.000Z</start-time>
+                    <interval>5m</interval>
+                    <day-of-week>
+                        <weekday>Monday</weekday>
+                        <weekday>Tuesday</weekday>
+                        <weekday>Wednesday</weekday>
+                        <weekday>Thursday</weekday>
+                        <weekday>Friday</weekday>
+                        <weekday>Saturday</weekday>
+                        <weekday>Sunday</weekday>
+                    </day-of-week>
+                </recurrence>
+            </run-recurring>
+        </triggers>
+    </job>
+    <job job-id="JPMCNotificationQueueCleanup">
+        <description>Purge stale failed JPMC notification records that retain sensitive payloads</description>
+        <parameters/>
+        <flow>
+            <context site-id="RefArch"/>
+            <step step-id="JPMCNotificationQueueCleanup" type="custom.JPMCNotificationQueueCleanup" enforce-restart="false">
+                <description>Remove FAILED/ERROR/ACK_FAILED notification COs older than the retention window</description>
+                <parameters>
+                    <parameter name="retentionDays">30</parameter>
+                </parameters>
+            </step>
+        </flow>
+        <rules/>
+        <triggers>
+            <run-recurring enabled="true">
+                <recurrence>
+                    <date-from>2026-08-21Z</date-from>
+                    <start-time>02:00:00.000Z</start-time>
+                    <interval>1d</interval>
+                    <day-of-week>
+                        <weekday>Monday</weekday>
+                        <weekday>Tuesday</weekday>
+                        <weekday>Wednesday</weekday>
+                        <weekday>Thursday</weekday>
+                        <weekday>Friday</weekday>
+                        <weekday>Saturday</weekday>
+                        <weekday>Sunday</weekday>
+                    </day-of-week>
+                </recurrence>
+            </run-recurring>
+        </triggers>
+    </job>
+</jobs>

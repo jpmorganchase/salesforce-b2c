@@ -1,0 +1,4 @@
+{
+    "name": "int_jpmc_core",
+    "caches": "./caches.json"
+}
